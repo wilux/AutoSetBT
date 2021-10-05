@@ -21,7 +21,8 @@ namespace AutoSetBT
 
         private void btnFirmar_Click(object sender, EventArgs e)
         {
-            //LegajoDigital.Completar(inputCuil.Text);
+            richResultado.Text = "";
+            richResultado.Text = LegajoDigital.Completar(inputCuil.Text);
 
         }
 
@@ -30,11 +31,17 @@ namespace AutoSetBT
             string db_LegajoDigital = "LegajoDigital_QA";
             string db_Firma = "FirmaGrafometrica_QA";
 
-            string sql = $"select *  from TRAMITE where idPersona in (select idPersona from PERSONA where CuitCuil = '{inputCuil.Text}')";
+            string sql_lg = $"select *  from TRAMITE where idPersona in (select idPersona from PERSONA where CuitCuil = '{inputCuil.Text}')";
+            string sql_firma = $"select *  from TRAMITE where CuitCuil = '{inputCuil.Text}' and activo = 1";
+            DataSet legajo = DB.ObtenerDatos(sql_lg, db_LegajoDigital);
+            DataSet firma = DB.ObtenerDatos(sql_firma, db_Firma);
 
-            DataSet a = DB.ObtenerDatos(sql, db_LegajoDigital);
+            richResultado.Text = "";
+            richResultado.Text = Environment.NewLine + sql_lg + Environment.NewLine + sql_firma;
 
-            dataLD.DataSource = a.Tables[0];
+            dataLD.DataSource = legajo.Tables[0];
+            dataFirma.DataSource = firma.Tables[0];
         }
+
     }
 }

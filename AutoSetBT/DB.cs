@@ -17,7 +17,7 @@ namespace AutoSetBT
             //_ConnectionString = "Persist Security Info = False; Integrated Security = true; Initial Catalog = BPN_WEB_QA; Server = arcncd07";
         }
 
-        public static void ejecutarQuery(string sql, string db = "BPN_WEB_QA")
+        public static string ejecutarQuery(string sql, string db = "BPN_WEB_QA")
         {
             string Connection = $"Persist Security Info = False; Integrated Security = true; Initial Catalog = {db}; Server = arcncd07";
             // string connectionString = _ConnectionString;
@@ -28,13 +28,19 @@ namespace AutoSetBT
 
             try
             {
+                connection.Close();
+            }
+            catch { }
+
+            try
+            {
                 connection.Open();
                 command.ExecuteNonQuery();
-                Console.WriteLine("Records Inserted Successfully");
+                return "El update fue extiso";
             }
             catch (SqlException e)
             {
-                Console.WriteLine("Error Generated. Details: " + e.ToString());
+                return "Error al intentar hacer el update. Detalle del error: " + e.ToString();
             }
             finally
             {

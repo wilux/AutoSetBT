@@ -1,11 +1,12 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace AutoSetBT
 {
     public class LegajoDigital
     {
-        public static void Completar(string cuil)
+        public static string Completar(string cuil)
         {
 
             string db_LegajoDigital = "LegajoDigital_QA";
@@ -29,16 +30,20 @@ namespace AutoSetBT
             string tramites = string.Join(",", ListaTramites);
 
             //Aprobar Tramites
-            string sql_UpdateTramite = $"UPDATE Tramite set estado = 2 where  idTramite in ({tramites})";
-            DB.ejecutarQuery(sql_UpdateTramite, db_LegajoDigital);
+            string sql_UpdateTramite = $"UPDATE Tramite SET estado = 2 where  idTramite in ('{tramites}')";
+            string resTramites = DB.ejecutarQuery(sql_UpdateTramite, db_LegajoDigital);
 
             //Aprobar Documentos
-            string sql_updateVersionDocumento = $"update VERSIONDOCUMENTO set estado=2 where idVersionDocumento in (select idVersionDocumento from TRAMITEVERSIONDOCUMENTO where idTramite in ({tramites}))";
-            DB.ejecutarQuery(sql_updateVersionDocumento, db_LegajoDigital);
+            string sql_updateVersionDocumento = $"UPDATE VERSIONDOCUMENTO SET estado=2 where idVersionDocumento in (select idVersionDocumento from TRAMITEVERSIONDOCUMENTO where idTramite in ('{tramites}'))";
+            string resDocumentos = DB.ejecutarQuery(sql_updateVersionDocumento, db_LegajoDigital);
 
             //FirmaDigital
-            string sql_updateFirma = $"update Tramite set activo = 0 where CuitCuil = '{cuil}'";
-            DB.ejecutarQuery(sql_updateFirma, db_Firma);
+            string sql_updateFirma = $"UPDATE Tramite SET activo = 0 where CuitCuil = '{cuil}'";
+            string resFirma = DB.ejecutarQuery(sql_updateFirma, db_Firma);
+
+            return sql_UpdateTramite + ": "+resTramites + Environment.NewLine +
+                   sql_updateVersionDocumento + ": " + resDocumentos + Environment.NewLine +
+                   sql_updateFirma + ": " + resFirma;
 
 
         }

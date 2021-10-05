@@ -37,14 +37,12 @@ namespace AutoSetBT
             this.dataFirma = new System.Windows.Forms.DataGridView();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
             this.labelEstado = new System.Windows.Forms.Label();
             this.btnConsultar = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
-            this.dataBT = new System.Windows.Forms.DataGridView();
+            this.richResultado = new System.Windows.Forms.RichTextBox();
+            this.label_Resultado = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataLD)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataFirma)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataBT)).BeginInit();
             this.SuspendLayout();
             // 
             // inputCuil
@@ -59,9 +57,9 @@ namespace AutoSetBT
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(12, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(79, 15);
+            this.label1.Size = new System.Drawing.Size(101, 15);
             this.label1.TabIndex = 1;
-            this.label1.Text = "Firmar Legajo";
+            this.label1.Text = "Completar Legajo";
             // 
             // label2
             // 
@@ -94,7 +92,7 @@ namespace AutoSetBT
             // dataFirma
             // 
             this.dataFirma.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataFirma.Location = new System.Drawing.Point(12, 538);
+            this.dataFirma.Location = new System.Drawing.Point(10, 342);
             this.dataFirma.Name = "dataFirma";
             this.dataFirma.RowTemplate.Height = 25;
             this.dataFirma.Size = new System.Drawing.Size(776, 150);
@@ -105,27 +103,18 @@ namespace AutoSetBT
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(10, 129);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(150, 15);
+            this.label4.Size = new System.Drawing.Size(79, 15);
             this.label4.TabIndex = 8;
-            this.label4.Text = "Base de Dato Legajo Digital";
+            this.label4.Text = "Legajo Digital";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(12, 520);
+            this.label5.Location = new System.Drawing.Point(10, 324);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(145, 15);
+            this.label5.Size = new System.Drawing.Size(74, 15);
             this.label5.TabIndex = 9;
-            this.label5.Text = "Base de Dato Firma Digital";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(643, 702);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(45, 15);
-            this.label6.TabIndex = 10;
-            this.label6.Text = "Estado:";
+            this.label5.Text = "Firma Digital";
             // 
             // labelEstado
             // 
@@ -145,34 +134,34 @@ namespace AutoSetBT
             this.btnConsultar.UseVisualStyleBackColor = true;
             this.btnConsultar.Click += new System.EventHandler(this.btnConsultar_Click);
             // 
-            // label3
+            // richResultado
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(16, 321);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(112, 15);
-            this.label3.TabIndex = 14;
-            this.label3.Text = "Base de Dato BT_QA";
+            this.richResultado.BackColor = System.Drawing.SystemColors.ButtonShadow;
+            this.richResultado.Location = new System.Drawing.Point(204, 45);
+            this.richResultado.Name = "richResultado";
+            this.richResultado.ReadOnly = true;
+            this.richResultado.Size = new System.Drawing.Size(582, 96);
+            this.richResultado.TabIndex = 13;
+            this.richResultado.Text = "";
             // 
-            // dataBT
+            // label_Resultado
             // 
-            this.dataBT.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataBT.Location = new System.Drawing.Point(14, 339);
-            this.dataBT.Name = "dataBT";
-            this.dataBT.RowTemplate.Height = 25;
-            this.dataBT.Size = new System.Drawing.Size(776, 150);
-            this.dataBT.TabIndex = 13;
+            this.label_Resultado.AutoSize = true;
+            this.label_Resultado.Location = new System.Drawing.Point(204, 27);
+            this.label_Resultado.Name = "label_Resultado";
+            this.label_Resultado.Size = new System.Drawing.Size(111, 15);
+            this.label_Resultado.TabIndex = 14;
+            this.label_Resultado.Text = "Consulta Ejecutada:";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(802, 726);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.dataBT);
+            this.ClientSize = new System.Drawing.Size(802, 505);
+            this.Controls.Add(this.label_Resultado);
+            this.Controls.Add(this.richResultado);
             this.Controls.Add(this.btnConsultar);
             this.Controls.Add(this.labelEstado);
-            this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.dataFirma);
@@ -182,10 +171,9 @@ namespace AutoSetBT
             this.Controls.Add(this.label1);
             this.Controls.Add(this.inputCuil);
             this.Name = "Form1";
-            this.Text = "QA AutoSet";
+            this.Text = "QA CompletarLegajo";
             ((System.ComponentModel.ISupportInitialize)(this.dataLD)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataFirma)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataBT)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -201,11 +189,10 @@ namespace AutoSetBT
         private System.Windows.Forms.DataGridView dataFirma;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label labelEstado;
         private System.Windows.Forms.Button btnConsultar;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.DataGridView dataBT;
+        private System.Windows.Forms.RichTextBox richResultado;
+        private System.Windows.Forms.Label label_Resultado;
     }
 }
 
