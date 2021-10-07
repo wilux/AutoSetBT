@@ -57,9 +57,6 @@ namespace AutoSetBT
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.inputEntrevista = new System.Windows.Forms.TextBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.radioQA = new System.Windows.Forms.RadioButton();
-            this.radioDF = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.dataLD)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -172,10 +169,10 @@ namespace AutoSetBT
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Location = new System.Drawing.Point(12, 29);
+            this.tabControl1.Location = new System.Drawing.Point(12, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(799, 578);
+            this.tabControl1.Size = new System.Drawing.Size(799, 595);
             this.tabControl1.TabIndex = 15;
             // 
             // tabPage1
@@ -194,7 +191,7 @@ namespace AutoSetBT
             this.tabPage1.Location = new System.Drawing.Point(4, 24);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(791, 550);
+            this.tabPage1.Size = new System.Drawing.Size(791, 567);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Legajo Digital";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -351,45 +348,11 @@ namespace AutoSetBT
             this.inputEntrevista.Size = new System.Drawing.Size(100, 23);
             this.inputEntrevista.TabIndex = 0;
             // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(644, 14);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(59, 15);
-            this.label10.TabIndex = 17;
-            this.label10.Text = "Ambiente";
-            // 
-            // radioQA
-            // 
-            this.radioQA.AutoSize = true;
-            this.radioQA.Location = new System.Drawing.Point(709, 12);
-            this.radioQA.Name = "radioQA";
-            this.radioQA.Size = new System.Drawing.Size(42, 19);
-            this.radioQA.TabIndex = 18;
-            this.radioQA.TabStop = true;
-            this.radioQA.Text = "QA";
-            this.radioQA.UseVisualStyleBackColor = true;
-            // 
-            // radioDF
-            // 
-            this.radioDF.AutoSize = true;
-            this.radioDF.Location = new System.Drawing.Point(757, 12);
-            this.radioDF.Name = "radioDF";
-            this.radioDF.Size = new System.Drawing.Size(39, 19);
-            this.radioDF.TabIndex = 19;
-            this.radioDF.TabStop = true;
-            this.radioDF.Text = "DF";
-            this.radioDF.UseVisualStyleBackColor = true;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(812, 619);
-            this.Controls.Add(this.radioDF);
-            this.Controls.Add(this.radioQA);
-            this.Controls.Add(this.label10);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.labelEstado);
             this.MaximizeBox = false;
@@ -439,9 +402,6 @@ namespace AutoSetBT
         private System.Windows.Forms.TextBox inputEntrevista;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.RichTextBox richResultado_candidatos;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.RadioButton radioQA;
-        private System.Windows.Forms.RadioButton radioDF;
         private System.Windows.Forms.TextBox textUsuarioSelected;
         private System.Windows.Forms.Label label11;
     }
