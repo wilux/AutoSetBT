@@ -52,22 +52,25 @@ namespace AutoSetBT
         {
             string Connection = $"Persist Security Info = False; Integrated Security = true; Initial Catalog = {db}; Server = arcncd07";
             var ds = new DataSet();
-            //var sql = "select * from FST098 where Tpcod = 81100; ";
-            using (var con = new SqlConnection(Connection))
+            try
             {
-                using (var cmd = new SqlCommand(sql, con))
+                using (var con = new SqlConnection(Connection))
                 {
-                    using (var adapter = new SqlDataAdapter(cmd))
+                    using (var cmd = new SqlCommand(sql, con))
                     {
-                        adapter.Fill(ds);
+                        using (var adapter = new SqlDataAdapter(cmd))
+                        {
+                            adapter.Fill(ds);
+                        }
                     }
                 }
             }
+            catch (Exception e) { }
 
             return ds;
         }
 
-        public static String ObtenerValorCampo(string sql, string fila, string db = "BPN_WEB_QA")
+        public static String ObtenerValorCampo(string sql, string campo, string db = "BPN_WEB_QA")
         {
 
             //Consultar DB 
@@ -77,10 +80,10 @@ namespace AutoSetBT
 
             foreach (DataRow dr in respuesta.Tables[0].Rows)
             {
-                fila = dr[$"{fila}"].ToString();
+                campo = dr[$"{campo}"].ToString();
             }
 
-            return resultado = fila;
+            return resultado = campo;
 
         }
 
@@ -124,12 +127,13 @@ namespace AutoSetBT
         }
 
 
-        public static void CambiarUsuario(string usuario)
+        public static string CambiarUsuario(string usuario)
         {
 
             string sql = $"UPDATE J055XZ SET J055XZUsr='{usuario}' WHERE J055XZUad='floresnes'";
-            ejecutarQuery(sql);
+            string respuesta = ejecutarQuery(sql);
 
+            return Environment.NewLine + sql + Environment.NewLine + respuesta;
 
         }
 
