@@ -114,5 +114,51 @@ namespace AutoSetBT
         {
             textUsuarioSelected.Text = (string)dataUsuarios.CurrentCell.Value;
         }
+
+        private void label12_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            if (inputCuil.Text != "")
+            {
+                richResultado_bridger.Text = "";
+                string sql_Bridger = $"select * from    BPNC37 where    BPNC37NID = '{inputCuil.Text}'";
+              
+
+                DataSet bridger = DB.ObtenerDatos(sql_Bridger);
+
+                dataBridger.DataSource = bridger.Tables[0];
+
+
+                richResultado_bridger.Text = Environment.NewLine + sql_Bridger + Environment.NewLine;
+
+            }
+            else
+            {
+                richResultado_bridger.Text = "Debe ingresar nro Cuil/Cuit";
+            }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            if (inputCuil.Text != "" && inputUsuario.Text !="")
+            {
+                richResultado_bridger.Text = BridgerInsight.Insertar(inputCuil.Text, inputUsuario.Text);
+            }
+            else
+            {
+                richResultado_bridger.Text = "Debe escribir un cuil/cuit y ademas el usuario de plataforma";
+            }
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            //Fecha BT
+            string sql_FechaBT = "select Pgfape from fst017";
+           txtFechaBT.Text = DB.ObtenerValorCampo(sql_FechaBT, "Pgfape");
+        }
     }
 }
