@@ -43,10 +43,14 @@ namespace AutoSetBT
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.dataFirma = new System.Windows.Forms.DataGridView();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.label14 = new System.Windows.Forms.Label();
+            this.dataInstancia = new System.Windows.Forms.DataGridView();
+            this.label12 = new System.Windows.Forms.Label();
+            this.textInstanciaSelected = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
-            this.textUsuarioSelected = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.richResultado_candidatos = new System.Windows.Forms.RichTextBox();
+            this.textUsuarioSelected = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.dataUsuarios = new System.Windows.Forms.DataGridView();
             this.label7 = new System.Windows.Forms.Label();
@@ -65,12 +69,14 @@ namespace AutoSetBT
             this.inputUsuario = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.txtFechaBT = new System.Windows.Forms.TextBox();
+            this.txtFechaBT = new System.Windows.Forms.Label();
+            this.button5 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataLD)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataFirma)).BeginInit();
             this.tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataInstancia)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataUsuarios)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataEntrevista)).BeginInit();
             this.tabPage3.SuspendLayout();
@@ -87,7 +93,7 @@ namespace AutoSetBT
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(16, 20);
+            this.label2.Location = new System.Drawing.Point(16, 12);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(28, 15);
             this.label2.TabIndex = 2;
@@ -209,6 +215,10 @@ namespace AutoSetBT
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.label14);
+            this.tabPage2.Controls.Add(this.dataInstancia);
+            this.tabPage2.Controls.Add(this.label12);
+            this.tabPage2.Controls.Add(this.textInstanciaSelected);
             this.tabPage2.Controls.Add(this.label11);
             this.tabPage2.Controls.Add(this.label9);
             this.tabPage2.Controls.Add(this.richResultado_candidatos);
@@ -228,6 +238,42 @@ namespace AutoSetBT
             this.tabPage2.Text = "Usuarios Candidatos";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(438, 164);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(54, 15);
+            this.label14.TabIndex = 23;
+            this.label14.Text = "Instancia";
+            // 
+            // dataInstancia
+            // 
+            this.dataInstancia.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataInstancia.Location = new System.Drawing.Point(438, 182);
+            this.dataInstancia.Name = "dataInstancia";
+            this.dataInstancia.RowTemplate.Height = 25;
+            this.dataInstancia.Size = new System.Drawing.Size(165, 333);
+            this.dataInstancia.TabIndex = 22;
+            this.dataInstancia.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataInstancia_CellContentClick);
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(241, 138);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(129, 15);
+            this.label12.TabIndex = 21;
+            this.label12.Text = "Instancia Seleccionada:";
+            // 
+            // textInstanciaSelected
+            // 
+            this.textInstanciaSelected.Location = new System.Drawing.Point(384, 130);
+            this.textInstanciaSelected.Name = "textInstanciaSelected";
+            this.textInstanciaSelected.ReadOnly = true;
+            this.textInstanciaSelected.Size = new System.Drawing.Size(100, 23);
+            this.textInstanciaSelected.TabIndex = 20;
+            // 
             // label11
             // 
             this.label11.AutoSize = true;
@@ -236,14 +282,6 @@ namespace AutoSetBT
             this.label11.Size = new System.Drawing.Size(126, 15);
             this.label11.TabIndex = 19;
             this.label11.Text = "Usuario Seleccionado: ";
-            // 
-            // textUsuarioSelected
-            // 
-            this.textUsuarioSelected.Location = new System.Drawing.Point(680, 125);
-            this.textUsuarioSelected.Name = "textUsuarioSelected";
-            this.textUsuarioSelected.ReadOnly = true;
-            this.textUsuarioSelected.Size = new System.Drawing.Size(100, 23);
-            this.textUsuarioSelected.TabIndex = 18;
             // 
             // label9
             // 
@@ -264,10 +302,18 @@ namespace AutoSetBT
             this.richResultado_candidatos.TabIndex = 15;
             this.richResultado_candidatos.Text = "";
             // 
+            // textUsuarioSelected
+            // 
+            this.textUsuarioSelected.Location = new System.Drawing.Point(680, 125);
+            this.textUsuarioSelected.Name = "textUsuarioSelected";
+            this.textUsuarioSelected.ReadOnly = true;
+            this.textUsuarioSelected.Size = new System.Drawing.Size(100, 23);
+            this.textUsuarioSelected.TabIndex = 18;
+            // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(518, 161);
+            this.label8.Location = new System.Drawing.Point(609, 161);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(115, 15);
             this.label8.TabIndex = 8;
@@ -276,10 +322,10 @@ namespace AutoSetBT
             // dataUsuarios
             // 
             this.dataUsuarios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataUsuarios.Location = new System.Drawing.Point(518, 182);
+            this.dataUsuarios.Location = new System.Drawing.Point(609, 182);
             this.dataUsuarios.Name = "dataUsuarios";
             this.dataUsuarios.RowTemplate.Height = 25;
-            this.dataUsuarios.Size = new System.Drawing.Size(262, 330);
+            this.dataUsuarios.Size = new System.Drawing.Size(171, 330);
             this.dataUsuarios.TabIndex = 7;
             this.dataUsuarios.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataUsuarios_CellContentClick);
             // 
@@ -298,8 +344,9 @@ namespace AutoSetBT
             this.dataEntrevista.Location = new System.Drawing.Point(6, 182);
             this.dataEntrevista.Name = "dataEntrevista";
             this.dataEntrevista.RowTemplate.Height = 25;
-            this.dataEntrevista.Size = new System.Drawing.Size(478, 333);
+            this.dataEntrevista.Size = new System.Drawing.Size(399, 333);
             this.dataEntrevista.TabIndex = 5;
+            this.dataEntrevista.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataEntrevista_CellContentClick);
             // 
             // label3
             // 
@@ -344,6 +391,7 @@ namespace AutoSetBT
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "BridgerInsight";
             this.tabPage3.UseVisualStyleBackColor = true;
+            this.tabPage3.Click += new System.EventHandler(this.tabPage3_Click);
             // 
             // dataBridger
             // 
@@ -396,7 +444,7 @@ namespace AutoSetBT
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(164, 20);
+            this.label6.Location = new System.Drawing.Point(164, 12);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(81, 15);
             this.label6.TabIndex = 4;
@@ -419,16 +467,16 @@ namespace AutoSetBT
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(357, 20);
+            this.label13.Location = new System.Drawing.Point(381, 15);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(108, 15);
+            this.label13.Size = new System.Drawing.Size(84, 15);
             this.label13.TabIndex = 23;
-            this.label13.Text = "Usuario Plataforma";
+            this.label13.Text = "Usuario Actual";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(650, 15);
+            this.label1.Location = new System.Drawing.Point(699, 15);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(53, 15);
             this.label1.TabIndex = 24;
@@ -436,17 +484,30 @@ namespace AutoSetBT
             // 
             // txtFechaBT
             // 
-            this.txtFechaBT.Location = new System.Drawing.Point(711, 12);
+            this.txtFechaBT.AutoSize = true;
+            this.txtFechaBT.Location = new System.Drawing.Point(758, 16);
             this.txtFechaBT.Name = "txtFechaBT";
-            this.txtFechaBT.ReadOnly = true;
-            this.txtFechaBT.Size = new System.Drawing.Size(100, 23);
-            this.txtFechaBT.TabIndex = 20;
+            this.txtFechaBT.Size = new System.Drawing.Size(38, 15);
+            this.txtFechaBT.TabIndex = 25;
+            this.txtFechaBT.Text = "Fecha";
+            this.txtFechaBT.Click += new System.EventHandler(this.txtFechaBT_Click);
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(589, 12);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(104, 23);
+            this.button5.TabIndex = 26;
+            this.button5.Text = "Usuario Anterior";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(812, 619);
+            this.Controls.Add(this.button5);
             this.Controls.Add(this.txtFechaBT);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label13);
@@ -470,6 +531,7 @@ namespace AutoSetBT
             ((System.ComponentModel.ISupportInitialize)(this.dataFirma)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataInstancia)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataUsuarios)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataEntrevista)).EndInit();
             this.tabPage3.ResumeLayout(false);
@@ -518,7 +580,12 @@ namespace AutoSetBT
         private System.Windows.Forms.TextBox inputUsuario;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox txtFechaBT;
+        private System.Windows.Forms.Label txtFechaBT;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.TextBox textInstanciaSelected;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.DataGridView dataInstancia;
+        private System.Windows.Forms.Button button5;
     }
 
 }
