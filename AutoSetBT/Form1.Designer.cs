@@ -31,12 +31,12 @@ namespace AutoSetBT
         {
             this.inputCuil = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.btnFirmar = new System.Windows.Forms.Button();
+            this.btnFirmarLD = new System.Windows.Forms.Button();
             this.dataLD = new System.Windows.Forms.DataGridView();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.labelEstado = new System.Windows.Forms.Label();
-            this.btnConsultar = new System.Windows.Forms.Button();
+            this.btnConsultarLD = new System.Windows.Forms.Button();
             this.richResultado = new System.Windows.Forms.RichTextBox();
             this.label_Resultado = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
@@ -56,21 +56,34 @@ namespace AutoSetBT
             this.label7 = new System.Windows.Forms.Label();
             this.dataEntrevista = new System.Windows.Forms.DataGridView();
             this.label3 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnCambiarUsuario = new System.Windows.Forms.Button();
+            this.btnConsultarCandidatos = new System.Windows.Forms.Button();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.dataBridger = new System.Windows.Forms.DataGridView();
             this.label10 = new System.Windows.Forms.Label();
             this.richResultado_bridger = new System.Windows.Forms.RichTextBox();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
+            this.btnConsultarBridger = new System.Windows.Forms.Button();
+            this.btnInsertarBridger = new System.Windows.Forms.Button();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.label18 = new System.Windows.Forms.Label();
+            this.textBoxSector = new System.Windows.Forms.TextBox();
+            this.button2 = new System.Windows.Forms.Button();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.textBoxUsuario = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.dataGridUsuario = new System.Windows.Forms.DataGridView();
+            this.dataGridSector = new System.Windows.Forms.DataGridView();
+            this.label15 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.inputEntrevista = new System.Windows.Forms.TextBox();
             this.inputUsuario = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.txtFechaBT = new System.Windows.Forms.Label();
-            this.button5 = new System.Windows.Forms.Button();
+            this.btnUsuarioAnterior = new System.Windows.Forms.Button();
+            this.comboBoxEntorno = new System.Windows.Forms.ComboBox();
+            this.richResultado_usuarios = new System.Windows.Forms.RichTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataLD)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -81,6 +94,9 @@ namespace AutoSetBT
             ((System.ComponentModel.ISupportInitialize)(this.dataEntrevista)).BeginInit();
             this.tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataBridger)).BeginInit();
+            this.tabPage4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridUsuario)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridSector)).BeginInit();
             this.SuspendLayout();
             // 
             // inputCuil
@@ -93,21 +109,21 @@ namespace AutoSetBT
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(16, 12);
+            this.label2.Location = new System.Drawing.Point(16, 15);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(28, 15);
             this.label2.TabIndex = 2;
             this.label2.Text = "Cuil";
             // 
-            // btnFirmar
+            // btnFirmarLD
             // 
-            this.btnFirmar.Location = new System.Drawing.Point(23, 68);
-            this.btnFirmar.Name = "btnFirmar";
-            this.btnFirmar.Size = new System.Drawing.Size(75, 23);
-            this.btnFirmar.TabIndex = 3;
-            this.btnFirmar.Text = "Firmar";
-            this.btnFirmar.UseVisualStyleBackColor = true;
-            this.btnFirmar.Click += new System.EventHandler(this.btnFirmar_Click);
+            this.btnFirmarLD.Location = new System.Drawing.Point(23, 68);
+            this.btnFirmarLD.Name = "btnFirmarLD";
+            this.btnFirmarLD.Size = new System.Drawing.Size(75, 23);
+            this.btnFirmarLD.TabIndex = 3;
+            this.btnFirmarLD.Text = "Firmar";
+            this.btnFirmarLD.UseVisualStyleBackColor = true;
+            this.btnFirmarLD.Click += new System.EventHandler(this.btnFirmar_Click);
             // 
             // dataLD
             // 
@@ -144,15 +160,15 @@ namespace AutoSetBT
             this.labelEstado.Size = new System.Drawing.Size(0, 15);
             this.labelEstado.TabIndex = 11;
             // 
-            // btnConsultar
+            // btnConsultarLD
             // 
-            this.btnConsultar.Location = new System.Drawing.Point(23, 39);
-            this.btnConsultar.Name = "btnConsultar";
-            this.btnConsultar.Size = new System.Drawing.Size(75, 23);
-            this.btnConsultar.TabIndex = 12;
-            this.btnConsultar.Text = "Consultar";
-            this.btnConsultar.UseVisualStyleBackColor = true;
-            this.btnConsultar.Click += new System.EventHandler(this.btnConsultar_Click);
+            this.btnConsultarLD.Location = new System.Drawing.Point(23, 39);
+            this.btnConsultarLD.Name = "btnConsultarLD";
+            this.btnConsultarLD.Size = new System.Drawing.Size(75, 23);
+            this.btnConsultarLD.TabIndex = 12;
+            this.btnConsultarLD.Text = "Consultar";
+            this.btnConsultarLD.UseVisualStyleBackColor = true;
+            this.btnConsultarLD.Click += new System.EventHandler(this.btnConsultar_Click);
             // 
             // richResultado
             // 
@@ -178,6 +194,7 @@ namespace AutoSetBT
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
+            this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Location = new System.Drawing.Point(12, 64);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -190,9 +207,9 @@ namespace AutoSetBT
             this.tabPage1.Controls.Add(this.label_Resultado);
             this.tabPage1.Controls.Add(this.dataFirma);
             this.tabPage1.Controls.Add(this.richResultado);
-            this.tabPage1.Controls.Add(this.btnConsultar);
+            this.tabPage1.Controls.Add(this.btnConsultarLD);
             this.tabPage1.Controls.Add(this.label4);
-            this.tabPage1.Controls.Add(this.btnFirmar);
+            this.tabPage1.Controls.Add(this.btnFirmarLD);
             this.tabPage1.Controls.Add(this.dataLD);
             this.tabPage1.Location = new System.Drawing.Point(4, 24);
             this.tabPage1.Name = "tabPage1";
@@ -228,8 +245,8 @@ namespace AutoSetBT
             this.tabPage2.Controls.Add(this.label7);
             this.tabPage2.Controls.Add(this.dataEntrevista);
             this.tabPage2.Controls.Add(this.label3);
-            this.tabPage2.Controls.Add(this.button2);
-            this.tabPage2.Controls.Add(this.button1);
+            this.tabPage2.Controls.Add(this.btnCambiarUsuario);
+            this.tabPage2.Controls.Add(this.btnConsultarCandidatos);
             this.tabPage2.Location = new System.Drawing.Point(4, 24);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -237,6 +254,7 @@ namespace AutoSetBT
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Usuarios Candidatos";
             this.tabPage2.UseVisualStyleBackColor = true;
+            this.tabPage2.Click += new System.EventHandler(this.tabPage2_Click);
             // 
             // label14
             // 
@@ -357,33 +375,33 @@ namespace AutoSetBT
             this.label3.TabIndex = 3;
             this.label3.Text = "Cambiar a Usuario Candidato";
             // 
-            // button2
+            // btnCambiarUsuario
             // 
-            this.button2.Location = new System.Drawing.Point(34, 82);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "Cambiar";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.btnCambiarUsuario.Location = new System.Drawing.Point(34, 82);
+            this.btnCambiarUsuario.Name = "btnCambiarUsuario";
+            this.btnCambiarUsuario.Size = new System.Drawing.Size(75, 23);
+            this.btnCambiarUsuario.TabIndex = 2;
+            this.btnCambiarUsuario.Text = "Cambiar";
+            this.btnCambiarUsuario.UseVisualStyleBackColor = true;
+            this.btnCambiarUsuario.Click += new System.EventHandler(this.button2_Click);
             // 
-            // button1
+            // btnConsultarCandidatos
             // 
-            this.button1.Location = new System.Drawing.Point(34, 35);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "Consultar";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnConsultarCandidatos.Location = new System.Drawing.Point(34, 35);
+            this.btnConsultarCandidatos.Name = "btnConsultarCandidatos";
+            this.btnConsultarCandidatos.Size = new System.Drawing.Size(75, 23);
+            this.btnConsultarCandidatos.TabIndex = 1;
+            this.btnConsultarCandidatos.Text = "Consultar";
+            this.btnConsultarCandidatos.UseVisualStyleBackColor = true;
+            this.btnConsultarCandidatos.Click += new System.EventHandler(this.button1_Click);
             // 
             // tabPage3
             // 
             this.tabPage3.Controls.Add(this.dataBridger);
             this.tabPage3.Controls.Add(this.label10);
             this.tabPage3.Controls.Add(this.richResultado_bridger);
-            this.tabPage3.Controls.Add(this.button3);
-            this.tabPage3.Controls.Add(this.button4);
+            this.tabPage3.Controls.Add(this.btnConsultarBridger);
+            this.tabPage3.Controls.Add(this.btnInsertarBridger);
             this.tabPage3.Location = new System.Drawing.Point(4, 24);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
@@ -421,30 +439,164 @@ namespace AutoSetBT
             this.richResultado_bridger.TabIndex = 19;
             this.richResultado_bridger.Text = "";
             // 
-            // button3
+            // btnConsultarBridger
             // 
-            this.button3.Location = new System.Drawing.Point(49, 32);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 18;
-            this.button3.Text = "Consultar";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.btnConsultarBridger.Location = new System.Drawing.Point(49, 32);
+            this.btnConsultarBridger.Name = "btnConsultarBridger";
+            this.btnConsultarBridger.Size = new System.Drawing.Size(75, 23);
+            this.btnConsultarBridger.TabIndex = 18;
+            this.btnConsultarBridger.Text = "Consultar";
+            this.btnConsultarBridger.UseVisualStyleBackColor = true;
+            this.btnConsultarBridger.Click += new System.EventHandler(this.button3_Click);
             // 
-            // button4
+            // btnInsertarBridger
             // 
-            this.button4.Location = new System.Drawing.Point(49, 76);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 23);
-            this.button4.TabIndex = 17;
-            this.button4.Text = "Insertar";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.btnInsertarBridger.Location = new System.Drawing.Point(49, 76);
+            this.btnInsertarBridger.Name = "btnInsertarBridger";
+            this.btnInsertarBridger.Size = new System.Drawing.Size(75, 23);
+            this.btnInsertarBridger.TabIndex = 17;
+            this.btnInsertarBridger.Text = "Insertar";
+            this.btnInsertarBridger.UseVisualStyleBackColor = true;
+            this.btnInsertarBridger.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // tabPage4
+            // 
+            this.tabPage4.Controls.Add(this.richResultado_usuarios);
+            this.tabPage4.Controls.Add(this.label18);
+            this.tabPage4.Controls.Add(this.textBoxSector);
+            this.tabPage4.Controls.Add(this.button2);
+            this.tabPage4.Controls.Add(this.label17);
+            this.tabPage4.Controls.Add(this.label16);
+            this.tabPage4.Controls.Add(this.textBoxUsuario);
+            this.tabPage4.Controls.Add(this.button1);
+            this.tabPage4.Controls.Add(this.dataGridUsuario);
+            this.tabPage4.Controls.Add(this.dataGridSector);
+            this.tabPage4.Controls.Add(this.label15);
+            this.tabPage4.Location = new System.Drawing.Point(4, 24);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage4.Size = new System.Drawing.Size(791, 515);
+            this.tabPage4.TabIndex = 3;
+            this.tabPage4.Text = "Usuarios";
+            this.tabPage4.UseVisualStyleBackColor = true;
+            this.tabPage4.Click += new System.EventHandler(this.tabPage4_Click);
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(545, 378);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(119, 15);
+            this.label18.TabIndex = 25;
+            this.label18.Text = "Sector Seleccionado: ";
+            this.label18.Click += new System.EventHandler(this.label18_Click);
+            // 
+            // textBoxSector
+            // 
+            this.textBoxSector.Enabled = false;
+            this.textBoxSector.Location = new System.Drawing.Point(684, 378);
+            this.textBoxSector.Name = "textBoxSector";
+            this.textBoxSector.ReadOnly = true;
+            this.textBoxSector.Size = new System.Drawing.Size(100, 23);
+            this.textBoxSector.TabIndex = 24;
+            this.textBoxSector.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(700, 33);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 23;
+            this.button2.Text = "Consultar";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click_1);
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(261, 15);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(52, 15);
+            this.label17.TabIndex = 22;
+            this.label17.Text = "Usuarios";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(545, 420);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(126, 15);
+            this.label16.TabIndex = 21;
+            this.label16.Text = "Usuario Seleccionado: ";
+            // 
+            // textBoxUsuario
+            // 
+            this.textBoxUsuario.Enabled = false;
+            this.textBoxUsuario.Location = new System.Drawing.Point(684, 420);
+            this.textBoxUsuario.Name = "textBoxUsuario";
+            this.textBoxUsuario.ReadOnly = true;
+            this.textBoxUsuario.Size = new System.Drawing.Size(100, 23);
+            this.textBoxUsuario.TabIndex = 20;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(684, 464);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(100, 23);
+            this.button1.TabIndex = 4;
+            this.button1.Text = "Cambiar";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            // 
+            // dataGridUsuario
+            // 
+            this.dataGridUsuario.AllowUserToAddRows = false;
+            this.dataGridUsuario.AllowUserToDeleteRows = false;
+            this.dataGridUsuario.AllowUserToResizeColumns = false;
+            this.dataGridUsuario.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridUsuario.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCellsExceptHeaders;
+            this.dataGridUsuario.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridUsuario.ColumnHeadersVisible = false;
+            this.dataGridUsuario.Location = new System.Drawing.Point(261, 33);
+            this.dataGridUsuario.Name = "dataGridUsuario";
+            this.dataGridUsuario.RowHeadersVisible = false;
+            this.dataGridUsuario.RowTemplate.Height = 25;
+            this.dataGridUsuario.Size = new System.Drawing.Size(240, 476);
+            this.dataGridUsuario.TabIndex = 3;
+            this.dataGridUsuario.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridUsuario_CellContentClick);
+            // 
+            // dataGridSector
+            // 
+            this.dataGridSector.AllowUserToAddRows = false;
+            this.dataGridSector.AllowUserToDeleteRows = false;
+            this.dataGridSector.AllowUserToResizeColumns = false;
+            this.dataGridSector.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridSector.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCellsExceptHeaders;
+            this.dataGridSector.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridSector.ColumnHeadersVisible = false;
+            this.dataGridSector.Location = new System.Drawing.Point(6, 33);
+            this.dataGridSector.Name = "dataGridSector";
+            this.dataGridSector.RowHeadersVisible = false;
+            this.dataGridSector.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToDisplayedHeaders;
+            this.dataGridSector.RowTemplate.Height = 25;
+            this.dataGridSector.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridSector.Size = new System.Drawing.Size(240, 476);
+            this.dataGridSector.TabIndex = 2;
+            this.dataGridSector.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridSector_CellContentClick);
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(6, 15);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(51, 15);
+            this.label15.TabIndex = 1;
+            this.label15.Text = "Sectores";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(164, 12);
+            this.label6.Location = new System.Drawing.Point(164, 15);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(81, 15);
             this.label6.TabIndex = 4;
@@ -459,7 +611,7 @@ namespace AutoSetBT
             // 
             // inputUsuario
             // 
-            this.inputUsuario.Location = new System.Drawing.Point(471, 12);
+            this.inputUsuario.Location = new System.Drawing.Point(454, 12);
             this.inputUsuario.Name = "inputUsuario";
             this.inputUsuario.Size = new System.Drawing.Size(100, 23);
             this.inputUsuario.TabIndex = 22;
@@ -467,7 +619,7 @@ namespace AutoSetBT
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(381, 15);
+            this.label13.Location = new System.Drawing.Point(364, 15);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(84, 15);
             this.label13.TabIndex = 23;
@@ -476,7 +628,7 @@ namespace AutoSetBT
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(699, 15);
+            this.label1.Location = new System.Drawing.Point(680, 12);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(53, 15);
             this.label1.TabIndex = 24;
@@ -485,29 +637,52 @@ namespace AutoSetBT
             // txtFechaBT
             // 
             this.txtFechaBT.AutoSize = true;
-            this.txtFechaBT.Location = new System.Drawing.Point(758, 16);
+            this.txtFechaBT.Location = new System.Drawing.Point(739, 12);
             this.txtFechaBT.Name = "txtFechaBT";
             this.txtFechaBT.Size = new System.Drawing.Size(38, 15);
             this.txtFechaBT.TabIndex = 25;
             this.txtFechaBT.Text = "Fecha";
             this.txtFechaBT.Click += new System.EventHandler(this.txtFechaBT_Click);
             // 
-            // button5
+            // btnUsuarioAnterior
             // 
-            this.button5.Location = new System.Drawing.Point(589, 12);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(104, 23);
-            this.button5.TabIndex = 26;
-            this.button5.Text = "Usuario Anterior";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
+            this.btnUsuarioAnterior.Location = new System.Drawing.Point(560, 11);
+            this.btnUsuarioAnterior.Name = "btnUsuarioAnterior";
+            this.btnUsuarioAnterior.Size = new System.Drawing.Size(104, 23);
+            this.btnUsuarioAnterior.TabIndex = 26;
+            this.btnUsuarioAnterior.Text = "Usuario Anterior";
+            this.btnUsuarioAnterior.UseVisualStyleBackColor = true;
+            this.btnUsuarioAnterior.Click += new System.EventHandler(this.button5_Click);
+            // 
+            // comboBoxEntorno
+            // 
+            this.comboBoxEntorno.AutoCompleteCustomSource.AddRange(new string[] {
+            "QA"});
+            this.comboBoxEntorno.FormattingEnabled = true;
+            this.comboBoxEntorno.Items.AddRange(new object[] {
+            "QA"});
+            this.comboBoxEntorno.Location = new System.Drawing.Point(680, 31);
+            this.comboBoxEntorno.Name = "comboBoxEntorno";
+            this.comboBoxEntorno.Size = new System.Drawing.Size(121, 23);
+            this.comboBoxEntorno.TabIndex = 27;
+            // 
+            // richResultado_usuarios
+            // 
+            this.richResultado_usuarios.BackColor = System.Drawing.SystemColors.ButtonShadow;
+            this.richResultado_usuarios.Location = new System.Drawing.Point(522, 92);
+            this.richResultado_usuarios.Name = "richResultado_usuarios";
+            this.richResultado_usuarios.ReadOnly = true;
+            this.richResultado_usuarios.Size = new System.Drawing.Size(267, 252);
+            this.richResultado_usuarios.TabIndex = 26;
+            this.richResultado_usuarios.Text = "";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(812, 619);
-            this.Controls.Add(this.button5);
+            this.Controls.Add(this.comboBoxEntorno);
+            this.Controls.Add(this.btnUsuarioAnterior);
             this.Controls.Add(this.txtFechaBT);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label13);
@@ -537,6 +712,10 @@ namespace AutoSetBT
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataBridger)).EndInit();
+            this.tabPage4.ResumeLayout(false);
+            this.tabPage4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridUsuario)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridSector)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -546,12 +725,12 @@ namespace AutoSetBT
 
         private System.Windows.Forms.TextBox inputCuil;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button btnFirmar;
+        private System.Windows.Forms.Button btnFirmarLD;
         private System.Windows.Forms.DataGridView dataLD;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label labelEstado;
-        private System.Windows.Forms.Button btnConsultar;
+        private System.Windows.Forms.Button btnConsultarLD;
         private System.Windows.Forms.RichTextBox richResultado;
         private System.Windows.Forms.Label label_Resultado;
         private System.Windows.Forms.TabControl tabControl1;
@@ -564,8 +743,8 @@ namespace AutoSetBT
         private System.Windows.Forms.DataGridView dataEntrevista;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnCambiarUsuario;
+        private System.Windows.Forms.Button btnConsultarCandidatos;
         private System.Windows.Forms.TextBox inputEntrevista;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.RichTextBox richResultado_candidatos;
@@ -574,8 +753,8 @@ namespace AutoSetBT
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.RichTextBox richResultado_bridger;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button btnConsultarBridger;
+        private System.Windows.Forms.Button btnInsertarBridger;
         private System.Windows.Forms.DataGridView dataBridger;
         private System.Windows.Forms.TextBox inputUsuario;
         private System.Windows.Forms.Label label13;
@@ -585,7 +764,20 @@ namespace AutoSetBT
         private System.Windows.Forms.TextBox textInstanciaSelected;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.DataGridView dataInstancia;
-        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button btnUsuarioAnterior;
+        private System.Windows.Forms.TabPage tabPage4;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.TextBox textBoxUsuario;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.DataGridView dataGridUsuario;
+        private System.Windows.Forms.DataGridView dataGridSector;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.ComboBox comboBoxEntorno;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.TextBox textBoxSector;
+        private System.Windows.Forms.RichTextBox richResultado_usuarios;
     }
 
 }

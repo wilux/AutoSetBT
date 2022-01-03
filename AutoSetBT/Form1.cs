@@ -1,13 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using Microsoft.Data.SqlClient;
 
 namespace AutoSetBT
 {
@@ -17,6 +10,15 @@ namespace AutoSetBT
         public Form1()
         {
             InitializeComponent();
+        }
+
+        private void UsuarioActual()
+        {
+            //usuarioActual
+
+            string sql_CurrentUser = $"select J055XZUsr from J055XZ where J055XZUad='{Environment.UserName}'";
+            usuarioActual = DB.ObtenerValorCampo(sql_CurrentUser, "J055XZUsr");
+            inputUsuario.Text = usuarioActual.Replace(" ", String.Empty);
         }
 
 
@@ -109,9 +111,11 @@ namespace AutoSetBT
 
                 //usuarioActual
 
-                string sql_CurrentUser = $"select J055XZUsr from J055XZ where J055XZUad='{Environment.UserName}'";
-                string usuarioActual = DB.ObtenerValorCampo(sql_CurrentUser, "J055XZUsr");
-                inputUsuario.Text = usuarioActual.Replace(" ", String.Empty);
+                //string sql_CurrentUser = $"select J055XZUsr from J055XZ where J055XZUad='{Environment.UserName}'";
+                //string usuarioActual = DB.ObtenerValorCampo(sql_CurrentUser, "J055XZUsr");
+                //inputUsuario.Text = usuarioActual.Replace(" ", String.Empty);
+
+                UsuarioActual();
 
             }
             else
@@ -179,9 +183,12 @@ namespace AutoSetBT
 
             //usuarioActual
 
-            string sql_CurrentUser = $"select J055XZUsr from J055XZ where J055XZUad='{Environment.UserName}'";
-            usuarioActual = DB.ObtenerValorCampo(sql_CurrentUser, "J055XZUsr");
-            inputUsuario.Text = usuarioActual.Replace(" ", String.Empty);
+            //string sql_CurrentUser = $"select J055XZUsr from J055XZ where J055XZUad='{Environment.UserName}'";
+            //usuarioActual = DB.ObtenerValorCampo(sql_CurrentUser, "J055XZUsr");
+            //inputUsuario.Text = usuarioActual.Replace(" ", String.Empty);
+
+            UsuarioActual();
+
         }
 
         private void tabPage3_Click(object sender, EventArgs e)
@@ -213,9 +220,77 @@ namespace AutoSetBT
         {
                   DB.CambiarUsuario(usuarioActual);
 
-            string sql_CurrentUser = $"select J055XZUsr from J055XZ where J055XZUad='{Environment.UserName}'";
-            string usuarioActual2 = DB.ObtenerValorCampo(sql_CurrentUser, "J055XZUsr");
-            inputUsuario.Text = usuarioActual2.Replace(" ", String.Empty);
+            //string sql_CurrentUser = $"select J055XZUsr from J055XZ where J055XZUad='{Environment.UserName}'";
+            //string usuarioActual2 = DB.ObtenerValorCampo(sql_CurrentUser, "J055XZUsr");
+            //inputUsuario.Text = usuarioActual2.Replace(" ", String.Empty);
+
+            UsuarioActual();
+        }
+
+        private void EntornoSelect_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tabPage2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+            //string sql_sectores = $"select distinct DescUnidadOrg Sector_PeopleNet  from WFUSERS1 wf inner join BNQGC23 c23 on wf.WFRstValue = c23.BNQGC23ISE inner join J055XZ xz on wf.WFUsrCod = xz.J055XZUsr inner join PeopleNet_Nomina pn on RIGHT(pn.Legajo, 9) = xz.J055XZLeg where WFRstCod = 'SECTOR' order by Sector_PeopleNet asc";
+            string sql_sectores = "select distinct DescUnidadOrg from PeopleNet_Nomina order by DescUnidadOrg";
+            richResultado_usuarios.Text = sql_sectores;
+            DataSet sectores = DB.ObtenerDatos(sql_sectores);
+
+            dataGridSector.DataSource = sectores.Tables[0];
+        }
+
+        private void dataGridSector_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            textBoxSector.Text = (string)dataGridSector.CurrentCell.Value.ToString();
+            //string sql_usuarios = $"select j055xzusr Usuario_BT  from WFUSERS1 wf inner join BNQGC23 c23 on wf.WFRstValue = c23.BNQGC23ISE inner join J055XZ xz on wf.WFUsrCod = xz.J055XZUsr inner join PeopleNet_Nomina pn on RIGHT(pn.Legajo, 9) = xz.J055XZLeg where WFRstCod = 'SECTOR' and DescUnidadOrg = '{textBoxSector.Text}'";
+            string sql_usuarios = $"select J055XZUsr from J055XZ wf inner join PeopleNet_Nomina pn on RIGHT(pn.Legajo, 9) = wf.J055XZLeg where DescUnidadOrg = '{textBoxSector.Text}' ";
+            richResultado_usuarios.Text = sql_usuarios;
+            DataSet usuarios = DB.ObtenerDatos(sql_usuarios);
+
+            dataGridUsuario.DataSource = usuarios.Tables[0];
+        }
+
+        private void label18_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dataGridUsuario_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            textBoxUsuario.Text = (string)dataGridUsuario.CurrentCell.Value.ToString();
+        }
+
+        private void tabPage4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            if (textBoxUsuario.Text != "")
+            {
+                richResultado_usuarios.Text = DB.CambiarUsuario(textBoxUsuario.Text);
+
+                UsuarioActual();
+
+            }
+            else
+            {
+                richResultado_usuarios.Text = "Debe seleccionar un usuario candidato";
+            }
         }
     }
 }
