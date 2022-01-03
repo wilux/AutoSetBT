@@ -6,9 +6,11 @@ namespace AutoSetBT
 {
     public partial class Form1 : Form
     {
-        string usuarioActual = "";
+
+
         public Form1()
         {
+
             InitializeComponent();
         }
 
@@ -17,46 +19,56 @@ namespace AutoSetBT
             //usuarioActual
 
             string sql_CurrentUser = $"select J055XZUsr from J055XZ where J055XZUad='{Environment.UserName}'";
-            usuarioActual = DB.ObtenerValorCampo(sql_CurrentUser, "J055XZUsr");
+            usuarioActual = DB.ObtenerValorCampo(sql_CurrentUser, "J055XZUsr", ambiente, server);
             inputUsuario.Text = usuarioActual.Replace(" ", String.Empty);
         }
 
 
         private void btnFirmar_Click(object sender, EventArgs e)
         {
-            if (inputCuil.Text != "")
+            if (ambiente == "BPN_WEB_QA")
             {
-                richResultado.Text = "";
-                richResultado.Text = LegajoDigital.Completar(inputCuil.Text);
+
+                if (inputCuil.Text != "")
+                {
+                    richResultado.Text = "";
+                    richResultado.Text = LegajoDigital.Completar(inputCuil.Text);
+                }
+                else
+                {
+                    richResultado.Text = "Debe ingresar un CUIL";
+                }
             }
-            else
-            {
-                richResultado.Text = "Debe ingresar un CUIL";
-            }
+            else { MessageBox.Show("Solo es posible en ambiente QA"); }
         }
 
         private void btnConsultar_Click(object sender, EventArgs e)
         {
-           
-            string db_LegajoDigital = "LegajoDigital_QA";
-            string db_Firma = "FirmaGrafometrica_QA";
-            if (inputCuil.Text != "")
+            if (ambiente == "BPN_WEB_QA")
             {
-                string sql_lg = $"select *  from TRAMITE where idPersona in (select idPersona from PERSONA where CuitCuil = '{inputCuil.Text}')";
-                string sql_firma = $"select *  from TRAMITE where CuitCuil = '{inputCuil.Text}' and activo = 1";
+                string db_LegajoDigital = "LegajoDigital_QA";
+                string db_Firma = "FirmaGrafometrica_QA";
+                if (inputCuil.Text != "")
+                {
+                    string sql_lg = $"select *  from TRAMITE where idPersona in (select idPersona from PERSONA where CuitCuil = '{inputCuil.Text}')";
+                    string sql_firma = $"select *  from TRAMITE where CuitCuil = '{inputCuil.Text}' and activo = 1";
 
-                DataSet legajo = DB.ObtenerDatos(sql_lg, db_LegajoDigital);
-                DataSet firma = DB.ObtenerDatos(sql_firma, db_Firma);
+                    DataSet legajo = DB.ObtenerDatos(sql_lg, db_LegajoDigital);
+                    DataSet firma = DB.ObtenerDatos(sql_firma, db_Firma);
 
-                richResultado.Text = "";
-                richResultado.Text = Environment.NewLine + sql_lg + Environment.NewLine + sql_firma;
+                    richResultado.Text = "";
+                    richResultado.Text = Environment.NewLine + sql_lg + Environment.NewLine + sql_firma;
 
-                dataLD.DataSource = legajo.Tables[0];
-                dataFirma.DataSource = firma.Tables[0];
-            }
-            else
+                    dataLD.DataSource = legajo.Tables[0];
+                    dataFirma.DataSource = firma.Tables[0];
+                }
+                else
+                {
+                    richResultado.Text = "Debe ingresar un CUIL";
+                }
+            }else
             {
-                richResultado.Text = "Debe ingresar un CUIL";
+                MessageBox.Show("Solo es posible en ambiente QA");
             }
         }
 
@@ -79,8 +91,8 @@ namespace AutoSetBT
                 string sql_WFInsPrcId = $"select  top 1 a.WFInsPrcId from wfwrkitems a (nolock) inner join wftask b (nolock) on a.WFTaskCod=b.WFTaskCod and b.WFPrcId in(9,10,13) inner join wfattsvalues c (nolock) on a.WFInsPrcId=c.WFInsPrcId and c.WFAttSId='ENTREVISTA' and c.WFAttSVal in('{inputEntrevista.Text}.0000') order by a.WFInsPrcId desc";
                 string sql_Instancia = $"select         a.WFInsPrcId from wfwrkitems a (nolock) inner join wftask b (nolock) on a.WFTaskCod=b.WFTaskCod and b.WFPrcId in(9,10,13) inner join wfattsvalues c (nolock) on a.WFInsPrcId=c.WFInsPrcId and c.WFAttSId='ENTREVISTA' and c.WFAttSVal in('{inputEntrevista.Text}.0000') order by a.WFInsPrcId desc";
                 
-                DataSet entrevista = DB.ObtenerDatos(sql_Entrevista);
-                DataSet instancia = DB.ObtenerDatos(sql_Instancia);
+                DataSet entrevista = DB.ObtenerDatos(sql_Entrevista, ambiente, server);
+                DataSet instancia = DB.ObtenerDatos(sql_Instancia, ambiente, server);
 
                 string WFInsPrcId = DB.ObtenerValorCampo(sql_WFInsPrcId, "WFInsPrcId");
 
@@ -88,7 +100,7 @@ namespace AutoSetBT
                 dataInstancia.DataSource = instancia.Tables[0];
 
                 string sql_Candidatos = $"select WFWrkLstUsrCod as Usuarios from WFWORKLIST  (nolock) where WFWrkLstItemId in(select wfitemid from WFWRKITEMS where   WFInsPrcId = {WFInsPrcId})";
-                DataSet candidatos = DB.ObtenerDatos(sql_Candidatos);
+                DataSet candidatos = DB.ObtenerDatos(sql_Candidatos, ambiente, server);
 
                 dataUsuarios.DataSource = candidatos.Tables[0];
 
@@ -105,15 +117,9 @@ namespace AutoSetBT
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if (textUsuarioSelected.Text !="")
+            if (textUsuarioSelected.Text != "")
             {
-                richResultado_candidatos.Text  = DB.CambiarUsuario(textUsuarioSelected.Text);
-
-                //usuarioActual
-
-                //string sql_CurrentUser = $"select J055XZUsr from J055XZ where J055XZUad='{Environment.UserName}'";
-                //string usuarioActual = DB.ObtenerValorCampo(sql_CurrentUser, "J055XZUsr");
-                //inputUsuario.Text = usuarioActual.Replace(" ", String.Empty);
+                richResultado_candidatos.Text  = DB.CambiarUsuario(textUsuarioSelected.Text, ambiente, server);
 
                 UsuarioActual();
 
@@ -144,7 +150,7 @@ namespace AutoSetBT
                 string sql_Bridger = $"select * from    BPNC37 where    BPNC37NID = '{inputCuil.Text}'";
 
 
-                DataSet bridger = DB.ObtenerDatos(sql_Bridger);
+                DataSet bridger = DB.ObtenerDatos(sql_Bridger, ambiente, server);
 
                 dataBridger.DataSource = bridger.Tables[0];
 
@@ -162,7 +168,7 @@ namespace AutoSetBT
         {
             if (inputCuil.Text != "" && inputUsuario.Text !="")
             {
-                richResultado_bridger.Text = BridgerInsight.Insertar(inputCuil.Text, inputUsuario.Text);
+                richResultado_bridger.Text = BridgerInsight.Insertar(inputCuil.Text, inputUsuario.Text, ambiente, server);
             }
             else
             {
@@ -172,6 +178,7 @@ namespace AutoSetBT
 
         private void Form1_Load(object sender, EventArgs e)
         {
+
             //Fecha BT
             string sql_FechaBT = "select Pgfape from fst017";
 
@@ -218,13 +225,10 @@ namespace AutoSetBT
 
         private void button5_Click(object sender, EventArgs e)
         {
-                  DB.CambiarUsuario(usuarioActual);
+                DB.CambiarUsuario(usuarioActual, ambiente, server);
+                UsuarioActual();
 
-            //string sql_CurrentUser = $"select J055XZUsr from J055XZ where J055XZUad='{Environment.UserName}'";
-            //string usuarioActual2 = DB.ObtenerValorCampo(sql_CurrentUser, "J055XZUsr");
-            //inputUsuario.Text = usuarioActual2.Replace(" ", String.Empty);
 
-            UsuarioActual();
         }
 
         private void EntornoSelect_SelectedIndexChanged(object sender, EventArgs e)
@@ -239,10 +243,9 @@ namespace AutoSetBT
 
         private void button2_Click_1(object sender, EventArgs e)
         {
-            //string sql_sectores = $"select distinct DescUnidadOrg Sector_PeopleNet  from WFUSERS1 wf inner join BNQGC23 c23 on wf.WFRstValue = c23.BNQGC23ISE inner join J055XZ xz on wf.WFUsrCod = xz.J055XZUsr inner join PeopleNet_Nomina pn on RIGHT(pn.Legajo, 9) = xz.J055XZLeg where WFRstCod = 'SECTOR' order by Sector_PeopleNet asc";
             string sql_sectores = "select distinct DescUnidadOrg from PeopleNet_Nomina order by DescUnidadOrg";
             richResultado_usuarios.Text = sql_sectores;
-            DataSet sectores = DB.ObtenerDatos(sql_sectores);
+            DataSet sectores = DB.ObtenerDatos(sql_sectores, ambiente, server);
 
             dataGridSector.DataSource = sectores.Tables[0];
         }
@@ -250,10 +253,9 @@ namespace AutoSetBT
         private void dataGridSector_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             textBoxSector.Text = (string)dataGridSector.CurrentCell.Value.ToString();
-            //string sql_usuarios = $"select j055xzusr Usuario_BT  from WFUSERS1 wf inner join BNQGC23 c23 on wf.WFRstValue = c23.BNQGC23ISE inner join J055XZ xz on wf.WFUsrCod = xz.J055XZUsr inner join PeopleNet_Nomina pn on RIGHT(pn.Legajo, 9) = xz.J055XZLeg where WFRstCod = 'SECTOR' and DescUnidadOrg = '{textBoxSector.Text}'";
             string sql_usuarios = $"select J055XZUsr from J055XZ wf inner join PeopleNet_Nomina pn on RIGHT(pn.Legajo, 9) = wf.J055XZLeg where DescUnidadOrg = '{textBoxSector.Text}' ";
             richResultado_usuarios.Text = sql_usuarios;
-            DataSet usuarios = DB.ObtenerDatos(sql_usuarios);
+            DataSet usuarios = DB.ObtenerDatos(sql_usuarios, ambiente, server);
 
             dataGridUsuario.DataSource = usuarios.Tables[0];
         }
@@ -282,7 +284,7 @@ namespace AutoSetBT
         {
             if (textBoxUsuario.Text != "")
             {
-                richResultado_usuarios.Text = DB.CambiarUsuario(textBoxUsuario.Text);
+                richResultado_usuarios.Text = DB.CambiarUsuario(textBoxUsuario.Text, ambiente, server);
 
                 UsuarioActual();
 
@@ -291,6 +293,30 @@ namespace AutoSetBT
             {
                 richResultado_usuarios.Text = "Debe seleccionar un usuario candidato";
             }
+        }
+
+
+
+        private void radioButtonQA_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!radioButtonQA.Checked)
+            {
+                ambiente = "bpn_web_Desa";
+                server = "arcncd09";
+                UsuarioActual();
+            }
+        }
+
+        private void radioButtonDF_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!radioButtonDF.Checked)
+            {
+                ambiente = "BPN_WEB_QA";
+                server = "arcncd07";
+                UsuarioActual();
+
+            }
+
         }
     }
 }

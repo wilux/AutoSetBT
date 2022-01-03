@@ -5,21 +5,23 @@ using System.Data;
 using Microsoft.Data.SqlClient;
 
 
+
 namespace AutoSetBT
 {
     //Clase que realiza la conexion con la Base de Dato. 
     //Contiene metodos para insertar y obtener datos de la misma.
     public static class DB
     {
+        
         //private static string _ConnectionString = null;
         static DB() // A static constructor to initialize the connection string
         {
             //_ConnectionString = "Persist Security Info = False; Integrated Security = true; Initial Catalog = BPN_WEB_QA; Server = arcncd07";
         }
 
-        public static string ejecutarQuery(string sql, string db = "BPN_WEB_QA")
+        public static string ejecutarQuery(string sql, string db = "BPN_WEB_QA", string server = "arcncd07")
         {
-            string Connection = $"Persist Security Info = False; Integrated Security = true; Initial Catalog = {db}; Server = arcncd07";
+            string Connection = $"Persist Security Info = False; Integrated Security = true; Initial Catalog = {db}; Server = {server}";
             // string connectionString = _ConnectionString;
             SqlConnection connection = new SqlConnection(Connection);
             string query = sql;
@@ -48,9 +50,9 @@ namespace AutoSetBT
             }
 
         }
-        public static DataSet ObtenerDatos(string sql, string db = "BPN_WEB_QA")
+        public static DataSet ObtenerDatos(string sql, string db = "BPN_WEB_QA", string server = "arcncd07")
         {
-            string Connection = $"Persist Security Info = False; Integrated Security = true; Initial Catalog = {db}; Server = arcncd07";
+            string Connection = $"Persist Security Info = False; Integrated Security = true; Initial Catalog = {db}; Server = {server}";
             var ds = new DataSet();
             try
             {
@@ -70,12 +72,12 @@ namespace AutoSetBT
             return ds;
         }
 
-        public static String ObtenerValorCampo(string sql, string campo, string db = "BPN_WEB_QA")
+        public static String ObtenerValorCampo(string sql, string campo, string db = "BPN_WEB_QA", string server = "arcncd07")
         {
 
             //Consultar DB 
             string consulta = sql;
-            DataSet respuesta = DB.ObtenerDatos(consulta, db);
+            DataSet respuesta = DB.ObtenerDatos(consulta, db, server);
             string resultado = "";
 
             foreach (DataRow dr in respuesta.Tables[0].Rows)
@@ -127,11 +129,11 @@ namespace AutoSetBT
         }
 
 
-        public static string CambiarUsuario(string usuario)
+        public static string CambiarUsuario(string usuario, string db = "BPN_WEB_QA", string server = "arcncd07")
         {
 
             string sql = $"UPDATE J055XZ SET J055XZUsr='{usuario}' WHERE J055XZUad='floresnes'";
-            string respuesta = ejecutarQuery(sql);
+            string respuesta = ejecutarQuery(sql, db, server);
 
             return Environment.NewLine + sql + Environment.NewLine + respuesta;
 

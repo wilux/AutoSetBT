@@ -3,6 +3,10 @@ namespace AutoSetBT
 {
     partial class Form1
     {
+        public string usuarioActual = "";
+        public string ambiente = "BPN_WEB_QA";
+        public string server = "arcncd07";
+
         /// <summary>
         ///  Required designer variable.
         /// </summary>
@@ -65,6 +69,7 @@ namespace AutoSetBT
             this.btnConsultarBridger = new System.Windows.Forms.Button();
             this.btnInsertarBridger = new System.Windows.Forms.Button();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.richResultado_usuarios = new System.Windows.Forms.RichTextBox();
             this.label18 = new System.Windows.Forms.Label();
             this.textBoxSector = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
@@ -82,8 +87,8 @@ namespace AutoSetBT
             this.label1 = new System.Windows.Forms.Label();
             this.txtFechaBT = new System.Windows.Forms.Label();
             this.btnUsuarioAnterior = new System.Windows.Forms.Button();
-            this.comboBoxEntorno = new System.Windows.Forms.ComboBox();
-            this.richResultado_usuarios = new System.Windows.Forms.RichTextBox();
+            this.radioButtonQA = new System.Windows.Forms.RadioButton();
+            this.radioButtonDF = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.dataLD)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -286,6 +291,7 @@ namespace AutoSetBT
             // 
             // textInstanciaSelected
             // 
+            this.textInstanciaSelected.Enabled = false;
             this.textInstanciaSelected.Location = new System.Drawing.Point(384, 130);
             this.textInstanciaSelected.Name = "textInstanciaSelected";
             this.textInstanciaSelected.ReadOnly = true;
@@ -322,6 +328,7 @@ namespace AutoSetBT
             // 
             // textUsuarioSelected
             // 
+            this.textUsuarioSelected.Enabled = false;
             this.textUsuarioSelected.Location = new System.Drawing.Point(680, 125);
             this.textUsuarioSelected.Name = "textUsuarioSelected";
             this.textUsuarioSelected.ReadOnly = true;
@@ -481,10 +488,20 @@ namespace AutoSetBT
             this.tabPage4.UseVisualStyleBackColor = true;
             this.tabPage4.Click += new System.EventHandler(this.tabPage4_Click);
             // 
+            // richResultado_usuarios
+            // 
+            this.richResultado_usuarios.BackColor = System.Drawing.SystemColors.ButtonShadow;
+            this.richResultado_usuarios.Location = new System.Drawing.Point(522, 92);
+            this.richResultado_usuarios.Name = "richResultado_usuarios";
+            this.richResultado_usuarios.ReadOnly = true;
+            this.richResultado_usuarios.Size = new System.Drawing.Size(267, 252);
+            this.richResultado_usuarios.TabIndex = 26;
+            this.richResultado_usuarios.Text = "";
+            // 
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(545, 378);
+            this.label18.Location = new System.Drawing.Point(544, 362);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(119, 15);
             this.label18.TabIndex = 25;
@@ -494,10 +511,10 @@ namespace AutoSetBT
             // textBoxSector
             // 
             this.textBoxSector.Enabled = false;
-            this.textBoxSector.Location = new System.Drawing.Point(684, 378);
+            this.textBoxSector.Location = new System.Drawing.Point(545, 380);
             this.textBoxSector.Name = "textBoxSector";
             this.textBoxSector.ReadOnly = true;
-            this.textBoxSector.Size = new System.Drawing.Size(100, 23);
+            this.textBoxSector.Size = new System.Drawing.Size(239, 23);
             this.textBoxSector.TabIndex = 24;
             this.textBoxSector.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
@@ -558,6 +575,7 @@ namespace AutoSetBT
             this.dataGridUsuario.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridUsuario.ColumnHeadersVisible = false;
             this.dataGridUsuario.Location = new System.Drawing.Point(261, 33);
+            this.dataGridUsuario.MultiSelect = false;
             this.dataGridUsuario.Name = "dataGridUsuario";
             this.dataGridUsuario.RowHeadersVisible = false;
             this.dataGridUsuario.RowTemplate.Height = 25;
@@ -575,6 +593,7 @@ namespace AutoSetBT
             this.dataGridSector.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridSector.ColumnHeadersVisible = false;
             this.dataGridSector.Location = new System.Drawing.Point(6, 33);
+            this.dataGridSector.MultiSelect = false;
             this.dataGridSector.Name = "dataGridSector";
             this.dataGridSector.RowHeadersVisible = false;
             this.dataGridSector.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToDisplayedHeaders;
@@ -611,6 +630,7 @@ namespace AutoSetBT
             // 
             // inputUsuario
             // 
+            this.inputUsuario.Enabled = false;
             this.inputUsuario.Location = new System.Drawing.Point(454, 12);
             this.inputUsuario.Name = "inputUsuario";
             this.inputUsuario.Size = new System.Drawing.Size(100, 23);
@@ -654,34 +674,37 @@ namespace AutoSetBT
             this.btnUsuarioAnterior.UseVisualStyleBackColor = true;
             this.btnUsuarioAnterior.Click += new System.EventHandler(this.button5_Click);
             // 
-            // comboBoxEntorno
+            // radioButtonQA
             // 
-            this.comboBoxEntorno.AutoCompleteCustomSource.AddRange(new string[] {
-            "QA"});
-            this.comboBoxEntorno.FormattingEnabled = true;
-            this.comboBoxEntorno.Items.AddRange(new object[] {
-            "QA"});
-            this.comboBoxEntorno.Location = new System.Drawing.Point(680, 31);
-            this.comboBoxEntorno.Name = "comboBoxEntorno";
-            this.comboBoxEntorno.Size = new System.Drawing.Size(121, 23);
-            this.comboBoxEntorno.TabIndex = 27;
+            this.radioButtonQA.AutoSize = true;
+            this.radioButtonQA.Checked = true;
+            this.radioButtonQA.Location = new System.Drawing.Point(691, 39);
+            this.radioButtonQA.Name = "radioButtonQA";
+            this.radioButtonQA.Size = new System.Drawing.Size(42, 19);
+            this.radioButtonQA.TabIndex = 27;
+            this.radioButtonQA.TabStop = true;
+            this.radioButtonQA.Text = "QA";
+            this.radioButtonQA.UseVisualStyleBackColor = true;
+            this.radioButtonQA.CheckedChanged += new System.EventHandler(this.radioButtonQA_CheckedChanged);
             // 
-            // richResultado_usuarios
+            // radioButtonDF
             // 
-            this.richResultado_usuarios.BackColor = System.Drawing.SystemColors.ButtonShadow;
-            this.richResultado_usuarios.Location = new System.Drawing.Point(522, 92);
-            this.richResultado_usuarios.Name = "richResultado_usuarios";
-            this.richResultado_usuarios.ReadOnly = true;
-            this.richResultado_usuarios.Size = new System.Drawing.Size(267, 252);
-            this.richResultado_usuarios.TabIndex = 26;
-            this.richResultado_usuarios.Text = "";
+            this.radioButtonDF.AutoSize = true;
+            this.radioButtonDF.Location = new System.Drawing.Point(739, 39);
+            this.radioButtonDF.Name = "radioButtonDF";
+            this.radioButtonDF.Size = new System.Drawing.Size(39, 19);
+            this.radioButtonDF.TabIndex = 28;
+            this.radioButtonDF.Text = "DF";
+            this.radioButtonDF.UseVisualStyleBackColor = true;
+            this.radioButtonDF.CheckedChanged += new System.EventHandler(this.radioButtonDF_CheckedChanged);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(812, 619);
-            this.Controls.Add(this.comboBoxEntorno);
+            this.Controls.Add(this.radioButtonDF);
+            this.Controls.Add(this.radioButtonQA);
             this.Controls.Add(this.btnUsuarioAnterior);
             this.Controls.Add(this.txtFechaBT);
             this.Controls.Add(this.label1);
@@ -773,11 +796,12 @@ namespace AutoSetBT
         private System.Windows.Forms.DataGridView dataGridUsuario;
         private System.Windows.Forms.DataGridView dataGridSector;
         private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.ComboBox comboBoxEntorno;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.TextBox textBoxSector;
         private System.Windows.Forms.RichTextBox richResultado_usuarios;
+        private System.Windows.Forms.RadioButton radioButtonQA;
+        private System.Windows.Forms.RadioButton radioButtonDF;
     }
 
 }

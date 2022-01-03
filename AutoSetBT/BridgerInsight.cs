@@ -8,11 +8,11 @@ namespace AutoSetBT
     public class BridgerInsight
     {
 
-        public static string  Insertar(string cuil, string usuario)
+        public static string  Insertar(string cuil, string usuario, string db = "BPN_WEB_QA", string server = "arcncd07")
         {
 
             string sql_sucursal = $"select bnqfx06suc from bnqfx06 where BNQFX06Usu = '{usuario}'";
-            string sucursal =   DB.ObtenerValorCampo(sql_sucursal, "bnqfx06suc");
+            string sucursal =   DB.ObtenerValorCampo(sql_sucursal, "bnqfx06suc", db, server);
 
             //Fecha BT
             string sql_FechaBT = "select Pgfape from fst017";
