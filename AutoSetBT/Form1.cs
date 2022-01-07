@@ -23,6 +23,17 @@ namespace AutoSetBT
             inputUsuario.Text = usuarioActual.Replace(" ", String.Empty);
         }
 
+        private void FechaBT()
+        {
+            string sql_FechaBT = "select Pgfape from fst017";
+
+            var parsedDate = DateTime.Parse(DB.ObtenerValorCampo(sql_FechaBT, "Pgfape",ambiente,server));
+
+            var fecha = parsedDate.ToString("dd/MM/yyyy");
+
+            txtFechaBT.Text = fecha;
+        }
+
 
         private void btnFirmar_Click(object sender, EventArgs e)
         {
@@ -31,12 +42,12 @@ namespace AutoSetBT
 
                 if (inputCuil.Text != "")
                 {
-                    richResultado.Text = "";
-                    richResultado.Text = LegajoDigital.Completar(inputCuil.Text);
+                    richConsola.Text = "";
+                    richConsola.Text = LegajoDigital.Completar(inputCuil.Text);
                 }
                 else
                 {
-                    richResultado.Text = "Debe ingresar un CUIL";
+                    richConsola.Text = "Debe ingresar un CUIL";
                 }
             }
             else { MessageBox.Show("Solo es posible en ambiente QA"); }
@@ -56,15 +67,15 @@ namespace AutoSetBT
                     DataSet legajo = DB.ObtenerDatos(sql_lg, db_LegajoDigital);
                     DataSet firma = DB.ObtenerDatos(sql_firma, db_Firma);
 
-                    richResultado.Text = "";
-                    richResultado.Text = Environment.NewLine + sql_lg + Environment.NewLine + sql_firma;
+                    richConsola.Text = "";
+                    richConsola.Text = Environment.NewLine + sql_lg + Environment.NewLine + sql_firma;
 
                     dataLD.DataSource = legajo.Tables[0];
                     dataFirma.DataSource = firma.Tables[0];
                 }
                 else
                 {
-                    richResultado.Text = "Debe ingresar un CUIL";
+                    richConsola.Text = "Debe ingresar un CUIL";
                 }
             }else
             {
@@ -86,7 +97,7 @@ namespace AutoSetBT
         {
             if (inputEntrevista.Text != "")
             {
-                richResultado_candidatos.Text = "";
+                richConsola.Text = "";
                 string sql_Entrevista = $"select c.WFAttSVal Entrevista,b.WFTaskName,c.WFInsPrcId, WFItemUsrCod, a.WFTaskCod from wfwrkitems a (nolock) inner join wftask b (nolock) on a.WFTaskCod=b.WFTaskCod and b.WFPrcId in(9,10,13) inner join wfattsvalues c (nolock) on a.WFInsPrcId=c.WFInsPrcId and c.WFAttSId='ENTREVISTA' and c.WFAttSVal in('{inputEntrevista.Text}.0000')";
                 string sql_WFInsPrcId = $"select  top 1 a.WFInsPrcId from wfwrkitems a (nolock) inner join wftask b (nolock) on a.WFTaskCod=b.WFTaskCod and b.WFPrcId in(9,10,13) inner join wfattsvalues c (nolock) on a.WFInsPrcId=c.WFInsPrcId and c.WFAttSId='ENTREVISTA' and c.WFAttSVal in('{inputEntrevista.Text}.0000') order by a.WFInsPrcId desc";
                 string sql_Instancia = $"select         a.WFInsPrcId from wfwrkitems a (nolock) inner join wftask b (nolock) on a.WFTaskCod=b.WFTaskCod and b.WFPrcId in(9,10,13) inner join wfattsvalues c (nolock) on a.WFInsPrcId=c.WFInsPrcId and c.WFAttSId='ENTREVISTA' and c.WFAttSVal in('{inputEntrevista.Text}.0000') order by a.WFInsPrcId desc";
@@ -104,14 +115,14 @@ namespace AutoSetBT
 
                 dataUsuarios.DataSource = candidatos.Tables[0];
 
-                
 
-                richResultado_candidatos.Text = Environment.NewLine + sql_Entrevista + Environment.NewLine + sql_Candidatos;
+
+                richConsola.Text = Environment.NewLine + sql_Entrevista + Environment.NewLine + sql_Candidatos;
 
             }
             else
             {
-                richResultado_candidatos.Text = "Debe ingresar nro Entrevista";
+                richConsola.Text = "Debe ingresar nro Entrevista";
             }
         }
 
@@ -119,14 +130,14 @@ namespace AutoSetBT
         {
             if (textUsuarioSelected.Text != "")
             {
-                richResultado_candidatos.Text  = DB.CambiarUsuario(textUsuarioSelected.Text, ambiente, server);
+                richConsola.Text  = DB.CambiarUsuario(textUsuarioSelected.Text, ambiente, server);
 
                 UsuarioActual();
 
             }
             else
             {
-                richResultado_candidatos.Text = "Debe seleccionar un usuario candidato";
+                richConsola.Text = "Debe seleccionar un usuario candidato";
             }
         }
 
@@ -146,7 +157,7 @@ namespace AutoSetBT
         {
             if (inputCuil.Text != "")
             {
-                richResultado_bridger.Text = "";
+                richConsola.Text = "";
                 string sql_Bridger = $"select * from    BPNC37 where    BPNC37NID = '{inputCuil.Text}'";
 
 
@@ -155,12 +166,12 @@ namespace AutoSetBT
                 dataBridger.DataSource = bridger.Tables[0];
 
 
-                richResultado_bridger.Text = Environment.NewLine + sql_Bridger + Environment.NewLine;
+                richConsola.Text = Environment.NewLine + sql_Bridger + Environment.NewLine;
 
             }
             else
             {
-                richResultado_bridger.Text = "Debe ingresar nro Cuil/Cuit";
+                richConsola.Text = "Debe ingresar nro Cuil/Cuit";
             }
         }
 
@@ -168,31 +179,19 @@ namespace AutoSetBT
         {
             if (inputCuil.Text != "" && inputUsuario.Text !="")
             {
-                richResultado_bridger.Text = BridgerInsight.Insertar(inputCuil.Text, inputUsuario.Text, ambiente, server);
+                richConsola.Text = BridgerInsight.Insertar(inputCuil.Text, inputUsuario.Text, ambiente, server);
             }
             else
             {
-                richResultado_bridger.Text = "Debe escribir un cuil/cuit y ademas el usuario de plataforma";
+                richConsola.Text = "Debe escribir un cuil/cuit y ademas el usuario de plataforma";
             }
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
 
-            //Fecha BT
-            string sql_FechaBT = "select Pgfape from fst017";
 
-            var parsedDate = DateTime.Parse(DB.ObtenerValorCampo(sql_FechaBT, "Pgfape"));
-
-            var fecha = parsedDate.ToString("dd/MM/yyyy");
-
-            txtFechaBT.Text = fecha;
-
-            //usuarioActual
-
-            //string sql_CurrentUser = $"select J055XZUsr from J055XZ where J055XZUad='{Environment.UserName}'";
-            //usuarioActual = DB.ObtenerValorCampo(sql_CurrentUser, "J055XZUsr");
-            //inputUsuario.Text = usuarioActual.Replace(" ", String.Empty);
+            FechaBT();
 
             UsuarioActual();
 
@@ -244,7 +243,7 @@ namespace AutoSetBT
         private void button2_Click_1(object sender, EventArgs e)
         {
             string sql_sectores = "select distinct DescUnidadOrg from PeopleNet_Nomina order by DescUnidadOrg";
-            richResultado_usuarios.Text = sql_sectores;
+            richConsola.Text = sql_sectores;
             DataSet sectores = DB.ObtenerDatos(sql_sectores, ambiente, server);
 
             dataGridSector.DataSource = sectores.Tables[0];
@@ -284,14 +283,14 @@ namespace AutoSetBT
         {
             if (textBoxUsuario.Text != "")
             {
-                richResultado_usuarios.Text = DB.CambiarUsuario(textBoxUsuario.Text, ambiente, server);
+                richConsola.Text = DB.CambiarUsuario(textBoxUsuario.Text, ambiente, server);
 
                 UsuarioActual();
 
             }
             else
             {
-                richResultado_usuarios.Text = "Debe seleccionar un usuario candidato";
+                richConsola.Text = "Debe seleccionar un usuario candidato";
             }
         }
 
@@ -304,6 +303,8 @@ namespace AutoSetBT
                 ambiente = "bpn_web_Desa";
                 server = "arcncd09";
                 UsuarioActual();
+                FechaBT();
+                richConsola.Text = "Se cambio de ambiente --> "+"Ambiente: "+ambiente+" "+"Servidor: "+server;
             }
         }
 
@@ -314,6 +315,8 @@ namespace AutoSetBT
                 ambiente = "BPN_WEB_QA";
                 server = "arcncd07";
                 UsuarioActual();
+                FechaBT();
+                richConsola.Text = "Se cambio de ambiente --> " + "Ambiente: " + ambiente + " " + "Servidor: " + server;
 
             }
 

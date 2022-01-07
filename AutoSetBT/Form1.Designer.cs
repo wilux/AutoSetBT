@@ -41,8 +41,6 @@ namespace AutoSetBT
             this.label5 = new System.Windows.Forms.Label();
             this.labelEstado = new System.Windows.Forms.Label();
             this.btnConsultarLD = new System.Windows.Forms.Button();
-            this.richResultado = new System.Windows.Forms.RichTextBox();
-            this.label_Resultado = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.dataFirma = new System.Windows.Forms.DataGridView();
@@ -52,8 +50,6 @@ namespace AutoSetBT
             this.label12 = new System.Windows.Forms.Label();
             this.textInstanciaSelected = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.richResultado_candidatos = new System.Windows.Forms.RichTextBox();
             this.textUsuarioSelected = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.dataUsuarios = new System.Windows.Forms.DataGridView();
@@ -86,9 +82,10 @@ namespace AutoSetBT
             this.label13 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.txtFechaBT = new System.Windows.Forms.Label();
-            this.btnUsuarioAnterior = new System.Windows.Forms.Button();
             this.radioButtonQA = new System.Windows.Forms.RadioButton();
             this.radioButtonDF = new System.Windows.Forms.RadioButton();
+            this.richConsola = new System.Windows.Forms.RichTextBox();
+            this.label19 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataLD)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -122,7 +119,7 @@ namespace AutoSetBT
             // 
             // btnFirmarLD
             // 
-            this.btnFirmarLD.Location = new System.Drawing.Point(23, 68);
+            this.btnFirmarLD.Location = new System.Drawing.Point(709, 475);
             this.btnFirmarLD.Name = "btnFirmarLD";
             this.btnFirmarLD.Size = new System.Drawing.Size(75, 23);
             this.btnFirmarLD.TabIndex = 3;
@@ -132,17 +129,19 @@ namespace AutoSetBT
             // 
             // dataLD
             // 
+            this.dataLD.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataLD.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataLD.Location = new System.Drawing.Point(4, 141);
+            this.dataLD.Location = new System.Drawing.Point(9, 31);
             this.dataLD.Name = "dataLD";
+            this.dataLD.ReadOnly = true;
             this.dataLD.RowTemplate.Height = 25;
-            this.dataLD.Size = new System.Drawing.Size(776, 150);
+            this.dataLD.Size = new System.Drawing.Size(776, 193);
             this.dataLD.TabIndex = 5;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(4, 123);
+            this.label4.Location = new System.Drawing.Point(9, 13);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(79, 15);
             this.label4.TabIndex = 8;
@@ -151,7 +150,7 @@ namespace AutoSetBT
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(6, 306);
+            this.label5.Location = new System.Drawing.Point(11, 241);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(74, 15);
             this.label5.TabIndex = 9;
@@ -167,32 +166,13 @@ namespace AutoSetBT
             // 
             // btnConsultarLD
             // 
-            this.btnConsultarLD.Location = new System.Drawing.Point(23, 39);
+            this.btnConsultarLD.Location = new System.Drawing.Point(628, 475);
             this.btnConsultarLD.Name = "btnConsultarLD";
             this.btnConsultarLD.Size = new System.Drawing.Size(75, 23);
             this.btnConsultarLD.TabIndex = 12;
             this.btnConsultarLD.Text = "Consultar";
             this.btnConsultarLD.UseVisualStyleBackColor = true;
             this.btnConsultarLD.Click += new System.EventHandler(this.btnConsultar_Click);
-            // 
-            // richResultado
-            // 
-            this.richResultado.BackColor = System.Drawing.SystemColors.ButtonShadow;
-            this.richResultado.Location = new System.Drawing.Point(115, 24);
-            this.richResultado.Name = "richResultado";
-            this.richResultado.ReadOnly = true;
-            this.richResultado.Size = new System.Drawing.Size(667, 96);
-            this.richResultado.TabIndex = 13;
-            this.richResultado.Text = "";
-            // 
-            // label_Resultado
-            // 
-            this.label_Resultado.AutoSize = true;
-            this.label_Resultado.Location = new System.Drawing.Point(115, 6);
-            this.label_Resultado.Name = "label_Resultado";
-            this.label_Resultado.Size = new System.Drawing.Size(53, 15);
-            this.label_Resultado.TabIndex = 14;
-            this.label_Resultado.Text = "Consola:";
             // 
             // tabControl1
             // 
@@ -209,9 +189,7 @@ namespace AutoSetBT
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this.label5);
-            this.tabPage1.Controls.Add(this.label_Resultado);
             this.tabPage1.Controls.Add(this.dataFirma);
-            this.tabPage1.Controls.Add(this.richResultado);
             this.tabPage1.Controls.Add(this.btnConsultarLD);
             this.tabPage1.Controls.Add(this.label4);
             this.tabPage1.Controls.Add(this.btnFirmarLD);
@@ -227,9 +205,11 @@ namespace AutoSetBT
             // 
             // dataFirma
             // 
+            this.dataFirma.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataFirma.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataFirma.Location = new System.Drawing.Point(6, 324);
+            this.dataFirma.Location = new System.Drawing.Point(11, 259);
             this.dataFirma.Name = "dataFirma";
+            this.dataFirma.ReadOnly = true;
             this.dataFirma.RowTemplate.Height = 25;
             this.dataFirma.Size = new System.Drawing.Size(776, 188);
             this.dataFirma.TabIndex = 0;
@@ -242,8 +222,6 @@ namespace AutoSetBT
             this.tabPage2.Controls.Add(this.label12);
             this.tabPage2.Controls.Add(this.textInstanciaSelected);
             this.tabPage2.Controls.Add(this.label11);
-            this.tabPage2.Controls.Add(this.label9);
-            this.tabPage2.Controls.Add(this.richResultado_candidatos);
             this.tabPage2.Controls.Add(this.textUsuarioSelected);
             this.tabPage2.Controls.Add(this.label8);
             this.tabPage2.Controls.Add(this.dataUsuarios);
@@ -264,7 +242,7 @@ namespace AutoSetBT
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(438, 164);
+            this.label14.Location = new System.Drawing.Point(438, 12);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(54, 15);
             this.label14.TabIndex = 23;
@@ -272,18 +250,20 @@ namespace AutoSetBT
             // 
             // dataInstancia
             // 
+            this.dataInstancia.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataInstancia.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataInstancia.Location = new System.Drawing.Point(438, 182);
+            this.dataInstancia.Location = new System.Drawing.Point(438, 30);
             this.dataInstancia.Name = "dataInstancia";
+            this.dataInstancia.ReadOnly = true;
             this.dataInstancia.RowTemplate.Height = 25;
-            this.dataInstancia.Size = new System.Drawing.Size(165, 333);
+            this.dataInstancia.Size = new System.Drawing.Size(165, 415);
             this.dataInstancia.TabIndex = 22;
             this.dataInstancia.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataInstancia_CellContentClick);
             // 
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(241, 138);
+            this.label12.Location = new System.Drawing.Point(5, 459);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(129, 15);
             this.label12.TabIndex = 21;
@@ -292,7 +272,7 @@ namespace AutoSetBT
             // textInstanciaSelected
             // 
             this.textInstanciaSelected.Enabled = false;
-            this.textInstanciaSelected.Location = new System.Drawing.Point(384, 130);
+            this.textInstanciaSelected.Location = new System.Drawing.Point(148, 451);
             this.textInstanciaSelected.Name = "textInstanciaSelected";
             this.textInstanciaSelected.ReadOnly = true;
             this.textInstanciaSelected.Size = new System.Drawing.Size(100, 23);
@@ -301,35 +281,16 @@ namespace AutoSetBT
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(537, 133);
+            this.label11.Location = new System.Drawing.Point(5, 488);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(126, 15);
             this.label11.TabIndex = 19;
             this.label11.Text = "Usuario Seleccionado: ";
             // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(203, 17);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(53, 15);
-            this.label9.TabIndex = 16;
-            this.label9.Text = "Consola:";
-            // 
-            // richResultado_candidatos
-            // 
-            this.richResultado_candidatos.BackColor = System.Drawing.SystemColors.ButtonShadow;
-            this.richResultado_candidatos.Location = new System.Drawing.Point(203, 35);
-            this.richResultado_candidatos.Name = "richResultado_candidatos";
-            this.richResultado_candidatos.ReadOnly = true;
-            this.richResultado_candidatos.Size = new System.Drawing.Size(582, 84);
-            this.richResultado_candidatos.TabIndex = 15;
-            this.richResultado_candidatos.Text = "";
-            // 
             // textUsuarioSelected
             // 
             this.textUsuarioSelected.Enabled = false;
-            this.textUsuarioSelected.Location = new System.Drawing.Point(680, 125);
+            this.textUsuarioSelected.Location = new System.Drawing.Point(148, 480);
             this.textUsuarioSelected.Name = "textUsuarioSelected";
             this.textUsuarioSelected.ReadOnly = true;
             this.textUsuarioSelected.Size = new System.Drawing.Size(100, 23);
@@ -338,7 +299,7 @@ namespace AutoSetBT
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(609, 161);
+            this.label8.Location = new System.Drawing.Point(609, 9);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(115, 15);
             this.label8.TabIndex = 8;
@@ -346,18 +307,20 @@ namespace AutoSetBT
             // 
             // dataUsuarios
             // 
+            this.dataUsuarios.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataUsuarios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataUsuarios.Location = new System.Drawing.Point(609, 182);
+            this.dataUsuarios.Location = new System.Drawing.Point(609, 30);
             this.dataUsuarios.Name = "dataUsuarios";
+            this.dataUsuarios.ReadOnly = true;
             this.dataUsuarios.RowTemplate.Height = 25;
-            this.dataUsuarios.Size = new System.Drawing.Size(171, 330);
+            this.dataUsuarios.Size = new System.Drawing.Size(171, 415);
             this.dataUsuarios.TabIndex = 7;
             this.dataUsuarios.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataUsuarios_CellContentClick);
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(6, 161);
+            this.label7.Location = new System.Drawing.Point(6, 9);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(96, 15);
             this.label7.TabIndex = 6;
@@ -365,18 +328,20 @@ namespace AutoSetBT
             // 
             // dataEntrevista
             // 
+            this.dataEntrevista.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataEntrevista.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataEntrevista.Location = new System.Drawing.Point(6, 182);
+            this.dataEntrevista.Location = new System.Drawing.Point(6, 30);
             this.dataEntrevista.Name = "dataEntrevista";
+            this.dataEntrevista.ReadOnly = true;
             this.dataEntrevista.RowTemplate.Height = 25;
-            this.dataEntrevista.Size = new System.Drawing.Size(399, 333);
+            this.dataEntrevista.Size = new System.Drawing.Size(399, 415);
             this.dataEntrevista.TabIndex = 5;
             this.dataEntrevista.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataEntrevista_CellContentClick);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(7, 7);
+            this.label3.Location = new System.Drawing.Point(5, 341);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(162, 15);
             this.label3.TabIndex = 3;
@@ -384,7 +349,7 @@ namespace AutoSetBT
             // 
             // btnCambiarUsuario
             // 
-            this.btnCambiarUsuario.Location = new System.Drawing.Point(34, 82);
+            this.btnCambiarUsuario.Location = new System.Drawing.Point(705, 474);
             this.btnCambiarUsuario.Name = "btnCambiarUsuario";
             this.btnCambiarUsuario.Size = new System.Drawing.Size(75, 23);
             this.btnCambiarUsuario.TabIndex = 2;
@@ -394,7 +359,7 @@ namespace AutoSetBT
             // 
             // btnConsultarCandidatos
             // 
-            this.btnConsultarCandidatos.Location = new System.Drawing.Point(34, 35);
+            this.btnConsultarCandidatos.Location = new System.Drawing.Point(624, 475);
             this.btnConsultarCandidatos.Name = "btnConsultarCandidatos";
             this.btnConsultarCandidatos.Size = new System.Drawing.Size(75, 23);
             this.btnConsultarCandidatos.TabIndex = 1;
@@ -420,9 +385,11 @@ namespace AutoSetBT
             // 
             // dataBridger
             // 
+            this.dataBridger.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataBridger.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataBridger.Location = new System.Drawing.Point(25, 148);
             this.dataBridger.Name = "dataBridger";
+            this.dataBridger.ReadOnly = true;
             this.dataBridger.RowTemplate.Height = 25;
             this.dataBridger.Size = new System.Drawing.Size(759, 364);
             this.dataBridger.TabIndex = 21;
@@ -491,7 +458,7 @@ namespace AutoSetBT
             // richResultado_usuarios
             // 
             this.richResultado_usuarios.BackColor = System.Drawing.SystemColors.ButtonShadow;
-            this.richResultado_usuarios.Location = new System.Drawing.Point(522, 92);
+            this.richResultado_usuarios.Location = new System.Drawing.Point(521, 82);
             this.richResultado_usuarios.Name = "richResultado_usuarios";
             this.richResultado_usuarios.ReadOnly = true;
             this.richResultado_usuarios.Size = new System.Drawing.Size(267, 252);
@@ -548,10 +515,8 @@ namespace AutoSetBT
             // 
             // textBoxUsuario
             // 
-            this.textBoxUsuario.Enabled = false;
             this.textBoxUsuario.Location = new System.Drawing.Point(684, 420);
             this.textBoxUsuario.Name = "textBoxUsuario";
-            this.textBoxUsuario.ReadOnly = true;
             this.textBoxUsuario.Size = new System.Drawing.Size(100, 23);
             this.textBoxUsuario.TabIndex = 20;
             // 
@@ -577,6 +542,7 @@ namespace AutoSetBT
             this.dataGridUsuario.Location = new System.Drawing.Point(261, 33);
             this.dataGridUsuario.MultiSelect = false;
             this.dataGridUsuario.Name = "dataGridUsuario";
+            this.dataGridUsuario.ReadOnly = true;
             this.dataGridUsuario.RowHeadersVisible = false;
             this.dataGridUsuario.RowTemplate.Height = 25;
             this.dataGridUsuario.Size = new System.Drawing.Size(240, 476);
@@ -595,6 +561,7 @@ namespace AutoSetBT
             this.dataGridSector.Location = new System.Drawing.Point(6, 33);
             this.dataGridSector.MultiSelect = false;
             this.dataGridSector.Name = "dataGridSector";
+            this.dataGridSector.ReadOnly = true;
             this.dataGridSector.RowHeadersVisible = false;
             this.dataGridSector.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToDisplayedHeaders;
             this.dataGridSector.RowTemplate.Height = 25;
@@ -664,21 +631,11 @@ namespace AutoSetBT
             this.txtFechaBT.Text = "Fecha";
             this.txtFechaBT.Click += new System.EventHandler(this.txtFechaBT_Click);
             // 
-            // btnUsuarioAnterior
-            // 
-            this.btnUsuarioAnterior.Location = new System.Drawing.Point(560, 11);
-            this.btnUsuarioAnterior.Name = "btnUsuarioAnterior";
-            this.btnUsuarioAnterior.Size = new System.Drawing.Size(104, 23);
-            this.btnUsuarioAnterior.TabIndex = 26;
-            this.btnUsuarioAnterior.Text = "Usuario Anterior";
-            this.btnUsuarioAnterior.UseVisualStyleBackColor = true;
-            this.btnUsuarioAnterior.Click += new System.EventHandler(this.button5_Click);
-            // 
             // radioButtonQA
             // 
             this.radioButtonQA.AutoSize = true;
             this.radioButtonQA.Checked = true;
-            this.radioButtonQA.Location = new System.Drawing.Point(691, 39);
+            this.radioButtonQA.Location = new System.Drawing.Point(578, 13);
             this.radioButtonQA.Name = "radioButtonQA";
             this.radioButtonQA.Size = new System.Drawing.Size(42, 19);
             this.radioButtonQA.TabIndex = 27;
@@ -690,7 +647,7 @@ namespace AutoSetBT
             // radioButtonDF
             // 
             this.radioButtonDF.AutoSize = true;
-            this.radioButtonDF.Location = new System.Drawing.Point(739, 39);
+            this.radioButtonDF.Location = new System.Drawing.Point(626, 13);
             this.radioButtonDF.Name = "radioButtonDF";
             this.radioButtonDF.Size = new System.Drawing.Size(39, 19);
             this.radioButtonDF.TabIndex = 28;
@@ -698,14 +655,34 @@ namespace AutoSetBT
             this.radioButtonDF.UseVisualStyleBackColor = true;
             this.radioButtonDF.CheckedChanged += new System.EventHandler(this.radioButtonDF_CheckedChanged);
             // 
+            // richConsola
+            // 
+            this.richConsola.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.richConsola.Location = new System.Drawing.Point(12, 635);
+            this.richConsola.Name = "richConsola";
+            this.richConsola.ReadOnly = true;
+            this.richConsola.Size = new System.Drawing.Size(795, 74);
+            this.richConsola.TabIndex = 29;
+            this.richConsola.Text = "";
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(12, 614);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(50, 15);
+            this.label19.TabIndex = 30;
+            this.label19.Text = "Consola";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(812, 619);
+            this.ClientSize = new System.Drawing.Size(812, 719);
+            this.Controls.Add(this.label19);
+            this.Controls.Add(this.richConsola);
             this.Controls.Add(this.radioButtonDF);
             this.Controls.Add(this.radioButtonQA);
-            this.Controls.Add(this.btnUsuarioAnterior);
             this.Controls.Add(this.txtFechaBT);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label13);
@@ -717,10 +694,10 @@ namespace AutoSetBT
             this.Controls.Add(this.inputEntrevista);
             this.Controls.Add(this.label6);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(828, 658);
+            this.MaximumSize = new System.Drawing.Size(828, 758);
             this.MinimumSize = new System.Drawing.Size(828, 658);
             this.Name = "Form1";
-            this.Text = "QA BT Tools";
+            this.Text = "QA/DF BT Tools";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataLD)).EndInit();
             this.tabControl1.ResumeLayout(false);
@@ -754,8 +731,6 @@ namespace AutoSetBT
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label labelEstado;
         private System.Windows.Forms.Button btnConsultarLD;
-        private System.Windows.Forms.RichTextBox richResultado;
-        private System.Windows.Forms.Label label_Resultado;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.DataGridView dataFirma;
@@ -769,8 +744,6 @@ namespace AutoSetBT
         private System.Windows.Forms.Button btnCambiarUsuario;
         private System.Windows.Forms.Button btnConsultarCandidatos;
         private System.Windows.Forms.TextBox inputEntrevista;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.RichTextBox richResultado_candidatos;
         private System.Windows.Forms.TextBox textUsuarioSelected;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TabPage tabPage3;
@@ -787,7 +760,6 @@ namespace AutoSetBT
         private System.Windows.Forms.TextBox textInstanciaSelected;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.DataGridView dataInstancia;
-        private System.Windows.Forms.Button btnUsuarioAnterior;
         private System.Windows.Forms.TabPage tabPage4;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label16;
@@ -802,6 +774,8 @@ namespace AutoSetBT
         private System.Windows.Forms.RichTextBox richResultado_usuarios;
         private System.Windows.Forms.RadioButton radioButtonQA;
         private System.Windows.Forms.RadioButton radioButtonDF;
+        private System.Windows.Forms.RichTextBox richConsola;
+        private System.Windows.Forms.Label label19;
     }
 
 }
