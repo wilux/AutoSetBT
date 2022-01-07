@@ -253,7 +253,7 @@ namespace AutoSetBT
         {
             textBoxSector.Text = (string)dataGridSector.CurrentCell.Value.ToString();
             string sql_usuarios = $"select J055XZUsr from J055XZ wf inner join PeopleNet_Nomina pn on RIGHT(pn.Legajo, 9) = wf.J055XZLeg where DescUnidadOrg = '{textBoxSector.Text}' ";
-            richResultado_usuarios.Text = sql_usuarios;
+            richConsola.Text = sql_usuarios;
             DataSet usuarios = DB.ObtenerDatos(sql_usuarios, ambiente, server);
 
             dataGridUsuario.DataSource = usuarios.Tables[0];
@@ -320,6 +320,15 @@ namespace AutoSetBT
 
             }
 
+        }
+
+        private void button3_Click_1(object sender, EventArgs e)
+        {
+            string sql_usuarios_busqueda = $"select J055XZUsr from J055XZ wf inner join PeopleNet_Nomina pn on RIGHT(pn.Legajo, 9) = wf.J055XZLeg where Nombre like '%{textBoxBusquedaUsuario.Text}%' or Apellido like '%{textBoxBusquedaUsuario.Text}%'";
+            richConsola.Text = sql_usuarios_busqueda;
+            DataSet usuarios = DB.ObtenerDatos(sql_usuarios_busqueda, ambiente, server);
+
+            dataGridUsuario.DataSource = usuarios.Tables[0];
         }
     }
 }

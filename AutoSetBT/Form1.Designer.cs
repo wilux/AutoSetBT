@@ -65,7 +65,6 @@ namespace AutoSetBT
             this.btnConsultarBridger = new System.Windows.Forms.Button();
             this.btnInsertarBridger = new System.Windows.Forms.Button();
             this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.richResultado_usuarios = new System.Windows.Forms.RichTextBox();
             this.label18 = new System.Windows.Forms.Label();
             this.textBoxSector = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
@@ -86,6 +85,9 @@ namespace AutoSetBT
             this.radioButtonDF = new System.Windows.Forms.RadioButton();
             this.richConsola = new System.Windows.Forms.RichTextBox();
             this.label19 = new System.Windows.Forms.Label();
+            this.textBoxBusquedaUsuario = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.buttonBuscarUsuario = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataLD)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -435,7 +437,9 @@ namespace AutoSetBT
             // 
             // tabPage4
             // 
-            this.tabPage4.Controls.Add(this.richResultado_usuarios);
+            this.tabPage4.Controls.Add(this.buttonBuscarUsuario);
+            this.tabPage4.Controls.Add(this.label9);
+            this.tabPage4.Controls.Add(this.textBoxBusquedaUsuario);
             this.tabPage4.Controls.Add(this.label18);
             this.tabPage4.Controls.Add(this.textBoxSector);
             this.tabPage4.Controls.Add(this.button2);
@@ -454,16 +458,6 @@ namespace AutoSetBT
             this.tabPage4.Text = "Usuarios";
             this.tabPage4.UseVisualStyleBackColor = true;
             this.tabPage4.Click += new System.EventHandler(this.tabPage4_Click);
-            // 
-            // richResultado_usuarios
-            // 
-            this.richResultado_usuarios.BackColor = System.Drawing.SystemColors.ButtonShadow;
-            this.richResultado_usuarios.Location = new System.Drawing.Point(521, 82);
-            this.richResultado_usuarios.Name = "richResultado_usuarios";
-            this.richResultado_usuarios.ReadOnly = true;
-            this.richResultado_usuarios.Size = new System.Drawing.Size(267, 252);
-            this.richResultado_usuarios.TabIndex = 26;
-            this.richResultado_usuarios.Text = "";
             // 
             // label18
             // 
@@ -487,11 +481,11 @@ namespace AutoSetBT
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(700, 33);
+            this.button2.Location = new System.Drawing.Point(171, 486);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 23;
-            this.button2.Text = "Consultar";
+            this.button2.Text = "Listar";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click_1);
             // 
@@ -566,7 +560,7 @@ namespace AutoSetBT
             this.dataGridSector.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToDisplayedHeaders;
             this.dataGridSector.RowTemplate.Height = 25;
             this.dataGridSector.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridSector.Size = new System.Drawing.Size(240, 476);
+            this.dataGridSector.Size = new System.Drawing.Size(240, 447);
             this.dataGridSector.TabIndex = 2;
             this.dataGridSector.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridSector_CellContentClick);
             // 
@@ -674,6 +668,32 @@ namespace AutoSetBT
             this.label19.TabIndex = 30;
             this.label19.Text = "Consola";
             // 
+            // textBoxBusquedaUsuario
+            // 
+            this.textBoxBusquedaUsuario.Location = new System.Drawing.Point(529, 51);
+            this.textBoxBusquedaUsuario.Name = "textBoxBusquedaUsuario";
+            this.textBoxBusquedaUsuario.Size = new System.Drawing.Size(255, 23);
+            this.textBoxBusquedaUsuario.TabIndex = 26;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(529, 33);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(66, 15);
+            this.label9.TabIndex = 27;
+            this.label9.Text = "Buscar por:";
+            // 
+            // buttonBuscarUsuario
+            // 
+            this.buttonBuscarUsuario.Location = new System.Drawing.Point(709, 80);
+            this.buttonBuscarUsuario.Name = "buttonBuscarUsuario";
+            this.buttonBuscarUsuario.Size = new System.Drawing.Size(75, 23);
+            this.buttonBuscarUsuario.TabIndex = 28;
+            this.buttonBuscarUsuario.Text = "Buscar";
+            this.buttonBuscarUsuario.UseVisualStyleBackColor = true;
+            this.buttonBuscarUsuario.Click += new System.EventHandler(this.button3_Click_1);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -771,11 +791,13 @@ namespace AutoSetBT
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.TextBox textBoxSector;
-        private System.Windows.Forms.RichTextBox richResultado_usuarios;
         private System.Windows.Forms.RadioButton radioButtonQA;
         private System.Windows.Forms.RadioButton radioButtonDF;
         private System.Windows.Forms.RichTextBox richConsola;
         private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Button buttonBuscarUsuario;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox textBoxBusquedaUsuario;
     }
 
 }
