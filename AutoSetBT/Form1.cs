@@ -324,7 +324,7 @@ namespace AutoSetBT
 
         private void button3_Click_1(object sender, EventArgs e)
         {
-            string sql_usuarios_busqueda = $"select J055XZUsr from J055XZ wf inner join PeopleNet_Nomina pn on RIGHT(pn.Legajo, 9) = wf.J055XZLeg where Nombre like '%{textBoxBusquedaUsuario.Text}%' or Apellido like '%{textBoxBusquedaUsuario.Text}%'";
+            string sql_usuarios_busqueda = $"select J055XZUsr from J055XZ wf inner join PeopleNet_Nomina pn on RIGHT(pn.Legajo, 9) = wf.J055XZLeg where Nombre like '%{textBoxBusquedaUsuario.Text}%' or Apellido like '%{textBoxBusquedaUsuario.Text}%' order by J055XZUsr asc";
             richConsola.Text = sql_usuarios_busqueda;
             DataSet usuarios = DB.ObtenerDatos(sql_usuarios_busqueda, ambiente, server);
 
