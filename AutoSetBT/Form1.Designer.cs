@@ -42,6 +42,11 @@ namespace AutoSetBT
             this.labelEstado = new System.Windows.Forms.Label();
             this.btnConsultarLD = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.button5 = new System.Windows.Forms.Button();
+            this.dataHistoriaEntrevista = new System.Windows.Forms.DataGridView();
+            this.label28 = new System.Windows.Forms.Label();
+            this.button7 = new System.Windows.Forms.Button();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.dataFirma = new System.Windows.Forms.DataGridView();
             this.tabPage2 = new System.Windows.Forms.TabPage();
@@ -84,11 +89,6 @@ namespace AutoSetBT
             this.dataGridUsuario = new System.Windows.Forms.DataGridView();
             this.dataGridSector = new System.Windows.Forms.DataGridView();
             this.label15 = new System.Windows.Forms.Label();
-            this.tabPage6 = new System.Windows.Forms.TabPage();
-            this.button5 = new System.Windows.Forms.Button();
-            this.dataHistoriaEntrevista = new System.Windows.Forms.DataGridView();
-            this.label28 = new System.Windows.Forms.Label();
-            this.button7 = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.inputEntrevista = new System.Windows.Forms.TextBox();
             this.inputUsuario = new System.Windows.Forms.TextBox();
@@ -101,6 +101,8 @@ namespace AutoSetBT
             this.label19 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataLD)).BeginInit();
             this.tabControl1.SuspendLayout();
+            this.tabPage6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataHistoriaEntrevista)).BeginInit();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataFirma)).BeginInit();
             this.tabPage2.SuspendLayout();
@@ -112,8 +114,6 @@ namespace AutoSetBT
             this.tabPage4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridUsuario)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridSector)).BeginInit();
-            this.tabPage6.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataHistoriaEntrevista)).BeginInit();
             this.SuspendLayout();
             // 
             // inputCuil
@@ -201,6 +201,59 @@ namespace AutoSetBT
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(799, 543);
             this.tabControl1.TabIndex = 15;
+            // 
+            // tabPage6
+            // 
+            this.tabPage6.Controls.Add(this.button5);
+            this.tabPage6.Controls.Add(this.dataHistoriaEntrevista);
+            this.tabPage6.Controls.Add(this.label28);
+            this.tabPage6.Controls.Add(this.button7);
+            this.tabPage6.Location = new System.Drawing.Point(4, 24);
+            this.tabPage6.Name = "tabPage6";
+            this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage6.Size = new System.Drawing.Size(791, 515);
+            this.tabPage6.TabIndex = 5;
+            this.tabPage6.Text = "Entrevista";
+            this.tabPage6.UseVisualStyleBackColor = true;
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(709, 486);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(75, 23);
+            this.button5.TabIndex = 10;
+            this.button5.Text = "Setear";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click_1);
+            // 
+            // dataHistoriaEntrevista
+            // 
+            this.dataHistoriaEntrevista.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataHistoriaEntrevista.Location = new System.Drawing.Point(6, 32);
+            this.dataHistoriaEntrevista.Name = "dataHistoriaEntrevista";
+            this.dataHistoriaEntrevista.RowTemplate.Height = 25;
+            this.dataHistoriaEntrevista.Size = new System.Drawing.Size(778, 448);
+            this.dataHistoriaEntrevista.TabIndex = 9;
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Location = new System.Drawing.Point(7, 14);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(127, 15);
+            this.label28.TabIndex = 8;
+            this.label28.Text = "Estado de la Entrevista:";
+            this.label28.Click += new System.EventHandler(this.label28_Click);
+            // 
+            // button7
+            // 
+            this.button7.Location = new System.Drawing.Point(628, 486);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(75, 23);
+            this.button7.TabIndex = 7;
+            this.button7.Text = "Consultar";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // tabPage1
             // 
@@ -671,59 +724,6 @@ namespace AutoSetBT
             this.label15.TabIndex = 1;
             this.label15.Text = "Sectores";
             // 
-            // tabPage6
-            // 
-            this.tabPage6.Controls.Add(this.button5);
-            this.tabPage6.Controls.Add(this.dataHistoriaEntrevista);
-            this.tabPage6.Controls.Add(this.label28);
-            this.tabPage6.Controls.Add(this.button7);
-            this.tabPage6.Location = new System.Drawing.Point(4, 24);
-            this.tabPage6.Name = "tabPage6";
-            this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage6.Size = new System.Drawing.Size(791, 515);
-            this.tabPage6.TabIndex = 5;
-            this.tabPage6.Text = "Entrevista";
-            this.tabPage6.UseVisualStyleBackColor = true;
-            // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(709, 486);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(75, 23);
-            this.button5.TabIndex = 10;
-            this.button5.Text = "Setear";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click_1);
-            // 
-            // dataHistoriaEntrevista
-            // 
-            this.dataHistoriaEntrevista.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataHistoriaEntrevista.Location = new System.Drawing.Point(6, 32);
-            this.dataHistoriaEntrevista.Name = "dataHistoriaEntrevista";
-            this.dataHistoriaEntrevista.RowTemplate.Height = 25;
-            this.dataHistoriaEntrevista.Size = new System.Drawing.Size(778, 448);
-            this.dataHistoriaEntrevista.TabIndex = 9;
-            // 
-            // label28
-            // 
-            this.label28.AutoSize = true;
-            this.label28.Location = new System.Drawing.Point(7, 14);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(127, 15);
-            this.label28.TabIndex = 8;
-            this.label28.Text = "Estado de la Entrevista:";
-            this.label28.Click += new System.EventHandler(this.label28_Click);
-            // 
-            // button7
-            // 
-            this.button7.Location = new System.Drawing.Point(628, 486);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(75, 23);
-            this.button7.TabIndex = 7;
-            this.button7.Text = "Consultar";
-            this.button7.UseVisualStyleBackColor = true;
-            this.button7.Click += new System.EventHandler(this.button7_Click);
-            // 
             // label6
             // 
             this.label6.AutoSize = true;
@@ -802,7 +802,10 @@ namespace AutoSetBT
             // 
             // richConsola
             // 
-            this.richConsola.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.richConsola.BackColor = System.Drawing.Color.Black;
+            this.richConsola.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.richConsola.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.richConsola.ForeColor = System.Drawing.Color.Lime;
             this.richConsola.Location = new System.Drawing.Point(12, 635);
             this.richConsola.Name = "richConsola";
             this.richConsola.ReadOnly = true;
@@ -846,6 +849,9 @@ namespace AutoSetBT
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataLD)).EndInit();
             this.tabControl1.ResumeLayout(false);
+            this.tabPage6.ResumeLayout(false);
+            this.tabPage6.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataHistoriaEntrevista)).EndInit();
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataFirma)).EndInit();
@@ -861,9 +867,6 @@ namespace AutoSetBT
             this.tabPage4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridUsuario)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridSector)).EndInit();
-            this.tabPage6.ResumeLayout(false);
-            this.tabPage6.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataHistoriaEntrevista)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
