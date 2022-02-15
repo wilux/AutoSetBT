@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using System.Diagnostics;
 using System.Windows.Forms;
 
 namespace AutoSetBT
@@ -98,9 +99,22 @@ namespace AutoSetBT
             if (inputEntrevista.Text != "")
             {
                 richConsola.Text = "";
-                string sql_Entrevista = $"select c.WFAttSVal Entrevista,b.WFTaskName,c.WFInsPrcId, WFItemUsrCod, a.WFTaskCod from wfwrkitems a (nolock) inner join wftask b (nolock) on a.WFTaskCod=b.WFTaskCod and b.WFPrcId in(9,10,13) inner join wfattsvalues c (nolock) on a.WFInsPrcId=c.WFInsPrcId and c.WFAttSId='ENTREVISTA' and c.WFAttSVal in('{inputEntrevista.Text}.0000')";
-                string sql_WFInsPrcId = $"select  top 1 a.WFInsPrcId from wfwrkitems a (nolock) inner join wftask b (nolock) on a.WFTaskCod=b.WFTaskCod and b.WFPrcId in(9,10,13) inner join wfattsvalues c (nolock) on a.WFInsPrcId=c.WFInsPrcId and c.WFAttSId='ENTREVISTA' and c.WFAttSVal in('{inputEntrevista.Text}.0000') order by a.WFInsPrcId desc";
-                string sql_Instancia = $"select         a.WFInsPrcId from wfwrkitems a (nolock) inner join wftask b (nolock) on a.WFTaskCod=b.WFTaskCod and b.WFPrcId in(9,10,13) inner join wfattsvalues c (nolock) on a.WFInsPrcId=c.WFInsPrcId and c.WFAttSId='ENTREVISTA' and c.WFAttSVal in('{inputEntrevista.Text}.0000') order by a.WFInsPrcId desc";
+                string sql_Entrevista = 
+                    @$"select c.WFAttSVal Entrevista,b.WFTaskName,c.WFInsPrcId, WFItemUsrCod, a.WFTaskCod from 
+                    wfwrkitems a (nolock) inner join wftask b (nolock) on a.WFTaskCod=b.WFTaskCod and b.WFPrcId in(9,10,13)
+                    inner join wfattsvalues c (nolock) on a.WFInsPrcId=c.WFInsPrcId and c.WFAttSId='ENTREVISTA' and 
+                    c.WFAttSVal in('{inputEntrevista.Text}.0000')";
+
+                string sql_WFInsPrcId = 
+                        @$"select  top 1 a.WFInsPrcId from wfwrkitems a (nolock) inner join wftask b (nolock) on
+                        a.WFTaskCod=b.WFTaskCod and b.WFPrcId in(9,10,13) inner join wfattsvalues c (nolock) on 
+                        a.WFInsPrcId=c.WFInsPrcId and c.WFAttSId='ENTREVISTA' and c.WFAttSVal in('{inputEntrevista.Text}.0000') 
+                        order by a.WFInsPrcId desc";
+
+                string sql_Instancia = 
+                    @$"select a.WFInsPrcId from wfwrkitems a (nolock) inner join wftask b (nolock) on 
+                    a.WFTaskCod=b.WFTaskCod and b.WFPrcId in(9,10,13) inner join wfattsvalues c (nolock) on 
+                    a.WFInsPrcId=c.WFInsPrcId and c.WFAttSId='ENTREVISTA' and c.WFAttSVal in('{inputEntrevista.Text}.0000') order by a.WFInsPrcId desc";
                 
                 DataSet entrevista = DB.ObtenerDatos(sql_Entrevista, ambiente, server);
                 DataSet instancia = DB.ObtenerDatos(sql_Instancia, ambiente, server);
@@ -110,13 +124,12 @@ namespace AutoSetBT
                 dataEntrevista.DataSource = entrevista.Tables[0];
                 dataInstancia.DataSource = instancia.Tables[0];
 
-                string sql_Candidatos = $"select WFWrkLstUsrCod as Usuarios from WFWORKLIST  (nolock) where WFWrkLstItemId in(select wfitemid from WFWRKITEMS where   WFInsPrcId = {WFInsPrcId})";
+                string sql_Candidatos = 
+                    @$"select WFWrkLstUsrCod as Usuarios from WFWORKLIST  (nolock) where WFWrkLstItemId 
+                    in(select wfitemid from WFWRKITEMS where   WFInsPrcId = {WFInsPrcId})";
                 DataSet candidatos = DB.ObtenerDatos(sql_Candidatos, ambiente, server);
 
                 dataUsuarios.DataSource = candidatos.Tables[0];
-
-
-
                 richConsola.Text = Environment.NewLine + sql_Entrevista + Environment.NewLine + sql_Candidatos;
 
             }
@@ -329,6 +342,81 @@ namespace AutoSetBT
             DataSet usuarios = DB.ObtenerDatos(sql_usuarios_busqueda, ambiente, server);
 
             dataGridUsuario.DataSource = usuarios.Tables[0];
+        }
+
+        private void button3_Click_2(object sender, EventArgs e)
+        {
+            string sql_usuarios_busqueda = $"SELECT J055XZUsr FROM J055XZ where J055XZUsr like '%{textBoxBusquedaUsr.Text}%' UNION SELECT WFUsrCod from wfusers1 where WFUsrCod like '%{textBoxBusquedaUsr.Text}%'";
+           
+            richConsola.Text = sql_usuarios_busqueda;
+            DataSet usuarios = DB.ObtenerDatos(sql_usuarios_busqueda, ambiente, server);
+
+            dataGridUsuario.DataSource = usuarios.Tables[0];
+        }
+
+        private void button4_Click_1(object sender, EventArgs e)
+        {
+            string sql_sectores = $"select distinct DescUnidadOrg from PeopleNet_Nomina where DescUnidadOrg like '%{textBoxBusquedaSector.Text}%'  order by DescUnidadOrg";
+            richConsola.Text = sql_sectores;
+            DataSet sectores = DB.ObtenerDatos(sql_sectores, ambiente, server);
+
+            dataGridSector.DataSource = sectores.Tables[0];
+        }
+
+
+
+
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            if (inputEntrevista.Text != "")
+            {
+                richConsola.Text = "";
+                string sql_Entrevista = 
+                @$"select c.WFAttSVal Entrevista,b.WFTaskName,a.*,b.* from wfwrkitems a (nolock)
+                inner join wftask b(nolock) on a.WFTaskCod = b.WFTaskCod and b.WFPrcId in(9, 10, 13)--and b.WFTaskCod = 70
+                inner join wfattsvalues c(nolock) on a.WFInsPrcId = c.WFInsPrcId and c.WFAttSId = 'ENTREVISTA' and c.WFAttSVal in('{inputEntrevista.Text}.0000')
+                order by WFItemInit";
+                DataSet entrevista = DB.ObtenerDatos(sql_Entrevista, ambiente, server);
+                dataHistoriaEntrevista.DataSource = entrevista.Tables[0];
+                richConsola.Text = Environment.NewLine + sql_Entrevista + Environment.NewLine;
+
+            }
+            else
+            {
+                richConsola.Text = "Debe ingresar nro Entrevista";
+            }
+        }
+
+        private void button5_Click_1(object sender, EventArgs e)
+        {
+            if (inputEntrevista.Text != "")
+            {
+                richConsola.Text = "";
+                string sql_Entrevista_update =
+                @$"update  WFINSTPRC set WFInsPrcSta = 'C' from WFINSTPRC where WFInsPrcid in (select  c.WFInsPrcId from wfwrkitems a (nolock) inner join wftask b (nolock) 
+                on a.WFTaskCod=b.WFTaskCod and b.WFPrcId in(9,10,13) inner join wfattsvalues c (nolock) on a.WFInsPrcId=c.WFInsPrcId 
+                and c.WFAttSId='ENTREVISTA' and c.WFAttSVal in('{inputEntrevista.Text}.0000'))";
+
+                string sql_Entrevista_consulta = $@"select WFInsPrcSta,* from WFINSTPRC where WFInsPrcid in (select  c.WFInsPrcId from wfwrkitems a (nolock) inner join wftask b (nolock) 
+                on a.WFTaskCod=b.WFTaskCod and b.WFPrcId in(9,10,13) inner join wfattsvalues c (nolock) on a.WFInsPrcId=c.WFInsPrcId 
+                and c.WFAttSId='ENTREVISTA' and c.WFAttSVal in('{inputEntrevista.Text}.0000'))";
+
+                DataSet entrevista = DB.ObtenerDatos(sql_Entrevista_consulta, ambiente, server);
+                dataHistoriaEntrevista.DataSource = entrevista.Tables[0];
+
+                richConsola.Text = Environment.NewLine + sql_Entrevista_update + Environment.NewLine + DB.ejecutarQuery(sql_Entrevista_update, ambiente, server) ;
+
+            }
+            else
+            {
+                richConsola.Text = "Debe ingresar nro Entrevista";
+            }
+        }
+
+        private void label28_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

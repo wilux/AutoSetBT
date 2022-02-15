@@ -65,6 +65,15 @@ namespace AutoSetBT
             this.btnConsultarBridger = new System.Windows.Forms.Button();
             this.btnInsertarBridger = new System.Windows.Forms.Button();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.button4 = new System.Windows.Forms.Button();
+            this.label21 = new System.Windows.Forms.Label();
+            this.textBoxBusquedaSector = new System.Windows.Forms.TextBox();
+            this.label20 = new System.Windows.Forms.Label();
+            this.button3 = new System.Windows.Forms.Button();
+            this.textBoxBusquedaUsr = new System.Windows.Forms.TextBox();
+            this.buttonBuscarUsuario = new System.Windows.Forms.Button();
+            this.label9 = new System.Windows.Forms.Label();
+            this.textBoxBusquedaUsuario = new System.Windows.Forms.TextBox();
             this.label18 = new System.Windows.Forms.Label();
             this.textBoxSector = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
@@ -75,6 +84,11 @@ namespace AutoSetBT
             this.dataGridUsuario = new System.Windows.Forms.DataGridView();
             this.dataGridSector = new System.Windows.Forms.DataGridView();
             this.label15 = new System.Windows.Forms.Label();
+            this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.button5 = new System.Windows.Forms.Button();
+            this.dataHistoriaEntrevista = new System.Windows.Forms.DataGridView();
+            this.label28 = new System.Windows.Forms.Label();
+            this.button7 = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.inputEntrevista = new System.Windows.Forms.TextBox();
             this.inputUsuario = new System.Windows.Forms.TextBox();
@@ -85,9 +99,6 @@ namespace AutoSetBT
             this.radioButtonDF = new System.Windows.Forms.RadioButton();
             this.richConsola = new System.Windows.Forms.RichTextBox();
             this.label19 = new System.Windows.Forms.Label();
-            this.textBoxBusquedaUsuario = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.buttonBuscarUsuario = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataLD)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -101,6 +112,8 @@ namespace AutoSetBT
             this.tabPage4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridUsuario)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridSector)).BeginInit();
+            this.tabPage6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataHistoriaEntrevista)).BeginInit();
             this.SuspendLayout();
             // 
             // inputCuil
@@ -178,6 +191,7 @@ namespace AutoSetBT
             // 
             // tabControl1
             // 
+            this.tabControl1.Controls.Add(this.tabPage6);
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
@@ -437,6 +451,12 @@ namespace AutoSetBT
             // 
             // tabPage4
             // 
+            this.tabPage4.Controls.Add(this.button4);
+            this.tabPage4.Controls.Add(this.label21);
+            this.tabPage4.Controls.Add(this.textBoxBusquedaSector);
+            this.tabPage4.Controls.Add(this.label20);
+            this.tabPage4.Controls.Add(this.button3);
+            this.tabPage4.Controls.Add(this.textBoxBusquedaUsr);
             this.tabPage4.Controls.Add(this.buttonBuscarUsuario);
             this.tabPage4.Controls.Add(this.label9);
             this.tabPage4.Controls.Add(this.textBoxBusquedaUsuario);
@@ -458,6 +478,84 @@ namespace AutoSetBT
             this.tabPage4.Text = "Usuarios";
             this.tabPage4.UseVisualStyleBackColor = true;
             this.tabPage4.Click += new System.EventHandler(this.tabPage4_Click);
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(707, 93);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(75, 23);
+            this.button4.TabIndex = 34;
+            this.button4.Text = "Buscar";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click_1);
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(527, 46);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(81, 15);
+            this.label21.TabIndex = 33;
+            this.label21.Text = "Buscar Sector:";
+            // 
+            // textBoxBusquedaSector
+            // 
+            this.textBoxBusquedaSector.Location = new System.Drawing.Point(527, 64);
+            this.textBoxBusquedaSector.Name = "textBoxBusquedaSector";
+            this.textBoxBusquedaSector.Size = new System.Drawing.Size(255, 23);
+            this.textBoxBusquedaSector.TabIndex = 32;
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(527, 204);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(109, 15);
+            this.label20.TabIndex = 31;
+            this.label20.Text = "Buscar por Usuario:";
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(707, 254);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.TabIndex = 30;
+            this.button3.Text = "Buscar";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click_2);
+            // 
+            // textBoxBusquedaUsr
+            // 
+            this.textBoxBusquedaUsr.Location = new System.Drawing.Point(527, 225);
+            this.textBoxBusquedaUsr.Name = "textBoxBusquedaUsr";
+            this.textBoxBusquedaUsr.Size = new System.Drawing.Size(255, 23);
+            this.textBoxBusquedaUsr.TabIndex = 29;
+            // 
+            // buttonBuscarUsuario
+            // 
+            this.buttonBuscarUsuario.Location = new System.Drawing.Point(707, 165);
+            this.buttonBuscarUsuario.Name = "buttonBuscarUsuario";
+            this.buttonBuscarUsuario.Size = new System.Drawing.Size(75, 23);
+            this.buttonBuscarUsuario.TabIndex = 28;
+            this.buttonBuscarUsuario.Text = "Buscar";
+            this.buttonBuscarUsuario.UseVisualStyleBackColor = true;
+            this.buttonBuscarUsuario.Click += new System.EventHandler(this.button3_Click_1);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(527, 118);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(162, 15);
+            this.label9.TabIndex = 27;
+            this.label9.Text = "Buscar por Nombre/Apellido:";
+            // 
+            // textBoxBusquedaUsuario
+            // 
+            this.textBoxBusquedaUsuario.Location = new System.Drawing.Point(527, 136);
+            this.textBoxBusquedaUsuario.Name = "textBoxBusquedaUsuario";
+            this.textBoxBusquedaUsuario.Size = new System.Drawing.Size(255, 23);
+            this.textBoxBusquedaUsuario.TabIndex = 26;
             // 
             // label18
             // 
@@ -481,11 +579,11 @@ namespace AutoSetBT
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(171, 486);
+            this.button2.Location = new System.Drawing.Point(148, 486);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.Size = new System.Drawing.Size(98, 23);
             this.button2.TabIndex = 23;
-            this.button2.Text = "Listar";
+            this.button2.Text = "Listar Todos";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click_1);
             // 
@@ -572,6 +670,59 @@ namespace AutoSetBT
             this.label15.Size = new System.Drawing.Size(51, 15);
             this.label15.TabIndex = 1;
             this.label15.Text = "Sectores";
+            // 
+            // tabPage6
+            // 
+            this.tabPage6.Controls.Add(this.button5);
+            this.tabPage6.Controls.Add(this.dataHistoriaEntrevista);
+            this.tabPage6.Controls.Add(this.label28);
+            this.tabPage6.Controls.Add(this.button7);
+            this.tabPage6.Location = new System.Drawing.Point(4, 24);
+            this.tabPage6.Name = "tabPage6";
+            this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage6.Size = new System.Drawing.Size(791, 515);
+            this.tabPage6.TabIndex = 5;
+            this.tabPage6.Text = "Entrevista";
+            this.tabPage6.UseVisualStyleBackColor = true;
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(709, 486);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(75, 23);
+            this.button5.TabIndex = 10;
+            this.button5.Text = "Setear";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click_1);
+            // 
+            // dataHistoriaEntrevista
+            // 
+            this.dataHistoriaEntrevista.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataHistoriaEntrevista.Location = new System.Drawing.Point(6, 32);
+            this.dataHistoriaEntrevista.Name = "dataHistoriaEntrevista";
+            this.dataHistoriaEntrevista.RowTemplate.Height = 25;
+            this.dataHistoriaEntrevista.Size = new System.Drawing.Size(778, 448);
+            this.dataHistoriaEntrevista.TabIndex = 9;
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Location = new System.Drawing.Point(7, 14);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(127, 15);
+            this.label28.TabIndex = 8;
+            this.label28.Text = "Estado de la Entrevista:";
+            this.label28.Click += new System.EventHandler(this.label28_Click);
+            // 
+            // button7
+            // 
+            this.button7.Location = new System.Drawing.Point(628, 486);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(75, 23);
+            this.button7.TabIndex = 7;
+            this.button7.Text = "Consultar";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // label6
             // 
@@ -668,32 +819,6 @@ namespace AutoSetBT
             this.label19.TabIndex = 30;
             this.label19.Text = "Consola";
             // 
-            // textBoxBusquedaUsuario
-            // 
-            this.textBoxBusquedaUsuario.Location = new System.Drawing.Point(529, 51);
-            this.textBoxBusquedaUsuario.Name = "textBoxBusquedaUsuario";
-            this.textBoxBusquedaUsuario.Size = new System.Drawing.Size(255, 23);
-            this.textBoxBusquedaUsuario.TabIndex = 26;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(529, 33);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(66, 15);
-            this.label9.TabIndex = 27;
-            this.label9.Text = "Buscar por:";
-            // 
-            // buttonBuscarUsuario
-            // 
-            this.buttonBuscarUsuario.Location = new System.Drawing.Point(709, 80);
-            this.buttonBuscarUsuario.Name = "buttonBuscarUsuario";
-            this.buttonBuscarUsuario.Size = new System.Drawing.Size(75, 23);
-            this.buttonBuscarUsuario.TabIndex = 28;
-            this.buttonBuscarUsuario.Text = "Buscar";
-            this.buttonBuscarUsuario.UseVisualStyleBackColor = true;
-            this.buttonBuscarUsuario.Click += new System.EventHandler(this.button3_Click_1);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -736,6 +861,9 @@ namespace AutoSetBT
             this.tabPage4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridUsuario)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridSector)).EndInit();
+            this.tabPage6.ResumeLayout(false);
+            this.tabPage6.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataHistoriaEntrevista)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -798,6 +926,17 @@ namespace AutoSetBT
         private System.Windows.Forms.Button buttonBuscarUsuario;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox textBoxBusquedaUsuario;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.TextBox textBoxBusquedaUsr;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.TextBox textBoxBusquedaSector;
+        private System.Windows.Forms.TabPage tabPage6;
+        private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.DataGridView dataHistoriaEntrevista;
+        private System.Windows.Forms.Button button5;
     }
 
 }
