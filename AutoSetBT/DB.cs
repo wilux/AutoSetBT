@@ -89,12 +89,12 @@ namespace AutoSetBT
 
         }
 
-        public static IList ObtenerValoresColumna(string sql, object column, string db = "BPN_WEB_QA")
+        public static IList ObtenerValoresColumna(string sql, object column, string db = "BPN_WEB_QA", string server = "arcncd07")
         {
 
             //Consultar DB 
             string consulta = sql;
-            DataSet respuesta = DB.ObtenerDatos(consulta, db);
+            DataSet respuesta = DB.ObtenerDatos(consulta, db, server);
             IList<int> resultado = new List<int>();
 
             foreach (DataRow dr in respuesta.Tables[0].Rows)

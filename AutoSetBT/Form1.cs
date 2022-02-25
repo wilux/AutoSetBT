@@ -21,7 +21,7 @@ namespace AutoSetBT
 
             string sql_CurrentUser = $"select J055XZUsr from J055XZ where J055XZUad='{Environment.UserName}'";
             usuarioActual = DB.ObtenerValorCampo(sql_CurrentUser, "J055XZUsr", ambiente, server);
-            inputUsuario.Text = usuarioActual.Replace(" ", String.Empty);
+            inputUsuario.Text = usuarioActual.Replace(" ", String.Empty).Trim(); ;
         }
 
         private void FechaBT()
@@ -32,7 +32,7 @@ namespace AutoSetBT
 
             var fecha = parsedDate.ToString("dd/MM/yyyy");
 
-            txtFechaBT.Text = fecha;
+            txtFechaBT.Text = fecha.Trim();
         }
 
 
@@ -44,20 +44,33 @@ namespace AutoSetBT
                 if (inputCuil.Text != "")
                 {
                     richConsola.Text = "";
-                    richConsola.Text = LegajoDigital.Completar(inputCuil.Text);
+                    richConsola.Text = LegajoDigital.Completar(inputCuil.Text, server).Trim();
                 }
                 else
                 {
                     richConsola.Text = "Debe ingresar un CUIL";
                 }
             }
-            else { MessageBox.Show("Solo es posible en ambiente QA"); }
+            else 
+            {
+
+                if (inputCuil.Text != "")
+                {
+                    richConsola.Text = "";
+                    richConsola.Text = LegajoDigital.Completar(inputCuil.Text, server).Trim();
+                }
+                else
+                {
+                    richConsola.Text = "Debe ingresar un CUIL";
+                }
+
+
+            }
         }
 
         private void btnConsultar_Click(object sender, EventArgs e)
         {
-            if (ambiente == "BPN_WEB_QA")
-            {
+
                 string db_LegajoDigital = "LegajoDigital_QA";
                 string db_Firma = "FirmaGrafometrica_QA";
                 if (inputCuil.Text != "")
@@ -78,10 +91,7 @@ namespace AutoSetBT
                 {
                     richConsola.Text = "Debe ingresar un CUIL";
                 }
-            }else
-            {
-                MessageBox.Show("Solo es posible en ambiente QA");
-            }
+            
         }
 
         private void tabPage1_Click(object sender, EventArgs e)
@@ -159,6 +169,7 @@ namespace AutoSetBT
         private void dataUsuarios_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             textUsuarioSelected.Text = (string)dataUsuarios.CurrentCell.Value;
+            textUsuarioSelected.Text = textUsuarioSelected.Text.Trim();
         }
 
         private void label12_Click(object sender, EventArgs e)
