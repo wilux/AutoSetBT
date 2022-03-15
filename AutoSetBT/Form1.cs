@@ -399,7 +399,64 @@ namespace AutoSetBT
             }
         }
 
+        //Setear todas las Entrevistas para un CUIL y Despaquetizaciones Pendientes
         private void button5_Click_1(object sender, EventArgs e)
+        {
+
+            if (inputCuil.Text != "")
+            {
+
+                //Entrevistas para el CUIL en CUR y U se pasan a C
+                string sql_BNQFPA2Nro = @$"select BNQFPA2Nro from BNQFPA2 where BNQFPA2NDo='{inputCuil.Text}' and BNQFPA2Est = 'CUR'";
+            DataSet entrevista = DB.ObtenerDatos(sql_BNQFPA2Nro, ambiente, server);
+            dataHistoriaEntrevista.DataSource = entrevista.Tables[0];
+
+            
+            foreach (DataRow dr in entrevista.Tables[0].Rows)
+            {
+                string nroEntrevista = dr[0].ToString();
+                string sql_WFInsPrcId = @$"select WFInsPrcId from WFINSTPRC where WFInsPrcSta = 'U' and WFInsPrcSubject like '%Nro {nroEntrevista}%'";
+
+                DataSet WFInsPrcId = DB.ObtenerDatos(sql_WFInsPrcId, ambiente, server);
+
+                foreach (DataRow dr1 in WFInsPrcId.Tables[0].Rows)
+                {
+                    string nroWFInsPrcId = dr1[0].ToString();
+
+
+                    string sql_Entrevista_update = @$"update  WFINSTPRC set WFInsPrcSta = 'C' from WFINSTPRC where WFInsPrcid={nroWFInsPrcId}";
+                    DB.ejecutarQuery(sql_Entrevista_update, ambiente, server);
+
+                    richConsola.Text = Environment.NewLine + sql_Entrevista_update + Environment.NewLine;
+                    }
+
+
+            }
+
+            //Cuentas que tienen paquetes pendientes de confirmar para el CUIL
+            string sql_Cuil_Paquete_update = @$"update JBNYC7 set JBNYC7Esta = 'A'  where  JBNYC7Esta = 'D' and JBNYC7NCta in (select BNQFPA2Cta from BNQFPA2 where BNQFPA2NDo='{inputCuil.Text}')";
+            DB.ejecutarQuery(sql_Cuil_Paquete_update, ambiente, server);
+
+                richConsola.Text = Environment.NewLine + sql_Cuil_Paquete_update + Environment.NewLine;
+
+
+
+
+
+            }
+            else
+            {
+                richConsola.Text = "Debe ingresar nro de Cuil";
+            }
+
+        }
+
+            private void label28_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button6_Click(object sender, EventArgs e)
         {
             if (inputEntrevista.Text != "")
             {
@@ -416,7 +473,7 @@ namespace AutoSetBT
                 DataSet entrevista = DB.ObtenerDatos(sql_Entrevista_consulta, ambiente, server);
                 dataHistoriaEntrevista.DataSource = entrevista.Tables[0];
 
-                richConsola.Text = Environment.NewLine + sql_Entrevista_update + Environment.NewLine + DB.ejecutarQuery(sql_Entrevista_update, ambiente, server) ;
+                richConsola.Text = Environment.NewLine + sql_Entrevista_update + Environment.NewLine + DB.ejecutarQuery(sql_Entrevista_update, ambiente, server);
 
             }
             else
@@ -425,9 +482,82 @@ namespace AutoSetBT
             }
         }
 
-        private void label28_Click(object sender, EventArgs e)
+        // BIE Precalificados
+        private void button8_Click(object sender, EventArgs e)
         {
+            string sql_FechaBT = "select Pgfape from fst017";
 
+            string fecha = DB.ObtenerValorCampo(sql_FechaBT, "Pgfape", ambiente, server);
+
+            string sql_casos_consulta = $@"select distinct sccta from FSD011 where sccta in (select  J055C17Cta from J055C19 b where J055C17NDo in 
+            (select pendoc from FSR008 where ctnro in (select JBNYC7ncta from JBNYC7 where  JBNYC7Pqte in(1,2,3,4,9)  )and petdoc=1)
+            and not exists (select * from bnqfpa2 c where c.BNQFPA2NDo = b.J055C17NDo and c.BNQFPA2est = 'CUR') ) and sctope in (304,302,303) and 
+            Scfvto>'{fecha}'";
+
+            
+            DataSet casos = DB.ObtenerDatos(sql_casos_consulta, ambiente, server);
+            dataGridCasos.DataSource = casos.Tables[0];
+
+            richConsola.Text = Environment.NewLine + sql_casos_consulta + Environment.NewLine;
+
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            string sql_FechaBT = "select Pgfape from fst017";
+
+            string fecha = DB.ObtenerValorCampo(sql_FechaBT, "Pgfape", ambiente, server);
+
+            string sql_casos_consulta = $@"select distinct sccta from FSD011 where sccta in (select  J055C17Cta from J055C19 b where J055C17NDo in 
+            (select pendoc from FSR008 where ctnro in (select JBNYC7ncta from JBNYC7 where  JBNYC7Pqte not in(1,2,3,4,9)  )and petdoc=1)
+            and not exists (select * from bnqfpa2 c where c.BNQFPA2NDo = b.J055C17NDo and c.BNQFPA2est = 'CUR') ) and sctope in (304,302,303) and 
+            Scfvto>'{fecha}'";
+
+
+            DataSet casos = DB.ObtenerDatos(sql_casos_consulta, ambiente, server);
+            dataGridCasos.DataSource = casos.Tables[0];
+
+            richConsola.Text = Environment.NewLine + sql_casos_consulta + Environment.NewLine;
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            string sql_casos_consulta = $@"select distinct J055C17NDo from J055C19 b where J055C17NDo in 
+            (select pendoc from FSR008 where ctnro  not in (select JBNYC7ncta from JBNYC7 where  JBNYC7Pqte in(1,2,3,4,9) )and petdoc=2 and J055C19Cna=8)
+            and not exists (select * from bnqfpa2 c where c.BNQFPA2NDo = b.J055C17NDo and c.BNQFPA2est = 'CUR') ";
+
+
+            DataSet casos = DB.ObtenerDatos(sql_casos_consulta, ambiente, server);
+            dataGridCasos.DataSource = casos.Tables[0];
+
+            richConsola.Text = Environment.NewLine + sql_casos_consulta + Environment.NewLine;
+        }
+
+        private void button11_Click(object sender, EventArgs e)
+        {
+            string sql_casos_consulta = $@"select distinct J055C17NDo from J055C19 b where J055C17NDo in 
+            (select pendoc from FSR008 where ctnro  in (select JBNYC7ncta from JBNYC7 where  JBNYC7Pqte in(1,2,3,4,9) )and petdoc=2 and J055C19Cna=8)
+            and not exists (select * from bnqfpa2 c where c.BNQFPA2NDo = b.J055C17NDo and c.BNQFPA2est = 'CUR') ";
+
+
+            DataSet casos = DB.ObtenerDatos(sql_casos_consulta, ambiente, server);
+            dataGridCasos.DataSource = casos.Tables[0];
+
+            richConsola.Text = Environment.NewLine + sql_casos_consulta + Environment.NewLine;
+        }
+
+        private void dataGridCasos_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            string caso = (string)dataGridCasos.CurrentCell.Value.ToString();
+            try
+            {
+                Clipboard.SetText(caso);
+                MessageBox.Show("El caso "+caso+" fué copiado!");
+            }
+            catch
+            {
+                MessageBox.Show("Error al copiar el Caso al porta papeles");
+            }
         }
     }
 }

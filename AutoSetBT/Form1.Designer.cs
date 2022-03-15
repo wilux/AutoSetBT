@@ -42,13 +42,26 @@ namespace AutoSetBT
             this.labelEstado = new System.Windows.Forms.Label();
             this.btnConsultarLD = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.button11 = new System.Windows.Forms.Button();
+            this.button10 = new System.Windows.Forms.Button();
+            this.button9 = new System.Windows.Forms.Button();
+            this.button8 = new System.Windows.Forms.Button();
+            this.dataGridCasos = new System.Windows.Forms.DataGridView();
             this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.button6 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.dataHistoriaEntrevista = new System.Windows.Forms.DataGridView();
             this.label28 = new System.Windows.Forms.Label();
             this.button7 = new System.Windows.Forms.Button();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.dataFirma = new System.Windows.Forms.DataGridView();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.dataBridger = new System.Windows.Forms.DataGridView();
+            this.label10 = new System.Windows.Forms.Label();
+            this.richResultado_bridger = new System.Windows.Forms.RichTextBox();
+            this.btnConsultarBridger = new System.Windows.Forms.Button();
+            this.btnInsertarBridger = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.label14 = new System.Windows.Forms.Label();
             this.dataInstancia = new System.Windows.Forms.DataGridView();
@@ -63,12 +76,6 @@ namespace AutoSetBT
             this.label3 = new System.Windows.Forms.Label();
             this.btnCambiarUsuario = new System.Windows.Forms.Button();
             this.btnConsultarCandidatos = new System.Windows.Forms.Button();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.dataBridger = new System.Windows.Forms.DataGridView();
-            this.label10 = new System.Windows.Forms.Label();
-            this.richResultado_bridger = new System.Windows.Forms.RichTextBox();
-            this.btnConsultarBridger = new System.Windows.Forms.Button();
-            this.btnInsertarBridger = new System.Windows.Forms.Button();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.button4 = new System.Windows.Forms.Button();
             this.label21 = new System.Windows.Forms.Label();
@@ -101,16 +108,18 @@ namespace AutoSetBT
             this.label19 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataLD)).BeginInit();
             this.tabControl1.SuspendLayout();
+            this.tabPage5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridCasos)).BeginInit();
             this.tabPage6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataHistoriaEntrevista)).BeginInit();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataFirma)).BeginInit();
+            this.tabPage3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataBridger)).BeginInit();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataInstancia)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataUsuarios)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataEntrevista)).BeginInit();
-            this.tabPage3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataBridger)).BeginInit();
             this.tabPage4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridUsuario)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridSector)).BeginInit();
@@ -191,10 +200,11 @@ namespace AutoSetBT
             // 
             // tabControl1
             // 
+            this.tabControl1.Controls.Add(this.tabPage5);
             this.tabControl1.Controls.Add(this.tabPage6);
             this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
+            this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Location = new System.Drawing.Point(12, 64);
             this.tabControl1.Name = "tabControl1";
@@ -202,8 +212,75 @@ namespace AutoSetBT
             this.tabControl1.Size = new System.Drawing.Size(799, 543);
             this.tabControl1.TabIndex = 15;
             // 
+            // tabPage5
+            // 
+            this.tabPage5.Controls.Add(this.button11);
+            this.tabPage5.Controls.Add(this.button10);
+            this.tabPage5.Controls.Add(this.button9);
+            this.tabPage5.Controls.Add(this.button8);
+            this.tabPage5.Controls.Add(this.dataGridCasos);
+            this.tabPage5.Location = new System.Drawing.Point(4, 24);
+            this.tabPage5.Name = "tabPage5";
+            this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage5.Size = new System.Drawing.Size(791, 515);
+            this.tabPage5.TabIndex = 6;
+            this.tabPage5.Text = "Buscador Clientes";
+            this.tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // button11
+            // 
+            this.button11.Location = new System.Drawing.Point(380, 17);
+            this.button11.Name = "button11";
+            this.button11.Size = new System.Drawing.Size(114, 23);
+            this.button11.TabIndex = 10;
+            this.button11.Text = "BI PRECA C/PAQ";
+            this.button11.UseVisualStyleBackColor = true;
+            this.button11.Click += new System.EventHandler(this.button11_Click);
+            // 
+            // button10
+            // 
+            this.button10.Location = new System.Drawing.Point(260, 17);
+            this.button10.Name = "button10";
+            this.button10.Size = new System.Drawing.Size(114, 23);
+            this.button10.TabIndex = 9;
+            this.button10.Text = "BI PRECA S/PAQ";
+            this.button10.UseVisualStyleBackColor = true;
+            this.button10.Click += new System.EventHandler(this.button10_Click);
+            // 
+            // button9
+            // 
+            this.button9.Location = new System.Drawing.Point(140, 17);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(114, 23);
+            this.button9.TabIndex = 8;
+            this.button9.Text = "BIE PRECA S/PAQ";
+            this.button9.UseVisualStyleBackColor = true;
+            this.button9.Click += new System.EventHandler(this.button9_Click);
+            // 
+            // button8
+            // 
+            this.button8.Location = new System.Drawing.Point(6, 17);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(128, 23);
+            this.button8.TabIndex = 7;
+            this.button8.Text = "BIE PRECA C/PAQ";
+            this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
+            // 
+            // dataGridCasos
+            // 
+            this.dataGridCasos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridCasos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridCasos.Location = new System.Drawing.Point(6, 46);
+            this.dataGridCasos.Name = "dataGridCasos";
+            this.dataGridCasos.RowTemplate.Height = 25;
+            this.dataGridCasos.Size = new System.Drawing.Size(776, 463);
+            this.dataGridCasos.TabIndex = 6;
+            this.dataGridCasos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridCasos_CellContentClick);
+            // 
             // tabPage6
             // 
+            this.tabPage6.Controls.Add(this.button6);
             this.tabPage6.Controls.Add(this.button5);
             this.tabPage6.Controls.Add(this.dataHistoriaEntrevista);
             this.tabPage6.Controls.Add(this.label28);
@@ -216,13 +293,23 @@ namespace AutoSetBT
             this.tabPage6.Text = "Entrevista";
             this.tabPage6.UseVisualStyleBackColor = true;
             // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(88, 486);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(106, 23);
+            this.button6.TabIndex = 11;
+            this.button6.Text = "Setear Entrevista";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
+            // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(709, 486);
+            this.button5.Location = new System.Drawing.Point(679, 486);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(75, 23);
+            this.button5.Size = new System.Drawing.Size(106, 23);
             this.button5.TabIndex = 10;
-            this.button5.Text = "Setear";
+            this.button5.Text = "Setear Todas";
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.button5_Click_1);
             // 
@@ -247,7 +334,7 @@ namespace AutoSetBT
             // 
             // button7
             // 
-            this.button7.Location = new System.Drawing.Point(628, 486);
+            this.button7.Location = new System.Drawing.Point(7, 486);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(75, 23);
             this.button7.TabIndex = 7;
@@ -283,6 +370,72 @@ namespace AutoSetBT
             this.dataFirma.Size = new System.Drawing.Size(776, 188);
             this.dataFirma.TabIndex = 0;
             this.dataFirma.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Test_CellContentClick);
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.dataBridger);
+            this.tabPage3.Controls.Add(this.label10);
+            this.tabPage3.Controls.Add(this.richResultado_bridger);
+            this.tabPage3.Controls.Add(this.btnConsultarBridger);
+            this.tabPage3.Controls.Add(this.btnInsertarBridger);
+            this.tabPage3.Location = new System.Drawing.Point(4, 24);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(791, 515);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "BridgerInsight";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            this.tabPage3.Click += new System.EventHandler(this.tabPage3_Click);
+            // 
+            // dataBridger
+            // 
+            this.dataBridger.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataBridger.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataBridger.Location = new System.Drawing.Point(25, 148);
+            this.dataBridger.Name = "dataBridger";
+            this.dataBridger.ReadOnly = true;
+            this.dataBridger.RowTemplate.Height = 25;
+            this.dataBridger.Size = new System.Drawing.Size(759, 364);
+            this.dataBridger.TabIndex = 21;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(148, 14);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(53, 15);
+            this.label10.TabIndex = 20;
+            this.label10.Text = "Consola:";
+            // 
+            // richResultado_bridger
+            // 
+            this.richResultado_bridger.BackColor = System.Drawing.SystemColors.ButtonShadow;
+            this.richResultado_bridger.Location = new System.Drawing.Point(148, 32);
+            this.richResultado_bridger.Name = "richResultado_bridger";
+            this.richResultado_bridger.ReadOnly = true;
+            this.richResultado_bridger.Size = new System.Drawing.Size(636, 96);
+            this.richResultado_bridger.TabIndex = 19;
+            this.richResultado_bridger.Text = "";
+            // 
+            // btnConsultarBridger
+            // 
+            this.btnConsultarBridger.Location = new System.Drawing.Point(49, 32);
+            this.btnConsultarBridger.Name = "btnConsultarBridger";
+            this.btnConsultarBridger.Size = new System.Drawing.Size(75, 23);
+            this.btnConsultarBridger.TabIndex = 18;
+            this.btnConsultarBridger.Text = "Consultar";
+            this.btnConsultarBridger.UseVisualStyleBackColor = true;
+            this.btnConsultarBridger.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // btnInsertarBridger
+            // 
+            this.btnInsertarBridger.Location = new System.Drawing.Point(49, 76);
+            this.btnInsertarBridger.Name = "btnInsertarBridger";
+            this.btnInsertarBridger.Size = new System.Drawing.Size(75, 23);
+            this.btnInsertarBridger.TabIndex = 17;
+            this.btnInsertarBridger.Text = "Insertar";
+            this.btnInsertarBridger.UseVisualStyleBackColor = true;
+            this.btnInsertarBridger.Click += new System.EventHandler(this.button4_Click);
             // 
             // tabPage2
             // 
@@ -435,72 +588,6 @@ namespace AutoSetBT
             this.btnConsultarCandidatos.Text = "Consultar";
             this.btnConsultarCandidatos.UseVisualStyleBackColor = true;
             this.btnConsultarCandidatos.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // tabPage3
-            // 
-            this.tabPage3.Controls.Add(this.dataBridger);
-            this.tabPage3.Controls.Add(this.label10);
-            this.tabPage3.Controls.Add(this.richResultado_bridger);
-            this.tabPage3.Controls.Add(this.btnConsultarBridger);
-            this.tabPage3.Controls.Add(this.btnInsertarBridger);
-            this.tabPage3.Location = new System.Drawing.Point(4, 24);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(791, 515);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "BridgerInsight";
-            this.tabPage3.UseVisualStyleBackColor = true;
-            this.tabPage3.Click += new System.EventHandler(this.tabPage3_Click);
-            // 
-            // dataBridger
-            // 
-            this.dataBridger.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataBridger.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataBridger.Location = new System.Drawing.Point(25, 148);
-            this.dataBridger.Name = "dataBridger";
-            this.dataBridger.ReadOnly = true;
-            this.dataBridger.RowTemplate.Height = 25;
-            this.dataBridger.Size = new System.Drawing.Size(759, 364);
-            this.dataBridger.TabIndex = 21;
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(148, 14);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(53, 15);
-            this.label10.TabIndex = 20;
-            this.label10.Text = "Consola:";
-            // 
-            // richResultado_bridger
-            // 
-            this.richResultado_bridger.BackColor = System.Drawing.SystemColors.ButtonShadow;
-            this.richResultado_bridger.Location = new System.Drawing.Point(148, 32);
-            this.richResultado_bridger.Name = "richResultado_bridger";
-            this.richResultado_bridger.ReadOnly = true;
-            this.richResultado_bridger.Size = new System.Drawing.Size(636, 96);
-            this.richResultado_bridger.TabIndex = 19;
-            this.richResultado_bridger.Text = "";
-            // 
-            // btnConsultarBridger
-            // 
-            this.btnConsultarBridger.Location = new System.Drawing.Point(49, 32);
-            this.btnConsultarBridger.Name = "btnConsultarBridger";
-            this.btnConsultarBridger.Size = new System.Drawing.Size(75, 23);
-            this.btnConsultarBridger.TabIndex = 18;
-            this.btnConsultarBridger.Text = "Consultar";
-            this.btnConsultarBridger.UseVisualStyleBackColor = true;
-            this.btnConsultarBridger.Click += new System.EventHandler(this.button3_Click);
-            // 
-            // btnInsertarBridger
-            // 
-            this.btnInsertarBridger.Location = new System.Drawing.Point(49, 76);
-            this.btnInsertarBridger.Name = "btnInsertarBridger";
-            this.btnInsertarBridger.Size = new System.Drawing.Size(75, 23);
-            this.btnInsertarBridger.TabIndex = 17;
-            this.btnInsertarBridger.Text = "Insertar";
-            this.btnInsertarBridger.UseVisualStyleBackColor = true;
-            this.btnInsertarBridger.Click += new System.EventHandler(this.button4_Click);
             // 
             // tabPage4
             // 
@@ -849,20 +936,22 @@ namespace AutoSetBT
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataLD)).EndInit();
             this.tabControl1.ResumeLayout(false);
+            this.tabPage5.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridCasos)).EndInit();
             this.tabPage6.ResumeLayout(false);
             this.tabPage6.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataHistoriaEntrevista)).EndInit();
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataFirma)).EndInit();
+            this.tabPage3.ResumeLayout(false);
+            this.tabPage3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataBridger)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataInstancia)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataUsuarios)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataEntrevista)).EndInit();
-            this.tabPage3.ResumeLayout(false);
-            this.tabPage3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataBridger)).EndInit();
             this.tabPage4.ResumeLayout(false);
             this.tabPage4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridUsuario)).EndInit();
@@ -940,6 +1029,13 @@ namespace AutoSetBT
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.DataGridView dataHistoriaEntrevista;
         private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.TabPage tabPage5;
+        private System.Windows.Forms.DataGridView dataGridCasos;
+        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.Button button10;
+        private System.Windows.Forms.Button button11;
     }
 
 }
