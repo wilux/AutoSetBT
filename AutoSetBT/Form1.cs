@@ -311,6 +311,11 @@ namespace AutoSetBT
 
                 UsuarioActual();
 
+                if (!listUserHistory.Items.Contains(textBoxUsuario.Text))
+                {
+                    listUserHistory.Items.Add(textBoxUsuario.Text);
+                }
+
             }
             else
             {
@@ -557,6 +562,16 @@ namespace AutoSetBT
             catch
             {
                 MessageBox.Show("Error al copiar el Caso al porta papeles");
+            }
+        }
+
+        private void listUserHistory_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            textBoxUsuario.Text = "";
+            // try { textBoxUsuario.Text = listUserHistory.SelectedItem.ToString(); } catch (Exception ee){ richConsola.Text = ee.ToString(); }
+            if (listUserHistory.SelectedItem != null)
+            {
+                textBoxUsuario.Text = listUserHistory.SelectedItem.ToString();
             }
         }
     }

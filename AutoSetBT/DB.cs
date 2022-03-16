@@ -67,7 +67,7 @@ namespace AutoSetBT
                     }
                 }
             }
-            catch (Exception e) { }
+            catch (Exception e) { Console.WriteLine(e); }
 
             return ds;
         }

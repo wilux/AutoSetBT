@@ -77,6 +77,8 @@ namespace AutoSetBT
             this.btnCambiarUsuario = new System.Windows.Forms.Button();
             this.btnConsultarCandidatos = new System.Windows.Forms.Button();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.listUserHistory = new System.Windows.Forms.ListBox();
+            this.label22 = new System.Windows.Forms.Label();
             this.button4 = new System.Windows.Forms.Button();
             this.label21 = new System.Windows.Forms.Label();
             this.textBoxBusquedaSector = new System.Windows.Forms.TextBox();
@@ -591,6 +593,8 @@ namespace AutoSetBT
             // 
             // tabPage4
             // 
+            this.tabPage4.Controls.Add(this.listUserHistory);
+            this.tabPage4.Controls.Add(this.label22);
             this.tabPage4.Controls.Add(this.button4);
             this.tabPage4.Controls.Add(this.label21);
             this.tabPage4.Controls.Add(this.textBoxBusquedaSector);
@@ -619,9 +623,28 @@ namespace AutoSetBT
             this.tabPage4.UseVisualStyleBackColor = true;
             this.tabPage4.Click += new System.EventHandler(this.tabPage4_Click);
             // 
+            // listUserHistory
+            // 
+            this.listUserHistory.FormattingEnabled = true;
+            this.listUserHistory.ItemHeight = 15;
+            this.listUserHistory.Location = new System.Drawing.Point(532, 30);
+            this.listUserHistory.Name = "listUserHistory";
+            this.listUserHistory.Size = new System.Drawing.Size(252, 109);
+            this.listUserHistory.TabIndex = 36;
+            this.listUserHistory.SelectedIndexChanged += new System.EventHandler(this.listUserHistory_SelectedIndexChanged);
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(530, 12);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(111, 15);
+            this.label22.TabIndex = 35;
+            this.label22.Text = "Usuarios Recientes: ";
+            // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(707, 93);
+            this.button4.Location = new System.Drawing.Point(712, 209);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(75, 23);
             this.button4.TabIndex = 34;
@@ -632,7 +655,7 @@ namespace AutoSetBT
             // label21
             // 
             this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(527, 46);
+            this.label21.Location = new System.Drawing.Point(532, 162);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(81, 15);
             this.label21.TabIndex = 33;
@@ -640,7 +663,7 @@ namespace AutoSetBT
             // 
             // textBoxBusquedaSector
             // 
-            this.textBoxBusquedaSector.Location = new System.Drawing.Point(527, 64);
+            this.textBoxBusquedaSector.Location = new System.Drawing.Point(532, 180);
             this.textBoxBusquedaSector.Name = "textBoxBusquedaSector";
             this.textBoxBusquedaSector.Size = new System.Drawing.Size(255, 23);
             this.textBoxBusquedaSector.TabIndex = 32;
@@ -648,7 +671,7 @@ namespace AutoSetBT
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(527, 204);
+            this.label20.Location = new System.Drawing.Point(532, 320);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(109, 15);
             this.label20.TabIndex = 31;
@@ -656,7 +679,7 @@ namespace AutoSetBT
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(707, 254);
+            this.button3.Location = new System.Drawing.Point(712, 370);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 23);
             this.button3.TabIndex = 30;
@@ -666,14 +689,14 @@ namespace AutoSetBT
             // 
             // textBoxBusquedaUsr
             // 
-            this.textBoxBusquedaUsr.Location = new System.Drawing.Point(527, 225);
+            this.textBoxBusquedaUsr.Location = new System.Drawing.Point(532, 341);
             this.textBoxBusquedaUsr.Name = "textBoxBusquedaUsr";
             this.textBoxBusquedaUsr.Size = new System.Drawing.Size(255, 23);
             this.textBoxBusquedaUsr.TabIndex = 29;
             // 
             // buttonBuscarUsuario
             // 
-            this.buttonBuscarUsuario.Location = new System.Drawing.Point(707, 165);
+            this.buttonBuscarUsuario.Location = new System.Drawing.Point(712, 281);
             this.buttonBuscarUsuario.Name = "buttonBuscarUsuario";
             this.buttonBuscarUsuario.Size = new System.Drawing.Size(75, 23);
             this.buttonBuscarUsuario.TabIndex = 28;
@@ -684,7 +707,7 @@ namespace AutoSetBT
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(527, 118);
+            this.label9.Location = new System.Drawing.Point(532, 234);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(162, 15);
             this.label9.TabIndex = 27;
@@ -692,7 +715,7 @@ namespace AutoSetBT
             // 
             // textBoxBusquedaUsuario
             // 
-            this.textBoxBusquedaUsuario.Location = new System.Drawing.Point(527, 136);
+            this.textBoxBusquedaUsuario.Location = new System.Drawing.Point(532, 252);
             this.textBoxBusquedaUsuario.Name = "textBoxBusquedaUsuario";
             this.textBoxBusquedaUsuario.Size = new System.Drawing.Size(255, 23);
             this.textBoxBusquedaUsuario.TabIndex = 26;
@@ -700,7 +723,7 @@ namespace AutoSetBT
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(544, 362);
+            this.label18.Location = new System.Drawing.Point(546, 384);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(119, 15);
             this.label18.TabIndex = 25;
@@ -710,7 +733,7 @@ namespace AutoSetBT
             // textBoxSector
             // 
             this.textBoxSector.Enabled = false;
-            this.textBoxSector.Location = new System.Drawing.Point(545, 380);
+            this.textBoxSector.Location = new System.Drawing.Point(547, 402);
             this.textBoxSector.Name = "textBoxSector";
             this.textBoxSector.ReadOnly = true;
             this.textBoxSector.Size = new System.Drawing.Size(239, 23);
@@ -739,7 +762,7 @@ namespace AutoSetBT
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(545, 420);
+            this.label16.Location = new System.Drawing.Point(547, 442);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(126, 15);
             this.label16.TabIndex = 21;
@@ -747,14 +770,14 @@ namespace AutoSetBT
             // 
             // textBoxUsuario
             // 
-            this.textBoxUsuario.Location = new System.Drawing.Point(684, 420);
+            this.textBoxUsuario.Location = new System.Drawing.Point(686, 442);
             this.textBoxUsuario.Name = "textBoxUsuario";
             this.textBoxUsuario.Size = new System.Drawing.Size(100, 23);
             this.textBoxUsuario.TabIndex = 20;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(684, 464);
+            this.button1.Location = new System.Drawing.Point(686, 486);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(100, 23);
             this.button1.TabIndex = 4;
@@ -1036,6 +1059,8 @@ namespace AutoSetBT
         private System.Windows.Forms.Button button9;
         private System.Windows.Forms.Button button10;
         private System.Windows.Forms.Button button11;
+        private System.Windows.Forms.ListBox listUserHistory;
+        private System.Windows.Forms.Label label22;
     }
 
 }
