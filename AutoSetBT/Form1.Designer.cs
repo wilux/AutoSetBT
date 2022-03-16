@@ -108,6 +108,8 @@ namespace AutoSetBT
             this.radioButtonDF = new System.Windows.Forms.RadioButton();
             this.richConsola = new System.Windows.Forms.RichTextBox();
             this.label19 = new System.Windows.Forms.Label();
+            this.button12 = new System.Windows.Forms.Button();
+            this.button13 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataLD)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage5.SuspendLayout();
@@ -216,6 +218,8 @@ namespace AutoSetBT
             // 
             // tabPage5
             // 
+            this.tabPage5.Controls.Add(this.button13);
+            this.tabPage5.Controls.Add(this.button12);
             this.tabPage5.Controls.Add(this.button11);
             this.tabPage5.Controls.Add(this.button10);
             this.tabPage5.Controls.Add(this.button9);
@@ -932,6 +936,26 @@ namespace AutoSetBT
             this.label19.TabIndex = 30;
             this.label19.Text = "Consola";
             // 
+            // button12
+            // 
+            this.button12.Location = new System.Drawing.Point(530, 17);
+            this.button12.Name = "button12";
+            this.button12.Size = new System.Drawing.Size(114, 23);
+            this.button12.TabIndex = 11;
+            this.button12.Text = "P.J";
+            this.button12.UseVisualStyleBackColor = true;
+            this.button12.Click += new System.EventHandler(this.button12_Click);
+            // 
+            // button13
+            // 
+            this.button13.Location = new System.Drawing.Point(650, 17);
+            this.button13.Name = "button13";
+            this.button13.Size = new System.Drawing.Size(128, 23);
+            this.button13.TabIndex = 12;
+            this.button13.Text = "P.J C/Calificaciones";
+            this.button13.UseVisualStyleBackColor = true;
+            this.button13.Click += new System.EventHandler(this.button13_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -1061,6 +1085,8 @@ namespace AutoSetBT
         private System.Windows.Forms.Button button11;
         private System.Windows.Forms.ListBox listUserHistory;
         private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Button button13;
+        private System.Windows.Forms.Button button12;
     }
 
 }

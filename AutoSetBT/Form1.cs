@@ -574,5 +574,31 @@ namespace AutoSetBT
                 textBoxUsuario.Text = listUserHistory.SelectedItem.ToString();
             }
         }
+
+        private void button12_Click(object sender, EventArgs e)
+        {
+            string sql_casos_consulta = $@"select pjndoc, Pjrazs from fsd003 a where pjtdoc=1 and pjpais=80
+            and not exists  (select * from bnqfpa2 c where c.BNQFPA2NDo = a.pjndoc and c.BNQFPA2est = 'CUR')";
+
+
+            DataSet casos = DB.ObtenerDatos(sql_casos_consulta, ambiente, server);
+            dataGridCasos.DataSource = casos.Tables[0];
+
+            richConsola.Text = Environment.NewLine + sql_casos_consulta + Environment.NewLine;
+        }
+
+        private void button13_Click(object sender, EventArgs e)
+        {
+            string sql_casos_consulta = $@"select distinct Pendoc from FSR008 a  where ctnro in 
+            (select distinct sccta from fsd011 nolock where Scmod=303 and Scstat=0 and scfvto > '{txtFechaBT.Text}') 
+            and petdoc=1 and convert(NUMERIC,Pendoc) >30000000000
+            and not exists  (select * from bnqfpa2 c where c.BNQFPA2NDo = a.Pendoc and c.BNQFPA2est = 'CUR')";
+
+
+            DataSet casos = DB.ObtenerDatos(sql_casos_consulta, ambiente, server);
+            dataGridCasos.DataSource = casos.Tables[0];
+
+            richConsola.Text = Environment.NewLine + sql_casos_consulta + Environment.NewLine;
+        }
     }
 }
