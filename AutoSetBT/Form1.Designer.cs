@@ -110,10 +110,11 @@ namespace AutoSetBT
             this.dataGridSector = new System.Windows.Forms.DataGridView();
             this.label15 = new System.Windows.Forms.Label();
             this.tabPage7 = new System.Windows.Forms.TabPage();
+            this.button14 = new System.Windows.Forms.Button();
+            this.button15 = new System.Windows.Forms.Button();
             this.label30 = new System.Windows.Forms.Label();
             this.label29 = new System.Windows.Forms.Label();
             this.richTextVistaOUT = new System.Windows.Forms.RichTextBox();
-            this.button14 = new System.Windows.Forms.Button();
             this.label27 = new System.Windows.Forms.Label();
             this.label26 = new System.Windows.Forms.Label();
             this.textSql = new System.Windows.Forms.TextBox();
@@ -139,7 +140,6 @@ namespace AutoSetBT
             this.radioButtonDF = new System.Windows.Forms.RadioButton();
             this.richConsola = new System.Windows.Forms.RichTextBox();
             this.label19 = new System.Windows.Forms.Label();
-            this.button15 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataLD)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage5.SuspendLayout();
@@ -892,11 +892,11 @@ namespace AutoSetBT
             // 
             // tabPage7
             // 
+            this.tabPage7.Controls.Add(this.button14);
             this.tabPage7.Controls.Add(this.button15);
             this.tabPage7.Controls.Add(this.label30);
             this.tabPage7.Controls.Add(this.label29);
             this.tabPage7.Controls.Add(this.richTextVistaOUT);
-            this.tabPage7.Controls.Add(this.button14);
             this.tabPage7.Controls.Add(this.label27);
             this.tabPage7.Controls.Add(this.label26);
             this.tabPage7.Controls.Add(this.textSql);
@@ -920,10 +920,30 @@ namespace AutoSetBT
             this.tabPage7.Text = "BCP";
             this.tabPage7.UseVisualStyleBackColor = true;
             // 
+            // button14
+            // 
+            this.button14.Location = new System.Drawing.Point(655, 484);
+            this.button14.Name = "button14";
+            this.button14.Size = new System.Drawing.Size(133, 23);
+            this.button14.TabIndex = 25;
+            this.button14.Text = "Escribir en Destino";
+            this.button14.UseVisualStyleBackColor = true;
+            this.button14.Click += new System.EventHandler(this.button14_Click_1);
+            // 
+            // button15
+            // 
+            this.button15.Location = new System.Drawing.Point(628, 19);
+            this.button15.Name = "button15";
+            this.button15.Size = new System.Drawing.Size(156, 23);
+            this.button15.TabIndex = 24;
+            this.button15.Text = "Borrar Tabla en Destino";
+            this.button15.UseVisualStyleBackColor = true;
+            this.button15.Click += new System.EventHandler(this.button15_Click);
+            // 
             // label30
             // 
             this.label30.AutoSize = true;
-            this.label30.Location = new System.Drawing.Point(6, 421);
+            this.label30.Location = new System.Drawing.Point(6, 360);
             this.label30.Name = "label30";
             this.label30.Size = new System.Drawing.Size(19, 15);
             this.label30.TabIndex = 23;
@@ -932,7 +952,7 @@ namespace AutoSetBT
             // label29
             // 
             this.label29.AutoSize = true;
-            this.label29.Location = new System.Drawing.Point(7, 352);
+            this.label29.Location = new System.Drawing.Point(7, 264);
             this.label29.Name = "label29";
             this.label29.Size = new System.Drawing.Size(30, 15);
             this.label29.TabIndex = 22;
@@ -940,26 +960,16 @@ namespace AutoSetBT
             // 
             // richTextVistaOUT
             // 
-            this.richTextVistaOUT.Location = new System.Drawing.Point(6, 375);
+            this.richTextVistaOUT.Location = new System.Drawing.Point(6, 287);
             this.richTextVistaOUT.Name = "richTextVistaOUT";
-            this.richTextVistaOUT.Size = new System.Drawing.Size(778, 39);
+            this.richTextVistaOUT.Size = new System.Drawing.Size(778, 70);
             this.richTextVistaOUT.TabIndex = 21;
             this.richTextVistaOUT.Text = "";
-            // 
-            // button14
-            // 
-            this.button14.Location = new System.Drawing.Point(709, 486);
-            this.button14.Name = "button14";
-            this.button14.Size = new System.Drawing.Size(75, 23);
-            this.button14.TabIndex = 20;
-            this.button14.Text = "Escribir";
-            this.button14.UseVisualStyleBackColor = true;
-            this.button14.Click += new System.EventHandler(this.button14_Click);
             // 
             // label27
             // 
             this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(54, 303);
+            this.label27.Location = new System.Drawing.Point(54, 173);
             this.label27.Name = "label27";
             this.label27.Size = new System.Drawing.Size(153, 15);
             this.label27.TabIndex = 19;
@@ -976,7 +986,7 @@ namespace AutoSetBT
             // 
             // textSql
             // 
-            this.textSql.Location = new System.Drawing.Point(225, 271);
+            this.textSql.Location = new System.Drawing.Point(225, 141);
             this.textSql.Name = "textSql";
             this.textSql.ReadOnly = true;
             this.textSql.Size = new System.Drawing.Size(559, 23);
@@ -994,7 +1004,7 @@ namespace AutoSetBT
             // label25
             // 
             this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(6, 333);
+            this.label25.Location = new System.Drawing.Point(7, 239);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(73, 15);
             this.label25.TabIndex = 15;
@@ -1002,19 +1012,19 @@ namespace AutoSetBT
             // 
             // richTextVistaIN
             // 
-            this.richTextVistaIN.Location = new System.Drawing.Point(6, 439);
+            this.richTextVistaIN.Location = new System.Drawing.Point(6, 378);
             this.richTextVistaIN.Name = "richTextVistaIN";
-            this.richTextVistaIN.Size = new System.Drawing.Size(778, 39);
+            this.richTextVistaIN.Size = new System.Drawing.Size(778, 83);
             this.richTextVistaIN.TabIndex = 14;
             this.richTextVistaIN.Text = "";
             // 
             // button17
             // 
-            this.button17.Location = new System.Drawing.Point(628, 486);
+            this.button17.Location = new System.Drawing.Point(519, 484);
             this.button17.Name = "button17";
-            this.button17.Size = new System.Drawing.Size(75, 23);
+            this.button17.Size = new System.Drawing.Size(130, 23);
             this.button17.TabIndex = 13;
-            this.button17.Text = "Copiar";
+            this.button17.Text = "Copiar de Origen";
             this.button17.UseVisualStyleBackColor = true;
             this.button17.Click += new System.EventHandler(this.button17_Click);
             // 
@@ -1064,7 +1074,7 @@ namespace AutoSetBT
             // radioButton2
             // 
             this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(18, 272);
+            this.radioButton2.Location = new System.Drawing.Point(18, 142);
             this.radioButton2.Name = "radioButton2";
             this.radioButton2.Size = new System.Drawing.Size(195, 19);
             this.radioButton2.TabIndex = 8;
@@ -1077,7 +1087,7 @@ namespace AutoSetBT
             // 
             this.radioButton1.AutoSize = true;
             this.radioButton1.Checked = true;
-            this.radioButton1.Location = new System.Drawing.Point(18, 234);
+            this.radioButton1.Location = new System.Drawing.Point(18, 104);
             this.radioButton1.Name = "radioButton1";
             this.radioButton1.Size = new System.Drawing.Size(90, 19);
             this.radioButton1.TabIndex = 7;
@@ -1088,7 +1098,7 @@ namespace AutoSetBT
             // 
             // textConsulta
             // 
-            this.textConsulta.Location = new System.Drawing.Point(225, 300);
+            this.textConsulta.Location = new System.Drawing.Point(225, 170);
             this.textConsulta.Name = "textConsulta";
             this.textConsulta.Size = new System.Drawing.Size(559, 23);
             this.textConsulta.TabIndex = 4;
@@ -1197,16 +1207,6 @@ namespace AutoSetBT
             this.label19.Size = new System.Drawing.Size(50, 15);
             this.label19.TabIndex = 30;
             this.label19.Text = "Consola";
-            // 
-            // button15
-            // 
-            this.button15.Location = new System.Drawing.Point(628, 19);
-            this.button15.Name = "button15";
-            this.button15.Size = new System.Drawing.Size(156, 23);
-            this.button15.TabIndex = 24;
-            this.button15.Text = "Borrar Tabla en Destino";
-            this.button15.UseVisualStyleBackColor = true;
-            this.button15.Click += new System.EventHandler(this.button15_Click);
             // 
             // Form1
             // 
@@ -1357,11 +1357,11 @@ namespace AutoSetBT
         private System.Windows.Forms.TextBox textSql;
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.Label label27;
-        private System.Windows.Forms.Button button14;
         private System.Windows.Forms.Label label30;
         private System.Windows.Forms.Label label29;
         private System.Windows.Forms.RichTextBox richTextVistaOUT;
         private System.Windows.Forms.Button button15;
+        private System.Windows.Forms.Button button14;
     }
 
 }

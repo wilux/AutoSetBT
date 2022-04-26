@@ -668,7 +668,7 @@ namespace AutoSetBT
                 }
             }
   
-
+            try { 
             var startInfo = new ProcessStartInfo
             {
                 FileName = "bcp.exe",
@@ -680,9 +680,22 @@ namespace AutoSetBT
 
             var cmd = Process.Start(startInfo);
             string output = cmd.StandardOutput.ReadToEnd();
-            richConsola.Text = output;
+                if (output != "")
+                {
+                    richConsola.Text = output;
+                }
+                else
+                {
+                    richConsola.Text = $"La copia de la tabla {textTabla.Text} se creo exitosamente en {Application.StartupPath} con los nombres {textTabla.Text}.txt y {textTabla.Text}.out";
+                }
             cmd.WaitForExit();
-        }
+
+            }catch (Exception er)
+            {
+                richConsola.Text = "";
+                richConsola.Text = er.Message;
+            }
+}
 
         private void comboServerA_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -766,14 +779,42 @@ namespace AutoSetBT
             DialogResult result = MessageBox.Show(message, title, buttons);
             if (result == DialogResult.Yes)
             {
+                richConsola.Text = "";
+                richConsola.Text = "No se realizó el borrado de datos.";
                 this.Close();
             }
             else
             {
-                //string sql = $"delete {textTabla.Text}";
-                //DB.ejecutarQuery(sql, bcp_ambienteB, bcp_serverB);
+                string sql = $"delete {textTabla.Text}";
+
+                richConsola.Text = "";
+                richConsola.Text = sql + Environment.NewLine + DB.ejecutarQuery(sql, bcp_ambienteB, bcp_serverB);
             }
 
+        }
+
+        private void button14_Click_1(object sender, EventArgs e)
+        {
+            try
+            {
+                var startInfo = new ProcessStartInfo
+                {
+                    FileName = "bcp.exe",
+                    Verb = "runas",
+                    Arguments = richTextVistaIN.Text,
+                    RedirectStandardOutput = true,
+                    UseShellExecute = false
+                };
+
+                var cmd = Process.Start(startInfo);
+                string output = cmd.StandardOutput.ReadToEnd();
+                richConsola.Text = output;
+                cmd.WaitForExit();
+            }catch (Exception er)
+            {
+                richConsola.Text = "";
+                richConsola.Text = er.Message;
+            }
         }
     }
 }
