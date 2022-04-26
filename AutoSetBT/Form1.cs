@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using System.Diagnostics;
 using System.Windows.Forms;
 
 namespace AutoSetBT
@@ -524,7 +525,7 @@ namespace AutoSetBT
             // string fecha = DB.ObtenerValorCampo(sql_FechaBT, "Pgfape", ambiente, server);
 
             string sql_casos_consulta = $@"select  distinct J055C17Cta from J055C19 (nolock) where J055C17Cta in (
-            SELECT BNQFPA2Cta FROM bnqfpa2 a (nolock) INNER JOIN JBNYC7 b ON a.BNQFPA2Cta = b.JBNYC7NCta  where  JBNYC7Pqte  in(1,2,3,4,9)  and BNQFPA2est <> 'CUR' and BNQFPA2Cnd = 'BIE' )";
+            SELECT BNQFPA2Cta FROM bnqfpa2 a (nolock) INNER JOIN JBNYC7 b ON a.BNQFPA2Cta = b.JBNYC7NCta  where  JBNYC7Pqte  in(1,2,3,4,9)  and BNQFPA2est <> 'CUR' and BNQFPA2Cnd = 'BIE' and BNQFPA2Fch > '2021-09-01')";
 
 
             DataSet casos = DB.ObtenerDatos(sql_casos_consulta, ambiente, server);
@@ -541,8 +542,8 @@ namespace AutoSetBT
 
             string fecha = DB.ObtenerValorCampo(sql_FechaBT, "Pgfape", ambiente, server);
 
-            string sql_casos_consulta = $@"select  distinct J055C17Cta from J055C19 (nolock) where J055C17Cta not in (
-            SELECT BNQFPA2Cta FROM bnqfpa2 a (nolock) INNER JOIN JBNYC7 b ON a.BNQFPA2Cta = b.JBNYC7NCta  where  JBNYC7Pqte  in(1,2,3,4,9)  and BNQFPA2est <> 'CUR' and BNQFPA2Cnd = 'BIE' )";
+            string sql_casos_consulta = $@"select  distinct J055C17Cta from J055C19 (nolock) where J055C17Cta  in (
+            SELECT BNQFPA2Cta FROM bnqfpa2 a (nolock) INNER JOIN JBNYC7 b ON a.BNQFPA2Cta = b.JBNYC7NCta  where  JBNYC7Pqte  not in(1,2,3,4,9)  and BNQFPA2est <> 'CUR' and BNQFPA2Cnd = 'BIE' and BNQFPA2Fch > '2021-09-01')";
 
 
             DataSet casos = DB.ObtenerDatos(sql_casos_consulta, ambiente, server);
@@ -554,8 +555,8 @@ namespace AutoSetBT
         //Bi S/ PAQ
         private void button10_Click(object sender, EventArgs e)
         {
-            string sql_casos_consulta = $@"select  distinct J055C17Cta from J055C19 (nolock) where J055C17Cta not in (
-            SELECT BNQFPA2Cta FROM bnqfpa2 a (nolock) INNER JOIN JBNYC7 b ON a.BNQFPA2Cta = b.JBNYC7NCta  where  JBNYC7Pqte  in(1,2,3,4,9)  and BNQFPA2est <> 'CUR' and BNQFPA2Cnd = 'BI' )";
+            string sql_casos_consulta = $@"select  distinct J055C17Cta from J055C19 (nolock) where J055C17Cta  in (
+            SELECT BNQFPA2Cta FROM bnqfpa2 a (nolock) INNER JOIN JBNYC7 b ON a.BNQFPA2Cta = b.JBNYC7NCta  where  JBNYC7Pqte  not in(1,2,3,4,9)  and BNQFPA2est <> 'CUR' and BNQFPA2Cnd = 'BI' and BNQFPA2Fch > '2021-09-01')";
 
 
             DataSet casos = DB.ObtenerDatos(sql_casos_consulta, ambiente, server);
@@ -568,7 +569,7 @@ namespace AutoSetBT
         private void button11_Click(object sender, EventArgs e)
         {
             string sql_casos_consulta = $@"select  distinct J055C17Cta from J055C19 (nolock) where J055C17Cta in (
-            SELECT BNQFPA2Cta FROM bnqfpa2 a (nolock) INNER JOIN JBNYC7 b ON a.BNQFPA2Cta = b.JBNYC7NCta  where  JBNYC7Pqte  in(1,2,3,4,9)  and BNQFPA2est <> 'CUR' and BNQFPA2Cnd = 'BI' )";
+            SELECT BNQFPA2Cta FROM bnqfpa2 a (nolock) INNER JOIN JBNYC7 b ON a.BNQFPA2Cta = b.JBNYC7NCta  where  JBNYC7Pqte  in(1,2,3,4,9)  and BNQFPA2est <> 'CUR' and BNQFPA2Cnd = 'BI' and BNQFPA2Fch > '2021-09-01')";
 
 
             DataSet casos = DB.ObtenerDatos(sql_casos_consulta, ambiente, server);
@@ -628,23 +629,26 @@ namespace AutoSetBT
             richConsola.Text = Environment.NewLine + sql_casos_consulta + Environment.NewLine;
         }
 
-        //QA a DF
-        private void button14_Click(object sender, EventArgs e)
-        {
-            richConsola.Text= Bcp.runQADF("bpn_web_Desa", "", "", "arcncd09", "", textTabla.Text);
-        }
+
 
         // COPIAR desde ..  a ...
         private void button17_Click(object sender, EventArgs e)
         {
+            string[][] bcp = { };
+
             if (bcp_serverA != "PROD") {
                 if (bcp_tipo)
                 {
-                    richTextVistaBCP.Text = Bcp.runQADF(bcp_ambienteA, bcp_ambienteB, bcp_serverA, bcp_serverB, "", textTabla.Text);
+                    bcp = Bcp.runQADF(bcp_ambienteA, bcp_ambienteB, bcp_serverA, bcp_serverB, "", textTabla.Text);
+
+                    richTextVistaOUT.Text = $"\"{bcp[0][0]}\"" + bcp[0][1];
+                    richTextVistaIN.Text = bcp[0][0];
                 }
                 else
                 {
-                    richTextVistaBCP.Text = Bcp.runQADF(bcp_ambienteA, bcp_ambienteB, bcp_serverA, bcp_serverB, textConsulta.Text, textTabla.Text);
+                    bcp = Bcp.runQADF(bcp_ambienteA, bcp_ambienteB, bcp_serverA, bcp_serverB, textConsulta.Text, textTabla.Text);
+                    richTextVistaOUT.Text = $"\"{bcp[0][0]}\"" + bcp[0][1];
+                    richTextVistaIN.Text = bcp[0][0];
                 }
             }
             else
@@ -652,13 +656,32 @@ namespace AutoSetBT
                 if (bcp_tipo)
                 {
 
-                    richTextVistaBCP.Text = Bcp.runHistorico(bcp_ambienteA, bcp_serverA, bcp_serverB, "", textTabla.Text, textProdPass.Text);
+                    // bcp = Bcp.runHistorico(bcp_ambienteA, bcp_serverA, bcp_serverB, "", textTabla.Text, textProdPass.Text);
+                    richTextVistaOUT.Text = $"\"{bcp[0][0]}\"" + bcp[0][1];
+                    richTextVistaIN.Text = bcp[0][0];
                 }
                 else
                 {
-                    richTextVistaBCP.Text = Bcp.runHistorico(bcp_ambienteA, bcp_serverA, bcp_serverB, textConsulta.Text, textTabla.Text, textProdPass.Text);
+                    //  bcp = Bcp.runHistorico(bcp_ambienteA, bcp_serverA, bcp_serverB, textConsulta.Text, textTabla.Text, textProdPass.Text);
+                    richTextVistaOUT.Text = $"\"{bcp[0][0]}\"" + bcp[0][1];
+                    richTextVistaIN.Text = bcp[0][0];
                 }
             }
+  
+
+            var startInfo = new ProcessStartInfo
+            {
+                FileName = "bcp.exe",
+                Verb = "runas",
+                Arguments = richTextVistaOUT.Text,
+                RedirectStandardOutput = true,
+                UseShellExecute = false
+            };
+
+            var cmd = Process.Start(startInfo);
+            string output = cmd.StandardOutput.ReadToEnd();
+            richConsola.Text = output;
+            cmd.WaitForExit();
         }
 
         private void comboServerA_SelectedIndexChanged(object sender, EventArgs e)
@@ -723,6 +746,11 @@ namespace AutoSetBT
         }
 
         private void label26_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button14_Click(object sender, EventArgs e)
         {
 
         }
