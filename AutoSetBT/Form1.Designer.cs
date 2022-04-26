@@ -3,9 +3,18 @@ namespace AutoSetBT
 {
     partial class Form1
     {
+        //General
         public string usuarioActual = "";
         public string ambiente = "BPN_WEB_QA";
         public string server = "arcncd07";
+
+        //BCP
+        public string bcp_ambienteA = "BPN_WEB_QA";
+        public string bcp_serverA = "arcncd07";
+        public string bcp_ambienteB = "BPN_WEB_QA";
+        public string bcp_serverB = "arcncd07";
+        public bool bcp_tipo = true;
+
 
         /// <summary>
         ///  Required designer variable.
@@ -43,6 +52,8 @@ namespace AutoSetBT
             this.btnConsultarLD = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.button13 = new System.Windows.Forms.Button();
+            this.button12 = new System.Windows.Forms.Button();
             this.button11 = new System.Windows.Forms.Button();
             this.button10 = new System.Windows.Forms.Button();
             this.button9 = new System.Windows.Forms.Button();
@@ -98,6 +109,21 @@ namespace AutoSetBT
             this.dataGridUsuario = new System.Windows.Forms.DataGridView();
             this.dataGridSector = new System.Windows.Forms.DataGridView();
             this.label15 = new System.Windows.Forms.Label();
+            this.tabPage7 = new System.Windows.Forms.TabPage();
+            this.label26 = new System.Windows.Forms.Label();
+            this.textSql = new System.Windows.Forms.TextBox();
+            this.textProdPass = new System.Windows.Forms.TextBox();
+            this.label25 = new System.Windows.Forms.Label();
+            this.richTextVistaBCP = new System.Windows.Forms.RichTextBox();
+            this.button17 = new System.Windows.Forms.Button();
+            this.comboServerB = new System.Windows.Forms.ComboBox();
+            this.label24 = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
+            this.comboServerA = new System.Windows.Forms.ComboBox();
+            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.textConsulta = new System.Windows.Forms.TextBox();
+            this.textTabla = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.inputEntrevista = new System.Windows.Forms.TextBox();
             this.inputUsuario = new System.Windows.Forms.TextBox();
@@ -108,8 +134,7 @@ namespace AutoSetBT
             this.radioButtonDF = new System.Windows.Forms.RadioButton();
             this.richConsola = new System.Windows.Forms.RichTextBox();
             this.label19 = new System.Windows.Forms.Label();
-            this.button12 = new System.Windows.Forms.Button();
-            this.button13 = new System.Windows.Forms.Button();
+            this.label27 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataLD)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage5.SuspendLayout();
@@ -127,6 +152,7 @@ namespace AutoSetBT
             this.tabPage4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridUsuario)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridSector)).BeginInit();
+            this.tabPage7.SuspendLayout();
             this.SuspendLayout();
             // 
             // inputCuil
@@ -210,6 +236,7 @@ namespace AutoSetBT
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage4);
+            this.tabControl1.Controls.Add(this.tabPage7);
             this.tabControl1.Location = new System.Drawing.Point(12, 64);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -232,6 +259,26 @@ namespace AutoSetBT
             this.tabPage5.TabIndex = 6;
             this.tabPage5.Text = "Buscador Clientes";
             this.tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // button13
+            // 
+            this.button13.Location = new System.Drawing.Point(650, 17);
+            this.button13.Name = "button13";
+            this.button13.Size = new System.Drawing.Size(128, 23);
+            this.button13.TabIndex = 12;
+            this.button13.Text = "BE C/Calificaciones";
+            this.button13.UseVisualStyleBackColor = true;
+            this.button13.Click += new System.EventHandler(this.button13_Click);
+            // 
+            // button12
+            // 
+            this.button12.Location = new System.Drawing.Point(530, 17);
+            this.button12.Name = "button12";
+            this.button12.Size = new System.Drawing.Size(114, 23);
+            this.button12.TabIndex = 11;
+            this.button12.Text = "BE";
+            this.button12.UseVisualStyleBackColor = true;
+            this.button12.Click += new System.EventHandler(this.button12_Click);
             // 
             // button11
             // 
@@ -838,6 +885,166 @@ namespace AutoSetBT
             this.label15.TabIndex = 1;
             this.label15.Text = "Sectores";
             // 
+            // tabPage7
+            // 
+            this.tabPage7.Controls.Add(this.label27);
+            this.tabPage7.Controls.Add(this.label26);
+            this.tabPage7.Controls.Add(this.textSql);
+            this.tabPage7.Controls.Add(this.textProdPass);
+            this.tabPage7.Controls.Add(this.label25);
+            this.tabPage7.Controls.Add(this.richTextVistaBCP);
+            this.tabPage7.Controls.Add(this.button17);
+            this.tabPage7.Controls.Add(this.comboServerB);
+            this.tabPage7.Controls.Add(this.label24);
+            this.tabPage7.Controls.Add(this.label23);
+            this.tabPage7.Controls.Add(this.comboServerA);
+            this.tabPage7.Controls.Add(this.radioButton2);
+            this.tabPage7.Controls.Add(this.radioButton1);
+            this.tabPage7.Controls.Add(this.textConsulta);
+            this.tabPage7.Controls.Add(this.textTabla);
+            this.tabPage7.Location = new System.Drawing.Point(4, 24);
+            this.tabPage7.Name = "tabPage7";
+            this.tabPage7.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage7.Size = new System.Drawing.Size(791, 515);
+            this.tabPage7.TabIndex = 7;
+            this.tabPage7.Text = "BCP";
+            this.tabPage7.UseVisualStyleBackColor = true;
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(404, 24);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(40, 15);
+            this.label26.TabIndex = 18;
+            this.label26.Text = "Tabla: ";
+            // 
+            // textSql
+            // 
+            this.textSql.Location = new System.Drawing.Point(225, 271);
+            this.textSql.Name = "textSql";
+            this.textSql.ReadOnly = true;
+            this.textSql.Size = new System.Drawing.Size(559, 23);
+            this.textSql.TabIndex = 17;
+            // 
+            // textProdPass
+            // 
+            this.textProdPass.Location = new System.Drawing.Point(106, 53);
+            this.textProdPass.Name = "textProdPass";
+            this.textProdPass.Size = new System.Drawing.Size(121, 23);
+            this.textProdPass.TabIndex = 16;
+            this.textProdPass.Text = "Password";
+            this.textProdPass.Visible = false;
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(6, 333);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(73, 15);
+            this.label25.TabIndex = 15;
+            this.label25.Text = "Vista Previa: ";
+            // 
+            // richTextVistaBCP
+            // 
+            this.richTextVistaBCP.Location = new System.Drawing.Point(6, 351);
+            this.richTextVistaBCP.Name = "richTextVistaBCP";
+            this.richTextVistaBCP.Size = new System.Drawing.Size(778, 97);
+            this.richTextVistaBCP.TabIndex = 14;
+            this.richTextVistaBCP.Text = "";
+            // 
+            // button17
+            // 
+            this.button17.Location = new System.Drawing.Point(709, 486);
+            this.button17.Name = "button17";
+            this.button17.Size = new System.Drawing.Size(75, 23);
+            this.button17.TabIndex = 13;
+            this.button17.Text = "Copiar";
+            this.button17.UseVisualStyleBackColor = true;
+            this.button17.Click += new System.EventHandler(this.button17_Click);
+            // 
+            // comboServerB
+            // 
+            this.comboServerB.FormattingEnabled = true;
+            this.comboServerB.Items.AddRange(new object[] {
+            "QA",
+            "DF"});
+            this.comboServerB.Location = new System.Drawing.Point(261, 24);
+            this.comboServerB.Name = "comboServerB";
+            this.comboServerB.Size = new System.Drawing.Size(121, 23);
+            this.comboServerB.TabIndex = 12;
+            this.comboServerB.SelectedIndexChanged += new System.EventHandler(this.comboServerB_SelectedIndexChanged);
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(244, 24);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(19, 15);
+            this.label24.TabIndex = 11;
+            this.label24.Text = "a :";
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(18, 27);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(82, 15);
+            this.label23.TabIndex = 10;
+            this.label23.Text = "Copiar desde :";
+            // 
+            // comboServerA
+            // 
+            this.comboServerA.FormattingEnabled = true;
+            this.comboServerA.Items.AddRange(new object[] {
+            "QA",
+            "DF",
+            "PROD"});
+            this.comboServerA.Location = new System.Drawing.Point(106, 24);
+            this.comboServerA.Name = "comboServerA";
+            this.comboServerA.Size = new System.Drawing.Size(121, 23);
+            this.comboServerA.TabIndex = 9;
+            this.comboServerA.SelectedIndexChanged += new System.EventHandler(this.comboServerA_SelectedIndexChanged);
+            // 
+            // radioButton2
+            // 
+            this.radioButton2.AutoSize = true;
+            this.radioButton2.Location = new System.Drawing.Point(18, 272);
+            this.radioButton2.Name = "radioButton2";
+            this.radioButton2.Size = new System.Drawing.Size(195, 19);
+            this.radioButton2.TabIndex = 8;
+            this.radioButton2.Text = "Copiar desde una consulta SQL: ";
+            this.radioButton2.UseVisualStyleBackColor = true;
+            this.radioButton2.CheckedChanged += new System.EventHandler(this.radioButton2_CheckedChanged);
+            this.radioButton2.Click += new System.EventHandler(this.radioButton2_Click);
+            // 
+            // radioButton1
+            // 
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Checked = true;
+            this.radioButton1.Location = new System.Drawing.Point(18, 234);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(90, 19);
+            this.radioButton1.TabIndex = 7;
+            this.radioButton1.TabStop = true;
+            this.radioButton1.Text = "Copiar Tabla";
+            this.radioButton1.UseVisualStyleBackColor = true;
+            this.radioButton1.Click += new System.EventHandler(this.radioButton1_Click);
+            // 
+            // textConsulta
+            // 
+            this.textConsulta.Location = new System.Drawing.Point(225, 300);
+            this.textConsulta.Name = "textConsulta";
+            this.textConsulta.Size = new System.Drawing.Size(559, 23);
+            this.textConsulta.TabIndex = 4;
+            // 
+            // textTabla
+            // 
+            this.textTabla.Location = new System.Drawing.Point(450, 21);
+            this.textTabla.Name = "textTabla";
+            this.textTabla.Size = new System.Drawing.Size(154, 23);
+            this.textTabla.TabIndex = 3;
+            // 
             // label6
             // 
             this.label6.AutoSize = true;
@@ -936,25 +1143,14 @@ namespace AutoSetBT
             this.label19.TabIndex = 30;
             this.label19.Text = "Consola";
             // 
-            // button12
+            // label27
             // 
-            this.button12.Location = new System.Drawing.Point(530, 17);
-            this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(114, 23);
-            this.button12.TabIndex = 11;
-            this.button12.Text = "P.J";
-            this.button12.UseVisualStyleBackColor = true;
-            this.button12.Click += new System.EventHandler(this.button12_Click);
-            // 
-            // button13
-            // 
-            this.button13.Location = new System.Drawing.Point(650, 17);
-            this.button13.Name = "button13";
-            this.button13.Size = new System.Drawing.Size(128, 23);
-            this.button13.TabIndex = 12;
-            this.button13.Text = "P.J C/Calificaciones";
-            this.button13.UseVisualStyleBackColor = true;
-            this.button13.Click += new System.EventHandler(this.button13_Click);
+            this.label27.AutoSize = true;
+            this.label27.Location = new System.Drawing.Point(54, 303);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(153, 15);
+            this.label27.TabIndex = 19;
+            this.label27.Text = "Consulta desde el \"Where\" :";
             // 
             // Form1
             // 
@@ -1003,6 +1199,8 @@ namespace AutoSetBT
             this.tabPage4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridUsuario)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridSector)).EndInit();
+            this.tabPage7.ResumeLayout(false);
+            this.tabPage7.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1087,6 +1285,22 @@ namespace AutoSetBT
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Button button13;
         private System.Windows.Forms.Button button12;
+        private System.Windows.Forms.TabPage tabPage7;
+        private System.Windows.Forms.TextBox textConsulta;
+        private System.Windows.Forms.TextBox textTabla;
+        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.Button button17;
+        private System.Windows.Forms.ComboBox comboServerB;
+        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.ComboBox comboServerA;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.RichTextBox richTextVistaBCP;
+        private System.Windows.Forms.TextBox textProdPass;
+        private System.Windows.Forms.TextBox textSql;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.Label label27;
     }
 
 }

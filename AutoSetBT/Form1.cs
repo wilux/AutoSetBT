@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Data;
-using System.Diagnostics;
 using System.Windows.Forms;
 
 namespace AutoSetBT
@@ -28,7 +27,7 @@ namespace AutoSetBT
         {
             string sql_FechaBT = "select Pgfape from fst017";
 
-            var parsedDate = DateTime.Parse(DB.ObtenerValorCampo(sql_FechaBT, "Pgfape",ambiente,server));
+            var parsedDate = DateTime.Parse(DB.ObtenerValorCampo(sql_FechaBT, "Pgfape", ambiente, server));
 
             var fecha = parsedDate.ToString("dd/MM/yyyy");
 
@@ -51,7 +50,7 @@ namespace AutoSetBT
                     richConsola.Text = "Debe ingresar un CUIL";
                 }
             }
-            else 
+            else
             {
 
                 if (inputCuil.Text != "")
@@ -71,15 +70,20 @@ namespace AutoSetBT
         private void btnConsultar_Click(object sender, EventArgs e)
         {
 
+
+
+            if (ambiente == "BPN_WEB_QA")
+            {
                 string db_LegajoDigital = "LegajoDigital_QA";
                 string db_Firma = "FirmaGrafometrica_QA";
+
                 if (inputCuil.Text != "")
                 {
                     string sql_lg = $"select *  from TRAMITE where idPersona in (select idPersona from PERSONA where CuitCuil = '{inputCuil.Text}')";
                     string sql_firma = $"select *  from TRAMITE where CuitCuil = '{inputCuil.Text}' and activo = 1";
 
-                    DataSet legajo = DB.ObtenerDatos(sql_lg, db_LegajoDigital);
-                    DataSet firma = DB.ObtenerDatos(sql_firma, db_Firma);
+                    DataSet legajo = DB.ObtenerDatos(sql_lg, db_LegajoDigital, server);
+                    DataSet firma = DB.ObtenerDatos(sql_firma, db_Firma, server);
 
                     richConsola.Text = "";
                     richConsola.Text = Environment.NewLine + sql_lg + Environment.NewLine + sql_firma;
@@ -91,7 +95,32 @@ namespace AutoSetBT
                 {
                     richConsola.Text = "Debe ingresar un CUIL";
                 }
-            
+            }
+            else
+            {
+                string db_LegajoDigital = "LegajoDigital_Desa";
+                string db_Firma = "FirmaGrafometrica_Desa";
+
+                if (inputCuil.Text != "")
+                {
+                    string sql_lg = $"select *  from TRAMITE where idPersona in (select idPersona from PERSONA where CuitCuil = '{inputCuil.Text}')";
+                    string sql_firma = $"select *  from TRAMITE where CuitCuil = '{inputCuil.Text}' and activo = 1";
+
+                    DataSet legajo = DB.ObtenerDatos(sql_lg, db_LegajoDigital, server);
+                    DataSet firma = DB.ObtenerDatos(sql_firma, db_Firma, server);
+
+                    richConsola.Text = "";
+                    richConsola.Text = Environment.NewLine + sql_lg + Environment.NewLine + sql_firma;
+
+                    dataLD.DataSource = legajo.Tables[0];
+                    dataFirma.DataSource = firma.Tables[0];
+                }
+                else
+                {
+                    richConsola.Text = "Debe ingresar un CUIL";
+                }
+            }
+
         }
 
         private void tabPage1_Click(object sender, EventArgs e)
@@ -109,23 +138,23 @@ namespace AutoSetBT
             if (inputEntrevista.Text != "")
             {
                 richConsola.Text = "";
-                string sql_Entrevista = 
+                string sql_Entrevista =
                     @$"select c.WFAttSVal Entrevista,b.WFTaskName,c.WFInsPrcId, WFItemUsrCod, a.WFTaskCod from 
                     wfwrkitems a (nolock) inner join wftask b (nolock) on a.WFTaskCod=b.WFTaskCod and b.WFPrcId in(9,10,13)
                     inner join wfattsvalues c (nolock) on a.WFInsPrcId=c.WFInsPrcId and c.WFAttSId='ENTREVISTA' and 
                     c.WFAttSVal in('{inputEntrevista.Text}.0000')";
 
-                string sql_WFInsPrcId = 
+                string sql_WFInsPrcId =
                         @$"select  top 1 a.WFInsPrcId from wfwrkitems a (nolock) inner join wftask b (nolock) on
                         a.WFTaskCod=b.WFTaskCod and b.WFPrcId in(9,10,13) inner join wfattsvalues c (nolock) on 
                         a.WFInsPrcId=c.WFInsPrcId and c.WFAttSId='ENTREVISTA' and c.WFAttSVal in('{inputEntrevista.Text}.0000') 
                         order by a.WFInsPrcId desc";
 
-                string sql_Instancia = 
+                string sql_Instancia =
                     @$"select a.WFInsPrcId from wfwrkitems a (nolock) inner join wftask b (nolock) on 
                     a.WFTaskCod=b.WFTaskCod and b.WFPrcId in(9,10,13) inner join wfattsvalues c (nolock) on 
                     a.WFInsPrcId=c.WFInsPrcId and c.WFAttSId='ENTREVISTA' and c.WFAttSVal in('{inputEntrevista.Text}.0000') order by a.WFInsPrcId desc";
-                
+
                 DataSet entrevista = DB.ObtenerDatos(sql_Entrevista, ambiente, server);
                 DataSet instancia = DB.ObtenerDatos(sql_Instancia, ambiente, server);
 
@@ -134,7 +163,7 @@ namespace AutoSetBT
                 dataEntrevista.DataSource = entrevista.Tables[0];
                 dataInstancia.DataSource = instancia.Tables[0];
 
-                string sql_Candidatos = 
+                string sql_Candidatos =
                     @$"select WFWrkLstUsrCod as Usuarios from WFWORKLIST  (nolock) where WFWrkLstItemId 
                     in(select wfitemid from WFWRKITEMS where   WFInsPrcId = {WFInsPrcId})";
                 DataSet candidatos = DB.ObtenerDatos(sql_Candidatos, ambiente, server);
@@ -153,7 +182,7 @@ namespace AutoSetBT
         {
             if (textUsuarioSelected.Text != "")
             {
-                richConsola.Text  = DB.CambiarUsuario(textUsuarioSelected.Text, ambiente, server);
+                richConsola.Text = DB.CambiarUsuario(textUsuarioSelected.Text, ambiente, server);
 
                 UsuarioActual();
 
@@ -201,7 +230,7 @@ namespace AutoSetBT
 
         private void button4_Click(object sender, EventArgs e)
         {
-            if (inputCuil.Text != "" && inputUsuario.Text !="")
+            if (inputCuil.Text != "" && inputUsuario.Text != "")
             {
                 richConsola.Text = BridgerInsight.Insertar(inputCuil.Text, inputUsuario.Text, ambiente, server);
             }
@@ -233,7 +262,7 @@ namespace AutoSetBT
 
         private void dataEntrevista_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-           
+
         }
 
         private void dataInstancia_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -248,8 +277,8 @@ namespace AutoSetBT
 
         private void button5_Click(object sender, EventArgs e)
         {
-                DB.CambiarUsuario(usuarioActual, ambiente, server);
-                UsuarioActual();
+            DB.CambiarUsuario(usuarioActual, ambiente, server);
+            UsuarioActual();
 
 
         }
@@ -333,7 +362,7 @@ namespace AutoSetBT
                 server = "arcncd09";
                 UsuarioActual();
                 FechaBT();
-                richConsola.Text = "Se cambio de ambiente --> "+"Ambiente: "+ambiente+" "+"Servidor: "+server;
+                richConsola.Text = "Se cambio de ambiente --> " + "Ambiente: " + ambiente + " " + "Servidor: " + server;
             }
         }
 
@@ -363,7 +392,7 @@ namespace AutoSetBT
         private void button3_Click_2(object sender, EventArgs e)
         {
             string sql_usuarios_busqueda = $"SELECT J055XZUsr FROM J055XZ where J055XZUsr like '%{textBoxBusquedaUsr.Text}%' UNION SELECT WFUsrCod from wfusers1 where WFUsrCod like '%{textBoxBusquedaUsr.Text}%'";
-           
+
             richConsola.Text = sql_usuarios_busqueda;
             DataSet usuarios = DB.ObtenerDatos(sql_usuarios_busqueda, ambiente, server);
 
@@ -388,7 +417,7 @@ namespace AutoSetBT
             if (inputEntrevista.Text != "")
             {
                 richConsola.Text = "";
-                string sql_Entrevista = 
+                string sql_Entrevista =
                 @$"select c.WFAttSVal Entrevista,b.WFTaskName,a.*,b.* from wfwrkitems a (nolock)
                 inner join wftask b(nolock) on a.WFTaskCod = b.WFTaskCod and b.WFPrcId in(9, 10, 13)--and b.WFTaskCod = 70
                 inner join wfattsvalues c(nolock) on a.WFInsPrcId = c.WFInsPrcId and c.WFAttSId = 'ENTREVISTA' and c.WFAttSVal in('{inputEntrevista.Text}.0000')
@@ -413,34 +442,34 @@ namespace AutoSetBT
 
                 //Entrevistas para el CUIL en CUR y U se pasan a C
                 string sql_BNQFPA2Nro = @$"select BNQFPA2Nro from BNQFPA2 where BNQFPA2NDo='{inputCuil.Text}' and BNQFPA2Est = 'CUR'";
-            DataSet entrevista = DB.ObtenerDatos(sql_BNQFPA2Nro, ambiente, server);
-            dataHistoriaEntrevista.DataSource = entrevista.Tables[0];
+                DataSet entrevista = DB.ObtenerDatos(sql_BNQFPA2Nro, ambiente, server);
+                dataHistoriaEntrevista.DataSource = entrevista.Tables[0];
 
-            
-            foreach (DataRow dr in entrevista.Tables[0].Rows)
-            {
-                string nroEntrevista = dr[0].ToString();
-                string sql_WFInsPrcId = @$"select WFInsPrcId from WFINSTPRC where WFInsPrcSta = 'U' and WFInsPrcSubject like '%Nro {nroEntrevista}%'";
 
-                DataSet WFInsPrcId = DB.ObtenerDatos(sql_WFInsPrcId, ambiente, server);
-
-                foreach (DataRow dr1 in WFInsPrcId.Tables[0].Rows)
+                foreach (DataRow dr in entrevista.Tables[0].Rows)
                 {
-                    string nroWFInsPrcId = dr1[0].ToString();
+                    string nroEntrevista = dr[0].ToString();
+                    string sql_WFInsPrcId = @$"select WFInsPrcId from WFINSTPRC where WFInsPrcSta = 'U' and WFInsPrcSubject like '%Nro {nroEntrevista}%'";
+
+                    DataSet WFInsPrcId = DB.ObtenerDatos(sql_WFInsPrcId, ambiente, server);
+
+                    foreach (DataRow dr1 in WFInsPrcId.Tables[0].Rows)
+                    {
+                        string nroWFInsPrcId = dr1[0].ToString();
 
 
-                    string sql_Entrevista_update = @$"update  WFINSTPRC set WFInsPrcSta = 'C' from WFINSTPRC where WFInsPrcid={nroWFInsPrcId}";
-                    DB.ejecutarQuery(sql_Entrevista_update, ambiente, server);
+                        string sql_Entrevista_update = @$"update  WFINSTPRC set WFInsPrcSta = 'C' from WFINSTPRC where WFInsPrcid={nroWFInsPrcId}";
+                        DB.ejecutarQuery(sql_Entrevista_update, ambiente, server);
 
-                    richConsola.Text = Environment.NewLine + sql_Entrevista_update + Environment.NewLine;
+                        richConsola.Text = Environment.NewLine + sql_Entrevista_update + Environment.NewLine;
                     }
 
 
-            }
+                }
 
-            //Cuentas que tienen paquetes pendientes de confirmar para el CUIL
-            string sql_Cuil_Paquete_update = @$"update JBNYC7 set JBNYC7Esta = 'A'  where  JBNYC7Esta = 'D' and JBNYC7NCta in (select BNQFPA2Cta from BNQFPA2 where BNQFPA2NDo='{inputCuil.Text}')";
-            DB.ejecutarQuery(sql_Cuil_Paquete_update, ambiente, server);
+                //Cuentas que tienen paquetes pendientes de confirmar para el CUIL
+                string sql_Cuil_Paquete_update = @$"update JBNYC7 set JBNYC7Esta = 'A'  where  JBNYC7Esta = 'D' and JBNYC7NCta in (select BNQFPA2Cta from BNQFPA2 where BNQFPA2NDo='{inputCuil.Text}')";
+                DB.ejecutarQuery(sql_Cuil_Paquete_update, ambiente, server);
 
                 richConsola.Text = Environment.NewLine + sql_Cuil_Paquete_update + Environment.NewLine;
 
@@ -456,7 +485,7 @@ namespace AutoSetBT
 
         }
 
-            private void label28_Click(object sender, EventArgs e)
+        private void label28_Click(object sender, EventArgs e)
         {
 
         }
@@ -487,19 +516,17 @@ namespace AutoSetBT
             }
         }
 
-        // BIE Precalificados
+        // BIE Precalificados C/PAQ
         private void button8_Click(object sender, EventArgs e)
         {
-            string sql_FechaBT = "select Pgfape from fst017";
+            // string sql_FechaBT = "select Pgfape from fst017";
 
-            string fecha = DB.ObtenerValorCampo(sql_FechaBT, "Pgfape", ambiente, server);
+            // string fecha = DB.ObtenerValorCampo(sql_FechaBT, "Pgfape", ambiente, server);
 
-            string sql_casos_consulta = $@"select distinct sccta from FSD011 where sccta in (select  J055C17Cta from J055C19 b where J055C17NDo in 
-            (select pendoc from FSR008 where ctnro in (select JBNYC7ncta from JBNYC7 where  JBNYC7Pqte in(1,2,3,4,9)  )and petdoc=1)
-            and not exists (select * from bnqfpa2 c where c.BNQFPA2NDo = b.J055C17NDo and c.BNQFPA2est = 'CUR') ) and sctope in (304,302,303) and 
-            Scfvto>'{fecha}'";
+            string sql_casos_consulta = $@"select  distinct J055C17Cta from J055C19 (nolock) where J055C17Cta in (
+            SELECT BNQFPA2Cta FROM bnqfpa2 a (nolock) INNER JOIN JBNYC7 b ON a.BNQFPA2Cta = b.JBNYC7NCta  where  JBNYC7Pqte  in(1,2,3,4,9)  and BNQFPA2est <> 'CUR' and BNQFPA2Cnd = 'BIE' )";
 
-            
+
             DataSet casos = DB.ObtenerDatos(sql_casos_consulta, ambiente, server);
             dataGridCasos.DataSource = casos.Tables[0];
 
@@ -507,16 +534,15 @@ namespace AutoSetBT
 
         }
 
+        // BIE Preca S/PAQ
         private void button9_Click(object sender, EventArgs e)
         {
             string sql_FechaBT = "select Pgfape from fst017";
 
             string fecha = DB.ObtenerValorCampo(sql_FechaBT, "Pgfape", ambiente, server);
 
-            string sql_casos_consulta = $@"select distinct sccta from FSD011 where sccta in (select  J055C17Cta from J055C19 b where J055C17NDo in 
-            (select pendoc from FSR008 where ctnro in (select JBNYC7ncta from JBNYC7 where  JBNYC7Pqte not in(1,2,3,4,9)  )and petdoc=1)
-            and not exists (select * from bnqfpa2 c where c.BNQFPA2NDo = b.J055C17NDo and c.BNQFPA2est = 'CUR') ) and sctope in (304,302,303) and 
-            Scfvto>'{fecha}'";
+            string sql_casos_consulta = $@"select  distinct J055C17Cta from J055C19 (nolock) where J055C17Cta not in (
+            SELECT BNQFPA2Cta FROM bnqfpa2 a (nolock) INNER JOIN JBNYC7 b ON a.BNQFPA2Cta = b.JBNYC7NCta  where  JBNYC7Pqte  in(1,2,3,4,9)  and BNQFPA2est <> 'CUR' and BNQFPA2Cnd = 'BIE' )";
 
 
             DataSet casos = DB.ObtenerDatos(sql_casos_consulta, ambiente, server);
@@ -525,11 +551,11 @@ namespace AutoSetBT
             richConsola.Text = Environment.NewLine + sql_casos_consulta + Environment.NewLine;
         }
 
+        //Bi S/ PAQ
         private void button10_Click(object sender, EventArgs e)
         {
-            string sql_casos_consulta = $@"select distinct J055C17NDo from J055C19 b where J055C17NDo in 
-            (select pendoc from FSR008 where ctnro  not in (select JBNYC7ncta from JBNYC7 where  JBNYC7Pqte in(1,2,3,4,9) )and petdoc=2 and J055C19Cna=8)
-            and not exists (select * from bnqfpa2 c where c.BNQFPA2NDo = b.J055C17NDo and c.BNQFPA2est = 'CUR') ";
+            string sql_casos_consulta = $@"select  distinct J055C17Cta from J055C19 (nolock) where J055C17Cta not in (
+            SELECT BNQFPA2Cta FROM bnqfpa2 a (nolock) INNER JOIN JBNYC7 b ON a.BNQFPA2Cta = b.JBNYC7NCta  where  JBNYC7Pqte  in(1,2,3,4,9)  and BNQFPA2est <> 'CUR' and BNQFPA2Cnd = 'BI' )";
 
 
             DataSet casos = DB.ObtenerDatos(sql_casos_consulta, ambiente, server);
@@ -538,11 +564,11 @@ namespace AutoSetBT
             richConsola.Text = Environment.NewLine + sql_casos_consulta + Environment.NewLine;
         }
 
+        //BI C/PAQ
         private void button11_Click(object sender, EventArgs e)
         {
-            string sql_casos_consulta = $@"select distinct J055C17NDo from J055C19 b where J055C17NDo in 
-            (select pendoc from FSR008 where ctnro  in (select JBNYC7ncta from JBNYC7 where  JBNYC7Pqte in(1,2,3,4,9) )and petdoc=2 and J055C19Cna=8)
-            and not exists (select * from bnqfpa2 c where c.BNQFPA2NDo = b.J055C17NDo and c.BNQFPA2est = 'CUR') ";
+            string sql_casos_consulta = $@"select  distinct J055C17Cta from J055C19 (nolock) where J055C17Cta in (
+            SELECT BNQFPA2Cta FROM bnqfpa2 a (nolock) INNER JOIN JBNYC7 b ON a.BNQFPA2Cta = b.JBNYC7NCta  where  JBNYC7Pqte  in(1,2,3,4,9)  and BNQFPA2est <> 'CUR' and BNQFPA2Cnd = 'BI' )";
 
 
             DataSet casos = DB.ObtenerDatos(sql_casos_consulta, ambiente, server);
@@ -557,7 +583,7 @@ namespace AutoSetBT
             try
             {
                 Clipboard.SetText(caso);
-                MessageBox.Show("El caso "+caso+" fué copiado!");
+                MessageBox.Show("El caso " + caso + " fué copiado!");
             }
             catch
             {
@@ -575,10 +601,10 @@ namespace AutoSetBT
             }
         }
 
+        //BE
         private void button12_Click(object sender, EventArgs e)
         {
-            string sql_casos_consulta = $@"select pjndoc, Pjrazs from fsd003 a where pjtdoc=1 and pjpais=80
-            and not exists  (select * from bnqfpa2 c where c.BNQFPA2NDo = a.pjndoc and c.BNQFPA2est = 'CUR')";
+            string sql_casos_consulta = $@"SELECT distinct BNQFPA2Cta FROM bnqfpa2  (nolock) where  BNQFPA2est <> 'CUR' and BNQFPA2Cnd = 'BE'";
 
 
             DataSet casos = DB.ObtenerDatos(sql_casos_consulta, ambiente, server);
@@ -587,10 +613,11 @@ namespace AutoSetBT
             richConsola.Text = Environment.NewLine + sql_casos_consulta + Environment.NewLine;
         }
 
+        //BE C/ CALIF
         private void button13_Click(object sender, EventArgs e)
         {
-            string sql_casos_consulta = $@"select distinct Pendoc from FSR008 a  where ctnro in 
-            (select distinct sccta from fsd011 nolock where Scmod=303 and Scstat=0 and scfvto > '{txtFechaBT.Text}') 
+            string sql_casos_consulta = $@"select distinct top 100 Pendoc from FSR008 a (nolock) where ctnro in 
+            (select distinct sccta from fsd011 (nolock) where Scmod=303 and Scstat=0 and scfvto > '{txtFechaBT.Text}') 
             and petdoc=1 and convert(NUMERIC,Pendoc) >30000000000
             and not exists  (select * from bnqfpa2 c where c.BNQFPA2NDo = a.Pendoc and c.BNQFPA2est = 'CUR')";
 
@@ -599,6 +626,105 @@ namespace AutoSetBT
             dataGridCasos.DataSource = casos.Tables[0];
 
             richConsola.Text = Environment.NewLine + sql_casos_consulta + Environment.NewLine;
+        }
+
+        //QA a DF
+        private void button14_Click(object sender, EventArgs e)
+        {
+            richConsola.Text= Bcp.runQADF("bpn_web_Desa", "", "", "arcncd09", "", textTabla.Text);
+        }
+
+        // COPIAR desde ..  a ...
+        private void button17_Click(object sender, EventArgs e)
+        {
+            if (bcp_serverA != "PROD") {
+                if (bcp_tipo)
+                {
+                    richTextVistaBCP.Text = Bcp.runQADF(bcp_ambienteA, bcp_ambienteB, bcp_serverA, bcp_serverB, "", textTabla.Text);
+                }
+                else
+                {
+                    richTextVistaBCP.Text = Bcp.runQADF(bcp_ambienteA, bcp_ambienteB, bcp_serverA, bcp_serverB, textConsulta.Text, textTabla.Text);
+                }
+            }
+            else
+            {
+                if (bcp_tipo)
+                {
+
+                    richTextVistaBCP.Text = Bcp.runHistorico(bcp_ambienteA, bcp_serverA, bcp_serverB, "", textTabla.Text, textProdPass.Text);
+                }
+                else
+                {
+                    richTextVistaBCP.Text = Bcp.runHistorico(bcp_ambienteA, bcp_serverA, bcp_serverB, textConsulta.Text, textTabla.Text, textProdPass.Text);
+                }
+            }
+        }
+
+        private void comboServerA_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboServerA.Text == "QA")
+            {
+                bcp_serverA = "arcncd07";
+                bcp_ambienteA = "bpn_web_qa";
+                textProdPass.Visible = false;
+            }
+           
+            if (comboServerA.Text == "DF")
+            {
+                bcp_serverA = "arcncd09";
+                bcp_ambienteA = "bpn_web_Desa";
+                textProdPass.Visible = false;
+            }
+            if (comboServerA.Text == "PROD")
+            {
+                bcp_serverA = "Arcncd19";
+                bcp_ambienteA = "bpn_web";
+                textProdPass.Visible = true;
+            }
+        }
+
+        private void comboServerB_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboServerB.Text == "QA")
+            {
+                bcp_serverB = "arcncd07";
+                bcp_ambienteB = "bpn_web_qa";
+            }
+            if (comboServerB.Text == "DF")
+            {
+                bcp_serverB = "arcncd09";
+                bcp_ambienteB = "bpn_web_Desa";
+            }
+
+        }
+
+        private void radioButton1_Click(object sender, EventArgs e)
+        {
+            radioButton2.Checked = false;
+
+        }
+
+        private void radioButton2_Click(object sender, EventArgs e)
+        {
+            
+            radioButton1.Checked = false;
+            
+        }
+
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+            bcp_tipo = radioButton1.Checked;
+        }
+        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+            bcp_tipo = radioButton1.Checked;
+            textSql.Text = $@"select * from {bcp_ambienteA}...{textTabla.Text} where";
+        }
+
+        private void label26_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

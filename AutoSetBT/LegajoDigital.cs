@@ -41,8 +41,20 @@ namespace AutoSetBT
             string resTramites = "";
             string resDocumentos = "";
             string sql_updateVersionDocumento = "";
+            string sql_UpdateTramite = "";
+
             //Aprobar Tramites
-            string sql_UpdateTramite = $"UPDATE Tramite SET estado = 2 where  idTramite in ({tramites})";
+            if (server == "arcncd07")
+            {
+                 sql_UpdateTramite = $"UPDATE Tramite SET estado = 2 where  idTramite in ({tramites})";
+            }
+            else
+            {
+                 sql_UpdateTramite = $"UPDATE Tramite SET activo = 2 where  IdInstanciaLegajoDigital in ({tramites})";
+            }
+
+
+
             if (tramites != "")
             {
                  resTramites = DB.ejecutarQuery(sql_UpdateTramite, db_LegajoDigital, server);
@@ -55,6 +67,7 @@ namespace AutoSetBT
             else {  resTramites = "No hay registro para actualizar"; }
 
             //FirmaDigital
+
             string sql_updateFirma = $"UPDATE Tramite SET activo = 0 where CuitCuil = '{cuil}'";
             string resFirma = DB.ejecutarQuery(sql_updateFirma, db_Firma, server);
 
