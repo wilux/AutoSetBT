@@ -754,5 +754,26 @@ namespace AutoSetBT
         {
 
         }
+
+        private void button15_Click(object sender, EventArgs e)
+        {
+
+
+
+            string message = $"Seguro que queres borrar la tabla {textTabla.Text} de  {bcp_ambienteB} en {bcp_serverB}???";
+            string title = "Alerta - Perdida de datos...";
+            MessageBoxButtons buttons = MessageBoxButtons.YesNo;
+            DialogResult result = MessageBox.Show(message, title, buttons);
+            if (result == DialogResult.Yes)
+            {
+                this.Close();
+            }
+            else
+            {
+                //string sql = $"delete {textTabla.Text}";
+                //DB.ejecutarQuery(sql, bcp_ambienteB, bcp_serverB);
+            }
+
+        }
     }
 }

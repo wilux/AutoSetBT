@@ -52,44 +52,46 @@ namespace AutoSetBT
 
         }
 
-        //public static string[][] runHistorico(string dbB, string serverA, string serverB, string consulta, string tabla, string password)
-        //{
+        public static string[][] runHistorico(string dbB, string serverA, string serverB, string consulta, string tabla, string password)
+        {
+            string[] outBCP = new string[4];
+            //string outBCP = "";
+            //string inBCP = "";
+            string[] inBCP = new string[4];
 
-            //string[] outBCP = { };
-            ////string outBCP = "";
-            ////string inBCP = "";
-            //string[] inBCP = { };
+            //OUT
 
-            ////OUT
+            //bcp "select * from bpn_web..BNQFPB2" queryout BNQFPB2.txt -n -o BNQFPB2.out -S Arcncd19 -U UE_CTRL_FUNC2 -P nP461oD5 -c
+            if (consulta == "")
+            {
+                outBCP[0] = $"select * from bpn_web..{tabla}";
+                outBCP[1] = $" queryout {tabla}.txt - n - o {tabla}.out -S Arcncd19 - U UE_CTRL_FUNC2 - P {password} - c";
 
-            ////bcp "select * from bpn_web..BNQFPB2" queryout BNQFPB2.txt -n -o BNQFPB2.out -S Arcncd19 -U UE_CTRL_FUNC2 -P nP461oD5 -c
-            //if (consulta == "")
-            //{
-            //    outBCP = $@"" + quote + "select * from bpn_web..{tabla}" + quote + " queryout {tabla}.txt - n - o {tabla}.out -S Arcncd19 - U UE_CTRL_FUNC2 - P {password} - c";
-            //}
-            //else
-            //{
-            //    outBCP = $@"" + quote + "select * from bpn_web..{tabla} where {consulta}" + quote + " queryout {tabla}.txt - n - o {tabla}.out -S Arcncd19 - U UE_CTRL_FUNC2 - P {password} - c";
-            //}
+            }
+            else
+            {
 
-
-            ////IN
-
-            ////bcp bpn_web_QA..JBNYC5 IN JBNYC5.txt - S arcncd07 - T - c
-            ////pause
+                outBCP[0] = $"select * from bpn_web..{tabla} where {consulta}" + $"";
+                outBCP[1] = $" queryout {tabla}.txt - n - o {tabla}.out -S Arcncd19 - U UE_CTRL_FUNC2 - P {password} - c";
+            }
 
 
+            //IN
 
-            //inBCP = $@"{dbB}..{tabla} IN {tabla}.txt -S {serverB} -T -c";
-
-            //string[] bcp = { outBCP, inBCP };
-
-
-            //return bcp;
+            //bcp bpn_web_QA..JBNYC5 IN JBNYC5.txt - S arcncd07 - T - c
+            //pause
 
 
+            inBCP[0] = $@"{dbB}..{tabla} IN {tabla}.txt -S {serverB} -T -c";
 
-        //}
+            string[][] bcp = { outBCP, inBCP };
+
+
+            return bcp;
+
+
+
+        }
     }
 
 }

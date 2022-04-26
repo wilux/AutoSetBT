@@ -110,6 +110,9 @@ namespace AutoSetBT
             this.dataGridSector = new System.Windows.Forms.DataGridView();
             this.label15 = new System.Windows.Forms.Label();
             this.tabPage7 = new System.Windows.Forms.TabPage();
+            this.label30 = new System.Windows.Forms.Label();
+            this.label29 = new System.Windows.Forms.Label();
+            this.richTextVistaOUT = new System.Windows.Forms.RichTextBox();
             this.button14 = new System.Windows.Forms.Button();
             this.label27 = new System.Windows.Forms.Label();
             this.label26 = new System.Windows.Forms.Label();
@@ -136,9 +139,7 @@ namespace AutoSetBT
             this.radioButtonDF = new System.Windows.Forms.RadioButton();
             this.richConsola = new System.Windows.Forms.RichTextBox();
             this.label19 = new System.Windows.Forms.Label();
-            this.richTextVistaOUT = new System.Windows.Forms.RichTextBox();
-            this.label29 = new System.Windows.Forms.Label();
-            this.label30 = new System.Windows.Forms.Label();
+            this.button15 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataLD)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage5.SuspendLayout();
@@ -891,6 +892,7 @@ namespace AutoSetBT
             // 
             // tabPage7
             // 
+            this.tabPage7.Controls.Add(this.button15);
             this.tabPage7.Controls.Add(this.label30);
             this.tabPage7.Controls.Add(this.label29);
             this.tabPage7.Controls.Add(this.richTextVistaOUT);
@@ -917,6 +919,32 @@ namespace AutoSetBT
             this.tabPage7.TabIndex = 7;
             this.tabPage7.Text = "BCP";
             this.tabPage7.UseVisualStyleBackColor = true;
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Location = new System.Drawing.Point(6, 421);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(19, 15);
+            this.label30.TabIndex = 23;
+            this.label30.Text = "IN";
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Location = new System.Drawing.Point(7, 352);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(30, 15);
+            this.label29.TabIndex = 22;
+            this.label29.Text = "OUT";
+            // 
+            // richTextVistaOUT
+            // 
+            this.richTextVistaOUT.Location = new System.Drawing.Point(6, 375);
+            this.richTextVistaOUT.Name = "richTextVistaOUT";
+            this.richTextVistaOUT.Size = new System.Drawing.Size(778, 39);
+            this.richTextVistaOUT.TabIndex = 21;
+            this.richTextVistaOUT.Text = "";
             // 
             // button14
             // 
@@ -1170,31 +1198,15 @@ namespace AutoSetBT
             this.label19.TabIndex = 30;
             this.label19.Text = "Consola";
             // 
-            // richTextVistaOUT
+            // button15
             // 
-            this.richTextVistaOUT.Location = new System.Drawing.Point(6, 375);
-            this.richTextVistaOUT.Name = "richTextVistaOUT";
-            this.richTextVistaOUT.Size = new System.Drawing.Size(778, 39);
-            this.richTextVistaOUT.TabIndex = 21;
-            this.richTextVistaOUT.Text = "";
-            // 
-            // label29
-            // 
-            this.label29.AutoSize = true;
-            this.label29.Location = new System.Drawing.Point(7, 352);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(30, 15);
-            this.label29.TabIndex = 22;
-            this.label29.Text = "OUT";
-            // 
-            // label30
-            // 
-            this.label30.AutoSize = true;
-            this.label30.Location = new System.Drawing.Point(6, 421);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(19, 15);
-            this.label30.TabIndex = 23;
-            this.label30.Text = "IN";
+            this.button15.Location = new System.Drawing.Point(628, 19);
+            this.button15.Name = "button15";
+            this.button15.Size = new System.Drawing.Size(156, 23);
+            this.button15.TabIndex = 24;
+            this.button15.Text = "Borrar Tabla en Destino";
+            this.button15.UseVisualStyleBackColor = true;
+            this.button15.Click += new System.EventHandler(this.button15_Click);
             // 
             // Form1
             // 
@@ -1349,6 +1361,7 @@ namespace AutoSetBT
         private System.Windows.Forms.Label label30;
         private System.Windows.Forms.Label label29;
         private System.Windows.Forms.RichTextBox richTextVistaOUT;
+        private System.Windows.Forms.Button button15;
     }
 
 }
