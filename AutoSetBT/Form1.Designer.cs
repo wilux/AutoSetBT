@@ -110,6 +110,8 @@ namespace AutoSetBT
             this.dataGridSector = new System.Windows.Forms.DataGridView();
             this.label15 = new System.Windows.Forms.Label();
             this.tabPage7 = new System.Windows.Forms.TabPage();
+            this.button18 = new System.Windows.Forms.Button();
+            this.button16 = new System.Windows.Forms.Button();
             this.button14 = new System.Windows.Forms.Button();
             this.button15 = new System.Windows.Forms.Button();
             this.label30 = new System.Windows.Forms.Label();
@@ -892,6 +894,8 @@ namespace AutoSetBT
             // 
             // tabPage7
             // 
+            this.tabPage7.Controls.Add(this.button18);
+            this.tabPage7.Controls.Add(this.button16);
             this.tabPage7.Controls.Add(this.button14);
             this.tabPage7.Controls.Add(this.button15);
             this.tabPage7.Controls.Add(this.label30);
@@ -919,6 +923,26 @@ namespace AutoSetBT
             this.tabPage7.TabIndex = 7;
             this.tabPage7.Text = "BCP";
             this.tabPage7.UseVisualStyleBackColor = true;
+            // 
+            // button18
+            // 
+            this.button18.Location = new System.Drawing.Point(114, 484);
+            this.button18.Name = "button18";
+            this.button18.Size = new System.Drawing.Size(93, 23);
+            this.button18.TabIndex = 27;
+            this.button18.Text = "Generar .bat";
+            this.button18.UseVisualStyleBackColor = true;
+            this.button18.Click += new System.EventHandler(this.button18_Click);
+            // 
+            // button16
+            // 
+            this.button16.Location = new System.Drawing.Point(7, 484);
+            this.button16.Name = "button16";
+            this.button16.Size = new System.Drawing.Size(101, 23);
+            this.button16.TabIndex = 26;
+            this.button16.Text = "Abrir ubicación";
+            this.button16.UseVisualStyleBackColor = true;
+            this.button16.Click += new System.EventHandler(this.button16_Click);
             // 
             // button14
             // 
@@ -1362,6 +1386,8 @@ namespace AutoSetBT
         private System.Windows.Forms.RichTextBox richTextVistaOUT;
         private System.Windows.Forms.Button button15;
         private System.Windows.Forms.Button button14;
+        private System.Windows.Forms.Button button18;
+        private System.Windows.Forms.Button button16;
     }
 
 }

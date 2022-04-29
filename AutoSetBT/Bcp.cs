@@ -54,10 +54,10 @@ namespace AutoSetBT
 
         public static string[][] runHistorico(string dbB, string serverA, string serverB, string consulta, string tabla, string password)
         {
-            string[] outBCP = new string[4];
+            string[] outBCP = new string[2];
             //string outBCP = "";
             //string inBCP = "";
-            string[] inBCP = new string[4];
+            string[] inBCP = new string[2];
 
             //OUT
 

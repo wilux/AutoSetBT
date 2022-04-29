@@ -1,6 +1,8 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
+using System.IO;
 using System.Windows.Forms;
 
 namespace AutoSetBT
@@ -642,13 +644,13 @@ namespace AutoSetBT
                     bcp = Bcp.runQADF(bcp_ambienteA, bcp_ambienteB, bcp_serverA, bcp_serverB, "", textTabla.Text);
 
                     richTextVistaOUT.Text = $"\"{bcp[0][0]}\"" + bcp[0][1];
-                    richTextVistaIN.Text = bcp[0][0];
+                    richTextVistaIN.Text = bcp[1][0];
                 }
                 else
                 {
                     bcp = Bcp.runQADF(bcp_ambienteA, bcp_ambienteB, bcp_serverA, bcp_serverB, textConsulta.Text, textTabla.Text);
                     richTextVistaOUT.Text = $"\"{bcp[0][0]}\"" + bcp[0][1];
-                    richTextVistaIN.Text = bcp[0][0];
+                    richTextVistaIN.Text = bcp[1][0];
                 }
             }
             else
@@ -770,24 +772,23 @@ namespace AutoSetBT
 
         private void button15_Click(object sender, EventArgs e)
         {
+            string sqlCount = $"select count(*) from {textTabla}";
+            string cantidad = DB.ejecutarQuery(sqlCount, bcp_ambienteB, bcp_serverB);
 
-
-
-            string message = $"Seguro que queres borrar la tabla {textTabla.Text} de  {bcp_ambienteB} en {bcp_serverB}???";
+            string message = $"Seguro que queres borrar los {sqlCount} registros de la tabla {textTabla.Text} de  {bcp_ambienteB} en {bcp_serverB}???";
             string title = "Alerta - Perdida de datos...";
             MessageBoxButtons buttons = MessageBoxButtons.YesNo;
             DialogResult result = MessageBox.Show(message, title, buttons);
-            if (result == DialogResult.Yes)
+            if (result == DialogResult.No)
             {
-                richConsola.Text = "";
+          
                 richConsola.Text = "No se realizó el borrado de datos.";
-                this.Close();
+         
             }
             else
             {
                 string sql = $"delete {textTabla.Text}";
 
-                richConsola.Text = "";
                 richConsola.Text = sql + Environment.NewLine + DB.ejecutarQuery(sql, bcp_ambienteB, bcp_serverB);
             }
 
@@ -814,6 +815,45 @@ namespace AutoSetBT
             {
                 richConsola.Text = "";
                 richConsola.Text = er.Message;
+            }
+        }
+
+        private void button16_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Process.Start(Application.StartupPath);
+            }
+            catch (Win32Exception win32Exception)
+            {
+                //The system cannot find the file specified...
+                richConsola.Text = win32Exception.Message;
+            }
+        }
+
+        //Generar bat
+        private void button18_Click(object sender, EventArgs e)
+        {
+            string strIN = $@"{Application.StartupPath}\"+"BCP_IN.bat";
+            string strOUT = $@"{Application.StartupPath}\" + "BCP_out.bat";
+            try
+            {
+                if (richTextVistaIN.Text != "")
+                {
+                    System.IO.TextWriter txtIn = new StreamWriter(strIN);
+                    txtIn.WriteLine("bcp " + richTextVistaIN.Text);
+                    txtIn.WriteLine("pause");
+                    txtIn.Close();
+                    System.IO.TextWriter txtOut = new StreamWriter(strOUT);
+                    txtOut.WriteLine("bcp " + richTextVistaOUT.Text);
+                    txtOut.WriteLine("pause");
+                    txtOut.Close();
+                }
+                richConsola.Text = $"Se generaron los archivos BCP_IN.bat y BCP_OUT.bat en "+$"{ Application.StartupPath }";
+            }
+            catch (Exception err)
+            {
+                richConsola.Text = err.Message;
             }
         }
     }
