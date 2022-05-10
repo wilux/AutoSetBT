@@ -16,7 +16,7 @@ namespace AutoSetBT
 
             //Fecha BT
             string sql_FechaBT = "select Pgfape from fst017";
-            string fechaBT = DB.ObtenerValorCampo(sql_FechaBT, "Pgfape");
+            string fechaBT = DB.ObtenerValorCampo(sql_FechaBT, "Pgfape", db, server);
 
             string horaLocal = DateTime.Now.ToString("HH:mm:ss");
             var parsedDate = DateTime.Parse(fechaBT);
