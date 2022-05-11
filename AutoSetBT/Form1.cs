@@ -522,12 +522,14 @@ namespace AutoSetBT
         // BIE Precalificados C/PAQ
         private void button8_Click(object sender, EventArgs e)
         {
-            // string sql_FechaBT = "select Pgfape from fst017";
-            // string fecha = DB.ObtenerValorCampo(sql_FechaBT, "Pgfape", ambiente, server);
-
-            string sql_casos_consulta = $@"select  distinct J055C17Cta from J055C19 (nolock) where J055C17Cta in (
-            SELECT BNQFPA2Cta FROM bnqfpa2 a (nolock) INNER JOIN JBNYC7 b ON a.BNQFPA2Cta = b.JBNYC7NCta  where  JBNYC7Pqte  in(1,2,3,4,9)  and BNQFPA2est <> 'CUR' and BNQFPA2Cnd = 'BIE' and BNQFPA2Fch > '2021-09-01')";
-
+            string sql_casos_consulta = $@"select  distinct J055C17NDo, J055C17Cta from J055C19 a (nolock) INNER JOIN 
+            bnqfpa2 b  (nolock) on a.J055C17Cta = b.BNQFPA2Cta INNER JOIN 
+            (SELECT JBNYC7NCta
+            FROM JBNYC7 AS Emp1
+            WHERE JBNYC7NTra  = 
+	        (	SELECT MAX([JBNYC7NTra]) AS Tramite
+		    FROM [JBNYC7] AS Emp2 WHERE Emp1.JBNYC7NCta = Emp2.JBNYC7NCta
+	        ) and  JBNYC7Pqte in (1,2,3,4,9) and JBNYC7Esta='A') c on b.BNQFPA2Cta = c.JBNYC7NCta  and b.BNQFPA2est <> 'CUR' and b.BNQFPA2Cnd = 'BIE' and b.BNQFPA2Fch > '2022-01-01'";
 
             DataSet casos = DB.ObtenerDatos(sql_casos_consulta, ambiente, server);
             dataGridCasos.DataSource = casos.Tables[0];
@@ -539,14 +541,15 @@ namespace AutoSetBT
         // BIE Preca S/PAQ
         private void button9_Click(object sender, EventArgs e)
         {
-            string sql_FechaBT = "select Pgfape from fst017";
-
-            string fecha = DB.ObtenerValorCampo(sql_FechaBT, "Pgfape", ambiente, server);
 
             string sql_casos_consulta = $@"select  distinct J055C17NDo, J055C17Cta from J055C19 a (nolock) INNER JOIN 
             bnqfpa2 b  (nolock) on a.J055C17Cta = b.BNQFPA2Cta INNER JOIN 
-            JBNYC7 c ON b.BNQFPA2Cta = c.JBNYC7NCta  where  JBNYC7Pqte  not in(1,2,3,4,9)  and b.BNQFPA2est <> 'CUR' and b.BNQFPA2Cnd = 'BIE' and b.BNQFPA2Fch > '2022-01-01'";
-
+            (SELECT JBNYC7NCta
+            FROM JBNYC7 AS Emp1
+            WHERE JBNYC7NTra  = 
+	        (	SELECT MAX([JBNYC7NTra]) AS Tramite
+		    FROM [JBNYC7] AS Emp2 WHERE Emp1.JBNYC7NCta = Emp2.JBNYC7NCta
+	        ) and  JBNYC7Pqte in (5,7,8,10) and JBNYC7Esta='A') c on b.BNQFPA2Cta = c.JBNYC7NCta  and b.BNQFPA2est <> 'CUR' and b.BNQFPA2Cnd = 'BIE' and b.BNQFPA2Fch > '2022-01-01'";
 
             DataSet casos = DB.ObtenerDatos(sql_casos_consulta, ambiente, server);
             dataGridCasos.DataSource = casos.Tables[0];
@@ -557,8 +560,14 @@ namespace AutoSetBT
         //Bi S/ PAQ
         private void button10_Click(object sender, EventArgs e)
         {
-            string sql_casos_consulta = $@"select  distinct J055C17Cta from J055C19 (nolock) where J055C17Cta  in  (
-            SELECT BNQFPA2Cta FROM bnqfpa2 a (nolock) INNER JOIN JBNYC7 b ON a.BNQFPA2Cta = b.JBNYC7NCta  where  JBNYC7Pqte not in(1,2,3,4,9)  and BNQFPA2est <> 'CUR' and BNQFPA2Cnd = 'BI' and BNQFPA2Fch > '2021-09-01')";
+            string sql_casos_consulta = $@"select  distinct J055C17NDo, J055C17Cta from J055C19 a (nolock) INNER JOIN 
+            bnqfpa2 b  (nolock) on a.J055C17Cta = b.BNQFPA2Cta INNER JOIN 
+            (SELECT JBNYC7NCta
+            FROM JBNYC7 AS Emp1
+            WHERE JBNYC7NTra  = 
+	        (	SELECT MAX([JBNYC7NTra]) AS Tramite
+		    FROM [JBNYC7] AS Emp2 WHERE Emp1.JBNYC7NCta = Emp2.JBNYC7NCta
+	        ) and  JBNYC7Pqte in (5,8) and JBNYC7Esta='A') c on b.BNQFPA2Cta = c.JBNYC7NCta  and b.BNQFPA2est <> 'CUR' and b.BNQFPA2Cnd = 'BI' and b.BNQFPA2Fch > '2022-01-01'";
 
 
             DataSet casos = DB.ObtenerDatos(sql_casos_consulta, ambiente, server);
@@ -570,8 +579,14 @@ namespace AutoSetBT
         //BI C/PAQ
         private void button11_Click(object sender, EventArgs e)
         {
-            string sql_casos_consulta = $@"select  distinct J055C17Cta from J055C19 (nolock) where J055C17Cta in (
-            SELECT BNQFPA2Cta FROM bnqfpa2 a (nolock) INNER JOIN JBNYC7 b ON a.BNQFPA2Cta = b.JBNYC7NCta  where  JBNYC7Pqte  in(1,2,3,4,9)  and BNQFPA2est <> 'CUR' and BNQFPA2Cnd = 'BI' and BNQFPA2Fch > '2021-09-01')";
+            string sql_casos_consulta = $@"select  distinct J055C17NDo, J055C17Cta from J055C19 a (nolock) INNER JOIN 
+            bnqfpa2 b  (nolock) on a.J055C17Cta = b.BNQFPA2Cta INNER JOIN 
+            (SELECT JBNYC7NCta
+            FROM JBNYC7 AS Emp1
+            WHERE JBNYC7NTra  = 
+	        (	SELECT MAX([JBNYC7NTra]) AS Tramite
+		    FROM [JBNYC7] AS Emp2 WHERE Emp1.JBNYC7NCta = Emp2.JBNYC7NCta
+	        ) and  JBNYC7Pqte in (1,2,3,4,9) and JBNYC7Esta='A') c on b.BNQFPA2Cta = c.JBNYC7NCta  and b.BNQFPA2est <> 'CUR' and b.BNQFPA2Cnd = 'BI' and b.BNQFPA2Fch > '2022-01-01'";
 
 
             DataSet casos = DB.ObtenerDatos(sql_casos_consulta, ambiente, server);
